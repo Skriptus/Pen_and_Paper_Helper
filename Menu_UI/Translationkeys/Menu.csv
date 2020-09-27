@@ -1,0 +1,14 @@
+keys,en,de
+LOGIN,Login,Anmelden
+REGISTER,Register,Registrieren
+JOIN,Join,Beitreten
+HOST,Host,Spiel eröffnen
+GAMEMASTER,Gamemaster,Spielleiter
+PLAYER,Player,Spieler
+LOGIN/REGISTER,Login/Register,Anmelden/Registrieren
+EMAIL,E-Mail,E-Mail
+PASSWORD,Password,Passwort
+NO EMAIL,Please enter an e-mail address,Bitte eine e-mail Addresse eingeben
+NO PASSWORD,Pleas enter a password,Bitte ein Passwort eingeben
+REMEMBERME,Remember me, Anmeldedaten merken
+AUTOLOGIN,Autologin,Automatisches Anmelden

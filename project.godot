@@ -1,0 +1,96 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "FirebaseResource",
+"language": "GDScript",
+"path": "res://addons/GDFirebase/FirebaseResource.gd"
+}, {
+"base": "HTTPRequest",
+"class": "FirebaseStorage",
+"language": "GDScript",
+"path": "res://addons/GDFirebase/FirebaseStorage.gd"
+}, {
+"base": "Reference",
+"class": "FirebaseUserData",
+"language": "GDScript",
+"path": "res://addons/GDFirebase/FirebaseUserData.gd"
+}, {
+"base": "Node",
+"class": "FirestoreCollection",
+"language": "GDScript",
+"path": "res://addons/GDFirebase/FirebaseFirestoreCollection.gd"
+}, {
+"base": "Node",
+"class": "FirestoreDocument",
+"language": "GDScript",
+"path": "res://addons/GDFirebase/FirebaseFirestoreDocument.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Shenna/Character/FSM/State_Mashine.gd"
+}, {
+"base": "Node",
+"class": "character",
+"language": "GDScript",
+"path": "res://Shenna/Character/Character.gd"
+}, {
+"base": "Node",
+"class": "player",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
+}, {
+"base": "Object",
+"class": "save_load_login",
+"language": "GDScript",
+"path": "res://Menu_UI/save_load_loginsettings.gd"
+} ]
+_global_script_class_icons={
+"FirebaseResource": "",
+"FirebaseStorage": "",
+"FirebaseUserData": "",
+"FirestoreCollection": "",
+"FirestoreDocument": "",
+"StateMachine": "",
+"character": "",
+"player": "",
+"save_load_login": ""
+}
+
+[application]
+
+config/name="PP"
+run/main_scene="res://Player/Player.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Settings="*res://Player/Settings.gd"
+Firebase="*res://addons/GDFirebase/Firebase.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "GDFirebase" )
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
+
+[locale]
+
+translations=PoolStringArray( "res://Menu_UI/Translationkeys/Menu.de.translation", "res://Menu_UI/Translationkeys/Menu.en.translation", "res://Shenna/Keys/Keys.de.translation", "res://Shenna/Keys/Keys.en.translation" )
+locale_filter=[ 1, [ "de", "en" ] ]
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

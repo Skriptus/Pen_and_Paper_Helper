@@ -1,0 +1,42 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Shenna/Character/Race/Race.gd" type="Script" id=1]
+[ext_resource path="res://Shenna/Character/Race/Atra.gd" type="Script" id=2]
+[ext_resource path="res://Shenna/Character/Race/Hull.gd" type="Script" id=3]
+[ext_resource path="res://Shenna/Character/Race/Riverrun.gd" type="Script" id=4]
+[ext_resource path="res://Shenna/Character/Race/Dwarf.gd" type="Script" id=5]
+[ext_resource path="res://Shenna/Character/Race/Outgrown.gd" type="Script" id=6]
+[ext_resource path="res://Shenna/Character/Race/Human.gd" type="Script" id=7]
+[ext_resource path="res://Shenna/Character/Race/Jadeghost.gd" type="Script" id=8]
+[ext_resource path="res://Shenna/Character/Race/Frozen.gd" type="Script" id=9]
+[ext_resource path="res://Shenna/Character/Race/Fairy.gd" type="Script" id=10]
+
+[node name="Race" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ATRA" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="DWARF" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="FAIRY" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="FROZEN" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="HULL" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="HUMAN" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="JADEGHOST" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="OUTGROWN" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="RIVERRUN" type="Node" parent="."]
+script = ExtResource( 4 )

@@ -1,0 +1,74 @@
+keys,en,de
+ATRA,Atra,Atra
+HUMAN,Human,Mensch
+DWARF,Dwarf,Zwerg
+RIVERRUN,Riverrun,FlusslÇÏufer
+JADEGHOST,Jadeghost,Jadegeist
+FAIRY,Fairy,Fee
+HULL,Hull,HÇ¬lle
+FROZEN,Frozen,Frozen
+OUTGROWN,Outgrown,Entwachsener
+ALCHEMIST,Alchemist,Alchemist
+BARD,Bard,Barde
+MARKSMAN,Marksman,Schtze
+MERCHANT,Merchant,H„ndler
+MONK,Monk,M”nch
+PALADIN,Paladin,Paladin
+ROUGE,Rouge,Schurke
+WITCHER,Witcher,Witcher
+WORRIOR,Worrior,Krieger
+CLASS,Class,Klasse
+RACE,Race,Rasse
+HEALTH,Health,Leben
+ENERGY,Energy,Energie
+KARMA,Karma,Karma
+STRENGTH,Strength,Stärke
+AGIlITY,Agility,Geschicklichkeit
+RESISTANCE,Resistance,Resistenz
+PERCEPTION,Perception,Wahrnehmung
+INTELLIGENCE,Intelligence,Intelligenz
+WISDOM,Wisdom,Weisheit
+AURA,Aura,Aura
+FAITH,Faith,Glaube,
+EGO,Ego,Ego
+SEX,Sex,Geschlecht
+AGE,Age,Alter
+INVENTORY,Inventory,Inventar
+STATS,Character-stats,Charakter-werte
+ATTACK,Attack,Angriff
+PARADE,Parade,Parade
+SINGLEHANDED,Singlehanded,Einhändig
+TWOHANDED,Twohanded,Zweihändig
+STAFFWEAPONS,Staffweapons,Stangenwaffen
+DISTANCE,Distanceweapons,Distanzwaffen
+SINGLE_SWORD,Singlehanded Sword,Einhand Schwert
+SINGLE_HAMMER,Singlehanded Hammer,Einhand Hammer
+SINGLE_AXE,Singlehanded Axe,Einhand Axt
+TWO_SWORD,Twohaded Sword,Zweihand Schwert
+TWO_HAMMER,Twohaded Hammer,Zweihand Hammer
+TWO_AXE,Twohanded Axe,Zeihand Axt
+STAFF_SPEAR,Spear,Speer
+STAFF_MORNINGSTAR,Morningstar,Morgenstern
+STAFF_GLEAVE,Gleave,Gelefe
+DIST_BOW,Bow,Bogen
+DIST_CROSSBOW,Crossbow,Armbrust
+ASTRALENERGY,Astralenergy,Astralenergie
+ASTRALKONCENTRATION,Astralkoncentration,Astralkonzentration
+ELEMENTS,Elements,Elemente
+ENERGYWEAPONS,Energyweapons,Energiewaffen
+SUMMON,Summon,Beschwören
+EL_FIRE,Fire,Feuer
+EL_WATER,Water,Wasser
+EL_AIR,Air,Luft
+EL_EARTH,Earth,Erde
+EN_LIGTH,Light,Hell
+EN_DARK,Dark,Dunkel
+SUM_ANIMAL,Animal,Tiere
+SUM_GHOST,Ghosts,Geister
+SUM_ZOMBIE,Zombies,Untote
+ALLIES,Allies,Verbündete
+ENEMIES,Enemies,Gegner
+PRAYERS,Prayers,Gebete
+
+
+
