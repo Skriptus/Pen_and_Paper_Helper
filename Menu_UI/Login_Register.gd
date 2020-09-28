@@ -2,8 +2,8 @@ extends Control
 
 signal Loginaborted
 
-onready var email:LineEdit = $Labels/Emailbox/Email
-onready var password:LineEdit = $Labels/Passwordbox/Password
+onready var email:LineEdit = $Panel/Labels/Emailbox/Email
+onready var password:LineEdit = $Panel/Labels/Passwordbox/Password
 
 var login:Button
 var register:Button
@@ -23,11 +23,11 @@ func login_register():
 	### connect firebase functions ###
 	Firebase.Auth.connect("login_failed",self,"login_failed")
 		
-	login = $Labels/Buttons/Login
-	register = $Labels/Buttons/Register
+	login = $Panel/Labels/Buttons/Login
+	register = $Panel/Labels/Buttons/Register
 	
-	rememberme_b = $Labels/Remember/Rememberme
-	autologin_b = $Labels/Remember/Autologin
+	rememberme_b = $Panel/Labels/Remember/Rememberme
+	autologin_b = $Panel/Labels/Remember/Autologin
 	
 	settings = loginsettings.load_settings()
 	if settings["RememberMe"]:
@@ -42,19 +42,20 @@ func login_register():
 
 func _on_Login_pressed():
 	if !email.text:
-		$Labels/Notification.text = "NO EMAIL"
+		$Panel/Labels/Notification.text = "NO EMAIL"
 	elif !password.text:
-		$Labels/Notification.text = "NO PASSWORD"
+		$Panel/Labels/Notification.text = "NO PASSWORD"
 	else:
 		Firebase.Auth.login_with_email_and_password(email.text,password.text)
 
 func _on_Register_pressed():
 	if !email.text:
-		$Labels/Notification.text = "NO EMAIL"
+		$Panel/Labels/Notification.text = "NO EMAIL"
 	elif !password.text:
-		$Labels/Notification.text = "NO PASSWORD"
+		$Panel/Labels/Notification.text = "NO PASSWORD"
 	else:
 		Firebase.Auth.signup_with_email_and_password(email.text,password.text)
+
 
 func _on_Rememberme_toggled(button_pressed):
 	rememberme = button_pressed
@@ -69,7 +70,7 @@ func _on_Autologin_toggled(button_pressed):
 	rememberme_b.pressed = true
 	
 func login_failed(code,massage):
-	$Labels/Notification.text = massage
+	$Panel/Labels/Notification.text = massage
 	
 func get_settings() -> Dictionary: # recieve settings on successful login
 	settings["RememberMe"] = rememberme

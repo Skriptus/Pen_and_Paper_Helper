@@ -77,6 +77,13 @@ config/icon="res://icon.png"
 Settings="*res://Player/Settings.gd"
 Firebase="*res://addons/GDFirebase/Firebase.gd"
 
+[display]
+
+window/size/width=600
+window/size/height=1000
+window/size/test_width=300
+window/size/test_height=500
+
 [editor_plugins]
 
 enabled=PoolStringArray( "GDFirebase" )

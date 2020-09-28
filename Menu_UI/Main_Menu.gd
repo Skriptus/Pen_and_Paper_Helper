@@ -2,6 +2,7 @@ extends Control
 
 onready var loginbutton = $Login
 onready var login_register = $Login_Register
+onready var username = $Username
 
 var parent:Object
 
@@ -20,6 +21,7 @@ func logged_in(auth):
 	login_register.hide()
 	loginbutton.hide()
 	print("logged in as: ",auth["email"])
+	$Main_UI.show()
 	
 
 func _on_Login_pressed():

@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Menu_UI/Main_UI.gd" type="Script" id=1]
+
+[node name="Main_UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.85062
+margin_bottom = 1.85059
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Friends" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+text = "FRIENDS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="Panel" parent="Friends"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+rect_min_size = Vector2( 70, 90 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Friends/List"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+scroll_horizontal_enabled = false
+
+[node name="VBox" type="VBoxContainer" parent="Friends/List/ScrollContainer"]
+
+[node name="VBC" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" type="Button" parent="VBC"]
+margin_top = 478.0
+margin_right = 47.0
+margin_bottom = 498.0
+text = "HOST"
+
+[node name="Join" type="Button" parent="VBC"]
+margin_top = 502.0
+margin_right = 47.0
+margin_bottom = 522.0
+text = "JOIN"
+[connection signal="pressed" from="Friends" to="." method="_on_Friends_pressed"]

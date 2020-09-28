@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Menu_UI/Main_Menu.gd" type="Script" id=1]
 [ext_resource path="res://Menu_UI/Login_Register.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Menu_UI/save_load_loginsettings.gd" type="Script" id=3]
+[ext_resource path="res://Menu_UI/Main_UI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Menu_UI/Username.tscn" type="PackedScene" id=5]
 
 [node name="Main_Menu" type="Control"]
 anchor_right = 1.0
@@ -13,16 +15,24 @@ __meta__ = {
 }
 
 [node name="Login" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "LOGIN/REGISTER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Username" parent="." instance=ExtResource( 5 )]
+
 [node name="Login_Register" parent="." instance=ExtResource( 2 )]
 
 [node name="save_load_loginsettings" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="Main_UI" parent="." instance=ExtResource( 4 )]
+visible = false
 [connection signal="pressed" from="Login" to="." method="_on_Login_pressed"]
