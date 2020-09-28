@@ -56,7 +56,6 @@ func add(documentId : String, fields : Dictionary = {}):
 		request = REQUESTS.ADD
 		var url = _get_request_url()
 		url += query_tag + documentId_tag + documentId
-		
 		pusher.request(url, [authorization_header + auth.idtoken], true, HTTPClient.METHOD_POST, JSON.print(fields))
 	else:
 		printerr("Unauthorized")
@@ -99,15 +98,17 @@ func _get_request_url():
 # ---------------- RESPONSES
 func on_pusher_request_complete(result, response_code, headers, body):
 	var bod = JSON.parse(body.get_string_from_utf8()).result
+	#print(bod)
 	if response_code == HTTPClient.RESPONSE_OK:
 		match request:
 			REQUESTS.ADD:	
 				var doc_infos : Dictionary = bod
 				var document : FirestoreDocument = FirestoreDocument.new(doc_infos, doc_infos.name, doc_infos.fields) 
+				print(doc_infos)
 				emit_signal("add_document", document )
 			REQUESTS.GET:
 				var doc_infos : Dictionary = bod
-				var document : FirestoreDocument = FirestoreDocument.new(doc_infos, doc_infos.name, doc_infos.fields) 
+				var document : FirestoreDocument = FirestoreDocument.new(doc_infos, doc_infos.name.rsplit("/",true,1)[1], doc_infos.fields) 
 				emit_signal("get_document", document )
 			REQUESTS.UPDATE:
 				var doc_infos : Dictionary = bod
