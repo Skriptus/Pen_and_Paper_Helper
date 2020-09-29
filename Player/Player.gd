@@ -12,9 +12,11 @@ var Firestore_Users:Object
 var email:String
 var User_doc_default:Dictionary = {
 	"Username": "",
+	"Usernumber": 0,
 	"Friends": [],
 	"Blocked": []
 	}
+var user_doc: FirestoreDocument
 
 func _ready():
 	network.parent = self
@@ -26,6 +28,7 @@ func _ready():
 func logged_in(auth):
 	email = auth["email"]
 	Firestore_Users = Firebase.Firestore.collection("Users")
+	get_node("Main_Menu").username.Firestore_Users = Firestore_Users
 	Firebase.Firestore.auth = auth
 	Firebase.Firestore.list("Users")
 	var docs = yield(Firebase.Firestore,"listed_documents")
@@ -35,11 +38,11 @@ func logged_in(auth):
 		if docname == email:
 			doc_exists = true
 			Firestore_Users.get(docname)
-			var user_doc = yield(Firestore_Users,"get_document")
+			user_doc = yield(Firestore_Users,"get_document")
 			var dict = user_doc.fields2dict(user_doc)
 			if !dict["Username"]:
 				mainmenu.username.show()
 	if !doc_exists:
-		var FD = FirestoreDocument.new()
-		Firestore_Users.add(email,FD.dict2fields(User_doc_default))
-		
+		user_doc = FirestoreDocument.new()
+		Firestore_Users.add(email,user_doc.dict2fields(User_doc_default))
+	get_node("Main_Menu").user_doc = user_doc

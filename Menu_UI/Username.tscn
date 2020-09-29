@@ -66,6 +66,5 @@ margin_top = 46.0
 margin_right = 300.0
 margin_bottom = 66.0
 text = "RANDOM"
-[connection signal="focus_entered" from="Panel/VBoxContainer/HBoxContainer/Username" to="." method="_on_Username_focus_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Confirm" to="." method="_on_Confirm_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Random" to="." method="_on_Random_pressed"]

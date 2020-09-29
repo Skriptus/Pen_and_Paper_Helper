@@ -3,8 +3,17 @@ extends Control
 onready var loginbutton = $Login
 onready var login_register = $Login_Register
 onready var username = $Username
+onready var Player_info = $Player_Info
+
+var user_doc:FirestoreDocument setget user_doc_set
 
 var parent:Object
+
+func user_doc_set(new_doc):
+	username.user_doc = new_doc
+	Player_info.set_name_number(new_doc.doc_fields["Username"],new_doc.doc_fields["Usernumber"])
+	Player_info.set_level_progress(new_doc.doc_fields["Experience"])
+	user_doc = new_doc
 
 func _ready():
 	### connect Firebase functions ###

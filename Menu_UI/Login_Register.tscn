@@ -93,6 +93,7 @@ margin_left = 113.0
 margin_right = 263.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 150, 0 )
+secret = true
 caret_blink = true
 caret_blink_speed = 0.5
 
