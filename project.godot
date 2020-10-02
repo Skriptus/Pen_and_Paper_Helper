@@ -37,12 +37,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://Shenna/Character/FSM/State_Mashine.gd"
+"path": "res://Worlds/Shenna/Character/FSM/State_Mashine.gd"
 }, {
 "base": "Node",
 "class": "character",
 "language": "GDScript",
-"path": "res://Shenna/Character/Character.gd"
+"path": "res://Worlds/Shenna/Character/Character.gd"
 }, {
 "base": "Node",
 "class": "player",
@@ -76,6 +76,7 @@ config/icon="res://icon.png"
 
 Settings="*res://Player/Settings.gd"
 Firebase="*res://addons/GDFirebase/Firebase.gd"
+Badwords="*res://badwords/Badwords.gd"
 
 [display]
 

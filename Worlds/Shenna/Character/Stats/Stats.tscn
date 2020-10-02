@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Worlds/Shenna/Character/Stats/wither.gd" type="Script" id=1]
+[ext_resource path="res://Worlds/Shenna/Character/Stats/Stats.gd" type="Script" id=2]
+[ext_resource path="res://Worlds/Shenna/Character/Stats/Effects.gd" type="Script" id=3]
+[ext_resource path="res://Worlds/Shenna/Character/Stats/Wonders.gd" type="Script" id=4]
+[ext_resource path="res://Worlds/Shenna/Character/Stats/Alchemy.gd" type="Script" id=5]
+[ext_resource path="res://Worlds/Shenna/Character/Stats/Equipment.gd" type="Script" id=6]
+[ext_resource path="res://Worlds/Shenna/Character/Stats/Prayers.gd" type="Script" id=7]
+[ext_resource path="res://Worlds/Shenna/Character/Stats/Basestats.gd" type="Script" id=8]
+
+
+[node name="Stats" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Effects" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="wither" type="Node" parent="Effects"]
+script = ExtResource( 1 )
+
+[node name="Alchemy" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Wonders" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Equipment" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="Basestats" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="Prayers" type="Node" parent="."]
+script = ExtResource( 7 )

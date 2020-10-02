@@ -1,0 +1,3 @@
+extends Node
+
+#looting handler

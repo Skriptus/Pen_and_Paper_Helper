@@ -1,19 +1,11 @@
 extends Control
 
-onready var loginbutton = $Login
-onready var login_register = $Login_Register
-onready var username = $Username
-onready var Player_info = $Player_Info
-
-var user_doc:FirestoreDocument setget user_doc_set
-
-var parent:Object
-
-func user_doc_set(new_doc):
-	username.user_doc = new_doc
-	Player_info.set_name_number(new_doc.doc_fields["Username"],new_doc.doc_fields["Usernumber"])
-	Player_info.set_level_progress(new_doc.doc_fields["Experience"])
-	user_doc = new_doc
+onready var loginbutton = $MarginContainer/CenterContainer/Login
+onready var login_register = $MarginContainer/CenterContainer/Login_Register
+onready var save_load_settings = $save_load_loginsettings
+onready var logout = $Logout
+onready var muliplayer_UI = $MarginContainer/CenterContainer/Multiplayer_UI
+onready var parent = get_parent()
 
 func _ready():
 	### connect Firebase functions ###
@@ -21,16 +13,19 @@ func _ready():
 	
 	### connect UI Functions ###
 	login_register.mainmenu = self
-	login_register.loginsettings = $save_load_loginsettings
+	login_register.loginsettings = save_load_settings
 	login_register.login_register()
-	
+	yield(parent,"got_user")
+	muliplayer_UI.join_b.disabled = false
+	muliplayer_UI.host_b.disabled = false
 	
 func logged_in(auth):
-	$save_load_loginsettings.save_settings(login_register.get_settings())
+	save_load_settings.save_settings(login_register.get_settings())
 	login_register.hide()
 	loginbutton.hide()
-	print("logged in as: ",auth["email"])
-	$Main_UI.show()
+	logout.show()
+	#print("logged in as: ",auth["email"])
+	muliplayer_UI.show()
 	
 
 func _on_Login_pressed():
@@ -40,3 +35,12 @@ func _on_Login_pressed():
 func _login_aborted():
 	loginbutton.show()
 	login_register.hide()
+
+func _on_Logout_pressed():
+	var login_settings = login_register.get_settings()
+	login_settings["Autologin"] = false
+	login_register.autologin_b.pressed = false
+	save_load_settings.save_settings(login_settings)
+	loginbutton.show()
+	muliplayer_UI.hide()
+	logout.hide()

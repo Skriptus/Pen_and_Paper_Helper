@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Menu_UI/Multiplayer/Server.gd" type="Script" id=1]
+
+[node name="Server" type="Panel"]
+margin_right = 250.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 20 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Servername" type="Label" parent="HBoxContainer"]
+margin_top = 3.0
+margin_right = 76.0
+margin_bottom = 17.0
+text = "Servername"
+
+[node name="Players" type="Label" parent="HBoxContainer"]
+margin_left = 80.0
+margin_top = 3.0
+margin_right = 101.0
+margin_bottom = 17.0
+text = "0/0"
+
+[node name="Join" type="Button" parent="HBoxContainer"]
+margin_left = 105.0
+margin_right = 140.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+text = "Join"
+[connection signal="pressed" from="HBoxContainer/Join" to="." method="_on_Join_pressed"]

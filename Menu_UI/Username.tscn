@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Menu_UI/Username.gd" type="Script" id=1]
+[ext_resource path="res://Menu_UI/Badwords.gd" type="Script" id=1]
 
 [node name="Username" type="Popup"]
 anchor_left = 0.5
@@ -9,7 +9,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 150, 50 )
+rect_min_size = Vector2( 300, 100 )
 popup_exclusive = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -17,13 +17,12 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 300, 50 )
+mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 anchor_right = 1.0
@@ -34,18 +33,28 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 17.0
 margin_right = 300.0
-margin_bottom = 14.0
+margin_bottom = 31.0
+mouse_filter = 1
 text = "CHOOSE_USERNAME"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
-margin_top = 18.0
+[node name="Notification" type="Label" parent="Panel/VBoxContainer"]
+visible = false
+margin_top = 26.0
 margin_right = 300.0
-margin_bottom = 42.0
+margin_bottom = 40.0
+align = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 35.0
+margin_right = 300.0
+margin_bottom = 59.0
 alignment = 1
 
 [node name="Username" type="LineEdit" parent="Panel/VBoxContainer/HBoxContainer"]
@@ -54,6 +63,7 @@ margin_right = 212.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 150, 0 )
 align = 1
+max_length = 64
 
 [node name="Confirm" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
 margin_left = 216.0
@@ -62,9 +72,20 @@ margin_bottom = 24.0
 text = "#"
 
 [node name="Random" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 46.0
+margin_top = 63.0
 margin_right = 300.0
-margin_bottom = 66.0
+margin_bottom = 83.0
 text = "RANDOM"
+
+[node name="Close" type="Button" parent="Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_changed" from="Panel/VBoxContainer/HBoxContainer/Username" to="." method="_on_Username_text_changed"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Confirm" to="." method="_on_Confirm_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Random" to="." method="_on_Random_pressed"]
+[connection signal="pressed" from="Panel/Close" to="." method="_on_Close_pressed"]

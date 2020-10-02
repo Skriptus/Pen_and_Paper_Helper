@@ -17,3 +17,18 @@ ADD_FRIEND,add friend,Freund hinzufügen
 USERNAME,Username,Nutzername
 CHOOSE_USERNAME,Please choose your Username,Bitte wähle deinen Nutzernamen
 RANDOM,Random,Zufall
+CHANGE_USERNAME,Would you like to change your username?,Möchtest du deinen Nutzername ändern?
+YES,Yes,Ja
+NO,No,Nein
+NO_USERNAME_ENTERD,Please enter a username,Bitte gib einen Nutzernamen ein
+NO_USERNAME_SET,Please set an username before continuing,Bitte wähle einen Nutzernamen bevor du weiter machst
+BADWORD_ENTERD,Not allowed,Unzulässig
+FRIENDLIST,Friendlist,Freundesliste
+LOGOUT,Logout,Abmelden
+MAX_PLAYERS,Max. players:, Max. Spieler:
+ROOM,Room:,Raum:
+ROOMNAME,Roomname:,Raumname:
+WORLD,World:,Welt:
+SHENNA,Shenna,Shenna
+DEFAULT,Default,Standart
+OPEN_GAMES,Open games,Offene Spiele

@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Menu_UI/Friend.gd" type="Script" id=2]
+
+[node name="Friend" type="Panel"]
+margin_right = 300.0
+margin_bottom = 25.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Status" type="Label" parent="HBoxContainer"]
+margin_left = 29.0
+margin_right = 79.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 25 )
+custom_colors/font_color = Color( 0.392157, 0.878431, 0.0901961, 1 )
+text = "Status"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+margin_left = 83.0
+margin_right = 87.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+margin_left = 91.0
+margin_right = 141.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 25 )
+text = "name"
+align = 1
+valign = 1
+
+[node name="Message" type="TextureButton" parent="HBoxContainer"]
+margin_left = 145.0
+margin_right = 170.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join" type="TextureButton" parent="HBoxContainer"]
+margin_left = 174.0
+margin_right = 199.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -20,6 +20,7 @@ func dict2fields(dict : Dictionary) -> Dictionary:
 	var fields : Dictionary = dict
 	var var_type : String = ""
 	for field in dict.keys():
+		#print(typeof(dict[field]),dict[field])
 		match typeof(dict[field]):
 			TYPE_NIL:
 				var_type = "nullValue"
@@ -62,10 +63,13 @@ func array2fields(array:Array):#prepare Array for firestore
 func fields2dict(doc : Object) -> Dictionary:
 	var dict : Dictionary = doc.doc_fields
 	for field in (doc.doc_fields).keys():
-		if dict[field].keys()[0] == "arrayValue":
-			dict[field] = array2dict((doc.doc_fields)[field].values()[0])
-			continue
-		dict[field] = (doc.doc_fields)[field].values()[0]
+		match dict[field].keys()[0]:
+			"arrayValue":
+				dict[field] = array2dict((doc.doc_fields)[field].values()[0])
+			"stringValue":
+				dict[field] = String((doc.doc_fields)[field].values()[0])
+			"integerValue":
+				dict[field] = int((doc.doc_fields)[field].values()[0])
 	return dict
 
 func array2dict(array):

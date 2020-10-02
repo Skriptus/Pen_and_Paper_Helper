@@ -3,6 +3,7 @@
 [ext_resource path="res://Menu_UI/Main_UI.gd" type="Script" id=1]
 
 [node name="Main_UI" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 1.85062
@@ -46,14 +47,14 @@ __meta__ = {
 }
 
 [node name="Host" type="Button" parent="VBC"]
-margin_top = 478.0
+margin_top = 477.0
 margin_right = 47.0
-margin_bottom = 498.0
+margin_bottom = 497.0
 text = "HOST"
 
 [node name="Join" type="Button" parent="VBC"]
-margin_top = 502.0
+margin_top = 501.0
 margin_right = 47.0
-margin_bottom = 522.0
+margin_bottom = 521.0
 text = "JOIN"
 [connection signal="pressed" from="Friends" to="." method="_on_Friends_pressed"]

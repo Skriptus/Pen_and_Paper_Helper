@@ -1,0 +1,43 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Worlds/Shenna/Character/Class/Marksman.gd" type="Script" id=1]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Witcher.gd" type="Script" id=2]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Rouge.gd" type="Script" id=3]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Worrior.gd" type="Script" id=4]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Class.gd" type="Script" id=5]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Alchemist.gd" type="Script" id=6]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Merchant.gd" type="Script" id=7]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Paladin.gd" type="Script" id=8]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Bard.gd" type="Script" id=9]
+[ext_resource path="res://Worlds/Shenna/Character/Class/Monk.gd" type="Script" id=10]
+
+
+[node name="Class" type="Node"]
+script = ExtResource( 5 )
+
+[node name="ALCHEMIST" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="BARD" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="MARKSMAN" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="MERCHANT" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="MONK" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="PALADIN" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="ROUGE" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="WITCHER" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="WORRIOR" type="Node" parent="."]
+script = ExtResource( 4 )

@@ -98,7 +98,7 @@ func _get_request_url():
 # ---------------- RESPONSES
 func on_pusher_request_complete(result, response_code, headers, body):
 	var bod = JSON.parse(body.get_string_from_utf8()).result
-	#print(bod,request)
+	#print(bod)
 	if response_code == HTTPClient.RESPONSE_OK:
 		match request:
 			REQUESTS.ADD:	

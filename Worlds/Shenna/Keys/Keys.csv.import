@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Worlds/Shenna/Keys/Keys.en.translation", "res://Worlds/Shenna/Keys/Keys.de.translation" ]
+
+source_file="res://Worlds/Shenna/Keys/Keys.csv"
+dest_files=[ "res://Worlds/Shenna/Keys/Keys.en.translation", "res://Worlds/Shenna/Keys/Keys.de.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

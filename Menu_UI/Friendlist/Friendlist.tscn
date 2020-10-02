@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Menu_UI/Friendlist/Friendlist.gd" type="Script" id=1]
+
+[node name="Friends" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 241.0
+margin_bottom = 260.0
+grow_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+margin_right = 241.0
+margin_bottom = 38.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+margin_right = 241.0
+margin_bottom = 14.0
+text = "FRIENDLIST"
+
+[node name="add_friend" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 241.0
+margin_bottom = 38.0
+text = "ADD_FRIEND"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
+margin_top = 42.0
+margin_right = 241.0
+margin_bottom = 42.0
+
+[node name="List" type="VBoxContainer" parent="Panel/VBoxContainer/ScrollContainer"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/add_friend" to="." method="_on_add_friend_pressed"]
