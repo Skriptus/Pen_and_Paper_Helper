@@ -112,4 +112,5 @@ margin_right = 250.0
 margin_bottom = 135.0
 text = "HOST"
 [connection signal="text_changed" from="Panel/VBoxContainer/Name/Name_line" to="." method="_on_Name_line_text_changed"]
+[connection signal="item_selected" from="Panel/VBoxContainer/Rooms/Room_options" to="." method="_on_Room_options_item_selected"]
 [connection signal="pressed" from="Panel/VBoxContainer/Host" to="." method="_on_Host_pressed"]

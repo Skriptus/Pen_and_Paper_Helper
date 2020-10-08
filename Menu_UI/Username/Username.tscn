@@ -1,9 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://badwords/Badwords.gd" type="Script" id=1]
-
-
-
+[ext_resource path="res://Menu_UI/Username/Username.gd" type="Script" id=1]
 
 [node name="Username" type="Popup"]
 anchor_left = 0.5

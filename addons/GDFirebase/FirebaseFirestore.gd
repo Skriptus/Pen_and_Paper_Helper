@@ -18,6 +18,12 @@ func set_config(config_json):
 	request_list_node.connect("request_completed", self, "on_list_request_completed")
 	add_child(request_list_node)
 
+func _on_FirebaseAuth_login_succeeded(auth_result):
+	auth = auth_result
+	for collection_key in collections.keys():
+		collections[collection_key].auth = auth
+	pass
+
 func collection(path):
 	if !collections.has(path):
 		var coll = preload("res://addons/GDFirebase/FirebaseFirestoreCollection.gd")
@@ -42,9 +48,3 @@ func list(path):
 func on_list_request_completed(result, response_code, headers, body):
 	#print(JSON.parse(body.get_string_from_utf8()).result)
 	emit_signal("listed_documents",JSON.parse(body.get_string_from_utf8()).result)
-
-func _on_FirebaseAuth_login_succeeded(auth_result):
-	auth = auth_result
-	for collection_key in collections.keys():
-		collections[collection_key].auth = auth
-	pass

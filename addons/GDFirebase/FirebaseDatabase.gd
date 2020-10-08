@@ -4,6 +4,8 @@ var config = {}
 
 var auth = null
 
+
+
 const OrderBy = "orderBy"
 const LimitToFirst = "limitToFirst"
 const LimitToLast = "limitToLast"
@@ -17,7 +19,8 @@ func set_config(config_json):
 func _on_FirebaseAuth_login_succeeded(auth_result):
 	auth = auth_result
 
-func get_database_reference(path : String, filter : Dictionary):        
+func get_database_reference(path : String, filter : Dictionary): 
+	
 	var firebase_reference = Node.new()
 	firebase_reference.set_script(load("res://addons/GDFirebase/FirebaseReference.gd"))
 	var pusher = HTTPRequest.new()

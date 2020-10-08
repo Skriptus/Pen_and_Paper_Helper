@@ -37,5 +37,8 @@ func _ready():
 	add_child(Auth)
 	add_child(Firestore)
 	add_child(Database)
+	Auth.name = "Auth"
+	Firestore.name = "Firestore"
+	Database.name = "Database"
 	Auth.connect("login_succeeded", Database, "_on_FirebaseAuth_login_succeeded")
 	Auth.connect("login_succeeded", Firestore, "_on_FirebaseAuth_login_succeeded")

@@ -5,10 +5,10 @@ onready var multiplayer_UI = get_parent()
 
 func list_servers(list):
 	for item in list:
-		multiplayer_UI._get_game(item)
-		var game = yield(multiplayer_UI,"got_game")
+		Collections.get_game(item)
+		var game = yield(Collections,"got_game")
 		var Server = preload("res://Menu_UI/Multiplayer/Server.tscn").instance()
 		server_list.add_child(Server)
 		Server.fill(game.doc_fields)
 		Server.name = game.doc_fields["Name"]
-		Server.connect("join_server",multiplayer_UI.network,"join_game")
+		Server.connect("join_server",Network,"join_game")

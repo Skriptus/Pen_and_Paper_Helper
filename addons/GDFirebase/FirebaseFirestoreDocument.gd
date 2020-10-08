@@ -63,13 +63,14 @@ func array2fields(array:Array):#prepare Array for firestore
 func fields2dict(doc : Object) -> Dictionary:
 	var dict : Dictionary = doc.doc_fields
 	for field in (doc.doc_fields).keys():
-		match dict[field].keys()[0]:
-			"arrayValue":
-				dict[field] = array2dict((doc.doc_fields)[field].values()[0])
-			"stringValue":
-				dict[field] = String((doc.doc_fields)[field].values()[0])
-			"integerValue":
-				dict[field] = int((doc.doc_fields)[field].values()[0])
+		if typeof(dict[field]) == TYPE_DICTIONARY:
+			match dict[field].keys()[0]:
+				"arrayValue":
+					dict[field] = array2dict((doc.doc_fields)[field].values()[0])
+				"stringValue":
+					dict[field] = String((doc.doc_fields)[field].values()[0])
+				"integerValue":
+					dict[field] = int((doc.doc_fields)[field].values()[0])
 	return dict
 
 func array2dict(array):

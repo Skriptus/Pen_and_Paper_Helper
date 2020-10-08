@@ -1,4 +1,6 @@
 extends Panel
 
-func _init(Name:String,Status):
-	pass
+onready var Name_label = $HBoxContainer/Name
+
+func fill(Name:String,Status):
+	Name_label.text = Name

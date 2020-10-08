@@ -5,4 +5,14 @@
 [node name="DEFAULT" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="HostPos" type="Spatial" parent="."]
+[node name="Anchors" type="Spatial" parent="."]
+
+[node name="Pos1" type="Spatial" parent="Anchors"]
+
+[node name="Pos2" type="Spatial" parent="Anchors"]
+
+[node name="Pos3" type="Spatial" parent="Anchors"]
+
+[node name="Pos4" type="Spatial" parent="Anchors"]
+
+[node name="HostPos" type="Spatial" parent="Anchors"]

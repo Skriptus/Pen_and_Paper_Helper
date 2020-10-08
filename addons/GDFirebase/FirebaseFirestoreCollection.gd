@@ -75,7 +75,6 @@ func update(documentId : String, fields : Dictionary = {}):
 	if auth:
 		request = REQUESTS.UPDATE
 		var url = _get_request_url() + separator + documentId
-		#print(fields)
 		pusher.request(url, [authorization_header + auth.idtoken], true, HTTPClient.METHOD_PATCH, JSON.print(fields))
 	else:
 		printerr("Unauthorized")

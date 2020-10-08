@@ -32,3 +32,6 @@ WORLD,World:,Welt:
 SHENNA,Shenna,Shenna
 DEFAULT,Default,Standart
 OPEN_GAMES,Open games,Offene Spiele
+NAME_USED,Name already used,Name schon vergeben
+ABORT,Abort,Abbrechen
+SEARCH,Search,Suchen

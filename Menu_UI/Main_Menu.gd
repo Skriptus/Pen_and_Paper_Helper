@@ -15,7 +15,7 @@ func _ready():
 	login_register.mainmenu = self
 	login_register.loginsettings = save_load_settings
 	login_register.login_register()
-	yield(parent,"got_user")
+	yield(Collections,"got_user")
 	muliplayer_UI.join_b.disabled = false
 	muliplayer_UI.host_b.disabled = false
 	
@@ -24,10 +24,8 @@ func logged_in(auth):
 	login_register.hide()
 	loginbutton.hide()
 	logout.show()
-	#print("logged in as: ",auth["email"])
 	muliplayer_UI.show()
 	
-
 func _on_Login_pressed():
 	loginbutton.hide()
 	login_register.show()

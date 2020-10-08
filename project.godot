@@ -77,6 +77,8 @@ config/icon="res://icon.png"
 Settings="*res://Player/Settings.gd"
 Firebase="*res://addons/GDFirebase/Firebase.gd"
 Badwords="*res://badwords/Badwords.gd"
+Collections="*res://Firebase/Collections.gd"
+Network="*res://Multiplayer/Network.tscn"
 
 [display]
 

@@ -52,6 +52,7 @@ func set_listener(listener_ref):
 		listener.connect("new_sse_event", self, "on_new_sse_event")
 		var base_url = _get_list_url().trim_suffix(separator)
 		var extended_url = separator + db_path + _get_remaining_path(false)
+		print(base_url,extended_url)
 		listener.connect_to_host(base_url, extended_url)
 
 func on_new_sse_event(headers, event, data):

@@ -1,62 +1,77 @@
 extends Node
 
-signal start_host(dict)
-signal joined_game(dict)
-
 var seatcount:int = 0
-var playerids: Array = []
+var playerids: Array = [1]
 var peer:NetworkedMultiplayerENet
 var parent:Node
 
-var game_dict
+var own_id = 1
 
-func _ready():
-	connect("start_host",self,"_start_host")
+var game_dict:Dictionary
+var current_players:int = 0
 
-func _start_host(dict):
-	game_dict = dict
+func start_host(dict:Dictionary):
+	game_dict = dict.duplicate()
 	var Error
 	peer = NetworkedMultiplayerENet.new()
 	Error = peer.create_server(dict["PORT"], dict["Max_players"])
 	get_tree().network_peer = peer
 	peer.connect("peer_connected",self,"player_connected")
 	peer.connect("peer_disconnected",self,"player_disconnected")
+	parent.hosting()
+	set_network_master(1)
 	return Error
 
-func join_game(dict): #get signal from serverlist
+func join_game(dict:Dictionary): #get signal from serverlist
 	var Error
-	game_dict = dict
+	game_dict = dict.duplicate()
 	peer = NetworkedMultiplayerENet.new()
 	peer.create_client(dict["IP"],dict["PORT"])
 	get_tree().network_peer = peer
 	peer.connect("connection_succeeded",self,"connected")
 	peer.connect("connection_failed",self,"failed")
 	peer.connect("server_disconnected",self,"kicked")
-	
+	yield(peer,"connection_succeeded")
+	parent.joined()
 	
 
 func player_connected(id):
-	playerids.append(id)
-	if playerids.size() >= seatcount:
-		peer.refuse_new_connections = true
+	rpc("_add_player_id",id)
+	current_players += 1
+	if current_players >= seatcount:
+		peer.refuse_new_connections = false
+	parent.room._player_joined(id)
 	
 func player_disconnected(id):
-	playerids.remove(playerids.find(id))
-	if playerids.size() < seatcount:
+	rpc("_remove_player_id",id)
+	current_players -= 1
+	if current_players < seatcount:
 		peer.refuse_new_connections = false
+	parent.room.rpc("_player_left",id)
 
 func connected():
 	print("con")
 	set_network_master(1)
-	emit_signal("joined_game",parent,"joined",game_dict)
+	own_id = get_tree().get_network_unique_id()
 	
 func failed():
 	print("Error")
 	
-func kicked():
+func kicked(): #Server disconected clos connection, unload game, load menu
 	print("got kicked")
+	playerids = [1]
+	stop()
+	parent.room.queue_free()
+	var menu = preload("res://Menu_UI/Main_Menu.tscn").instance()
+	parent.add_child(menu)
 
-func stop():
+func stop(): # close connection if existend
 	if peer != null:
 		peer.close_connection()
 		peer = null
+
+sync func _add_player_id(id):
+	playerids.append(id)
+
+sync func _remove_player_id(id):
+	playerids.remove(playerids.find(id))

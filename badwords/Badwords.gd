@@ -17,6 +17,6 @@ func _ready():
 
 func _check_word(new_text:String) -> bool:
 	for word in badwords:
-		if new_text.find(word) != -1:
+		if word in new_text:
 			return false
 	return true
