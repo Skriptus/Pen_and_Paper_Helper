@@ -1,14 +1,14 @@
 extends Control
 
-var Level
+var Level = 0
 var roman_bool
-var self_info
 
-var parent:player
+var parent:Node
 var user_doc:FirestoreDocument
 onready var change_username_dialog = $Change_username
 onready var Username_dialog = $Username
 onready var Friendlist = $CenterContainer/Friends/Friends
+onready var levellabel = $CenterContainer/VBoxContainer/HBoxContainer/Level
 
 func _ready():
 	$Change_username/Panel/VBoxContainer/HBoxContainer/No.connect("pressed",self,"_change_no_pressed")
@@ -62,9 +62,13 @@ func roman_numbers(Nummer) -> String:
 	else:
 		for n in range(I):
 			Text += "I"
+	if Text == "":
+		Text = "0"
 	return Text
 
 func _on_Name_pressed():
+	if Network.peer != null:
+		return
 	$Change_username.popup()
 	Username_dialog.allow_close = true
 	var new_name = yield(Username_dialog,"new_username")
@@ -81,7 +85,7 @@ func _on_Level_pressed():
 	else:
 		roman_bool = true
 		Leveltext = roman_numbers(Level)
-	$HBoxContainer/VBoxContainer/HBoxContainer/Level.text = String(Leveltext)
+	levellabel.text = String(Leveltext)
 
 func _change_yes_pressed():
 	Username_dialog.popup()

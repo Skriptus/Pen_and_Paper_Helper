@@ -91,6 +91,7 @@ func add_user(email:String):
 	var User_doc_default:Dictionary = {
 	"Friends": [],
 	"Blocked": [],
+	"Requested": [],
 	"Experience": 0
 	}
 	var User_doc := FirestoreDocument.new({},email,User_doc_default)
@@ -162,7 +163,7 @@ func get_game(gamename):
 func add_game(game_dict):
 	var Game_doc := FirestoreDocument.new(game_dict,game_dict["Name"],game_dict)
 	OpenGames.add(game_dict["Name"],Game_doc.dict2fields(game_dict))
-	Game_doc = yield(Users,"add_document")
+	Game_doc = yield(OpenGames,"add_document")
 	Game_doc.fields2dict(Game_doc)
 	update_games()
 	emit_signal("got_game",Game_doc)
@@ -170,10 +171,10 @@ func add_game(game_dict):
 func update_game(game_name:String,fieldsdict:Dictionary):
 	var Game_doc := FirestoreDocument.new()
 	OpenGames.update(game_name,Game_doc.dict2fields(fieldsdict))
-	OpenGames = yield(Users,"update_document")
-	OpenGames.fields2dict(OpenGames)
+	Game_doc = yield(OpenGames,"update_document")
+	Game_doc.fields2dict(Game_doc)
 	update_games()
-	emit_signal("got_game",OpenGames)
+	emit_signal("got_game",Game_doc)
 	
 func delete_game(game_name):
 	OpenGames.delete(game_name)

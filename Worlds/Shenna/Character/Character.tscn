@@ -8,7 +8,6 @@
 [ext_resource path="res://Worlds/Shenna/Character/Race/Race.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Worlds/Shenna/Character/Character.gd" type="Script" id=7]
 
-
 [node name="Character" type="Node"]
 script = ExtResource( 7 )
 

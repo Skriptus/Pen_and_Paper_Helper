@@ -13,11 +13,11 @@ var room_array:Array
 
 func _ready(): #get available Worlds and room / recieve Ip Address
 	var file = File.new()
-	file.open("res://Worlds/Worlds.txt",file.READ)
+	file.open("res://Worlds/Worlds.res",file.READ)
 	while !file.eof_reached():
 		world_b.add_item(file.get_line ())
 	file.close()
-	file.open("res://Rooms/Rooms.txt",file.READ)
+	file.open("res://Rooms/Rooms.res",file.READ)
 	while !file.eof_reached():
 		var room = file.get_line().split(",")
 		room_array.append(room)

@@ -35,3 +35,6 @@ OPEN_GAMES,Open games,Offene Spiele
 NAME_USED,Name already used,Name schon vergeben
 ABORT,Abort,Abbrechen
 SEARCH,Search,Suchen
+HOST_USER,Host,Gastgeber
+USERS,Players,Mitspieler
+CREATE_CHARACTER,Create Character,Charakter erstellen

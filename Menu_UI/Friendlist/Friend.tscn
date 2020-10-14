@@ -1,36 +1,52 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Menu_UI/Friend.gd" type="Script" id=2]
+[ext_resource path="res://Menu_UI/Friendlist/res/icons8-nachrichten-80.png" type="Texture" id=3]
+[ext_resource path="res://Menu_UI/Friendlist/res/icons8-benutzer-hinzufügen-weiblich-32.png" type="Texture" id=4]
+[ext_resource path="res://Menu_UI/Friendlist/res/icons8-benutzer-entfernen-weiblich-16.png" type="Texture" id=5]
+[ext_resource path="res://Menu_UI/Friendlist/res/icons8-eintreten-100.png" type="Texture" id=6]
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=7]
+[ext_resource path="res://resources/ttf/JetBrainsMono-Bold.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.372549, 0.360784, 0.360784, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 8 )
 
 [node name="Friend" type="Panel"]
 margin_right = 250.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 250, 25 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_right = 1.0
+[node name="Info" type="HBoxContainer" parent="."]
 anchor_bottom = 1.0
+margin_right = 150.0
+margin_bottom = 1.90735e-06
+rect_min_size = Vector2( 150, 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Info"]
 margin_right = 25.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 texture = ExtResource( 1 )
 expand = true
 
-[node name="Status" type="Label" parent="HBoxContainer"]
+[node name="Status" type="Label" parent="Info"]
 margin_left = 29.0
-margin_right = 79.0
+margin_right = 89.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 50, 25 )
+theme = ExtResource( 7 )
 custom_colors/font_color = Color( 0.392157, 0.878431, 0.0901961, 1 )
 text = "Status"
 align = 1
@@ -39,46 +55,81 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
-margin_left = 83.0
-margin_right = 87.0
+[node name="VSeparator" type="VSeparator" parent="Info"]
+margin_left = 93.0
+margin_right = 97.0
 margin_bottom = 25.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="HBoxContainer"]
-margin_left = 91.0
-margin_right = 141.0
+[node name="Name" type="RichTextLabel" parent="Info"]
+margin_left = 101.0
+margin_right = 226.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 50, 25 )
+rect_min_size = Vector2( 125, 25 )
+theme = ExtResource( 7 )
+custom_fonts/bold_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "name"
 text = "name"
-align = 1
-valign = 1
 
-[node name="Message" type="TextureButton" parent="HBoxContainer"]
-margin_left = 145.0
-margin_right = 170.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
+[node name="Actions" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Join" type="TextureButton" parent="HBoxContainer"]
-margin_left = 174.0
-margin_right = 199.0
+[node name="Message" type="TextureButton" parent="Actions"]
+visible = false
+margin_right = 25.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
+texture_normal = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Add" type="TextureButton" parent="HBoxContainer"]
-margin_left = 203.0
-margin_right = 228.0
+[node name="Join" type="TextureButton" parent="Actions"]
+visible = false
+margin_left = 29.0
+margin_right = 54.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
+texture_normal = ExtResource( 6 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Add" type="TextureButton" parent="Actions"]
+margin_left = 29.0
+margin_right = 54.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Remove" type="TextureButton" parent="Actions"]
+visible = false
+margin_left = 87.0
+margin_right = 112.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture_normal = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Actions/Message" to="." method="_on_Message_pressed"]
+[connection signal="pressed" from="Actions/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="Actions/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Actions/Remove" to="." method="_on_Remove_pressed"]

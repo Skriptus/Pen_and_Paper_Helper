@@ -1,6 +1,5 @@
 extends Spatial
 
-var My_playermesh
 var Anchors
 var Players_array:Array #[Node,pos,id]
 
@@ -8,19 +7,16 @@ func _init():
 	Anchors = $Anchors
 	set_network_master(1)
 	if get_tree().is_network_server():
-		My_playermesh = preload("res://Player/Playermesh.tscn").instance()
-		$Anchors/HostPos.add_child(My_playermesh)
-		My_playermesh.Cam.current = true
-		Players_array.append([My_playermesh,"HostPos",Network.own_id])
+		add_playermesh("PosHost",1)
 
-slave func load_other_players(Players_ar):
+puppet func load_other_players(Players_ar):
 	for ply in Players_ar:
 		if ply[2] == Network.own_id:
 			continue
 		else:
 			add_playermesh(ply[1],ply[2])
 
-func _player_joined(id):
+master func _player_joined(id):
 	for i in range(Network.game_dict["Max_players"]):
 		var posname = "Pos"
 		posname += String(i+1)
@@ -36,10 +32,11 @@ sync func _player_left(id):
 			Players_array.remove(Players_array.find(ply))
 	
 sync func add_playermesh(pos,id):
-	var Playermesh = preload("res://Player/Playermesh.tscn").instance()
+	var Playermesh = preload("res://Player/Player_actor.tscn").instance()
 	Players_array.append([Playermesh,pos,id])
 	Anchors.get_node(pos).add_child(Playermesh)
 	Playermesh.set_network_master(id)
 	if id == Network.own_id:
 		Playermesh.Cam.current = true
-	
+		Playermesh.add_GUI()
+		Playermesh.GUI.room = self

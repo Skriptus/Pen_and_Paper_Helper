@@ -6,7 +6,7 @@ var languages = ["english","german","french","spanish"]
 
 func _ready():
 	for language in languages:
-		var path = "res://badwords/%s.txt"
+		var path = "res://badwords/%s.res"
 		path %= language
 		var file = File.new()
 		file.open(path,file.READ)

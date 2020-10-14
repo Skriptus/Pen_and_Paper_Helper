@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Player/Lobby.gd" type="Script" id=1]
+
+[node name="Lobby" type="VBoxContainer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+rect_min_size = Vector2( 150, 50 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hostpanel" type="Panel" parent="."]
+margin_right = 150.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" type="Label" parent="Hostpanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "HOST_USER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hostcon" type="VBoxContainer" parent="."]
+margin_top = 24.0
+margin_right = 150.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Userpanel" type="Panel" parent="."]
+margin_top = 28.0
+margin_right = 150.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Users" type="Label" parent="Userpanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "USERS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Usercon" type="VBoxContainer" parent="."]
+margin_top = 52.0
+margin_right = 150.0
+margin_bottom = 52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
