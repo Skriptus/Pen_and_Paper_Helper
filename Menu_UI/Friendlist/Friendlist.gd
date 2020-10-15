@@ -13,11 +13,11 @@ func _on_add_friend_pressed():
 		searchbox.hide()
 		add_friend_b.text = "ADD_FRIEND"
 	else:
-		searchbox.show()
 		add_friend_b.text = "ABORT"
 		Collections.update_nicknames()
 		user_list = yield(Collections,"list_updated")
-
+		searchbox.show()
+		search_line.grab_focus()
 
 func _on_search_text_changed(new_text):
 	for obj in search_results.get_children():

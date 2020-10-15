@@ -79,6 +79,7 @@ Firebase="*res://addons/GDFirebase/Firebase.gd"
 Badwords="*res://badwords/Badwords.gd"
 Collections="*res://Firebase/Collections.gd"
 Network="*res://Multiplayer/Network.tscn"
+Tooltip="*res://Menu_UI/Tooltip.tscn"
 
 [display]
 
