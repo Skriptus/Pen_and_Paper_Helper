@@ -42,3 +42,4 @@ func _on_Logout_pressed():
 	loginbutton.show()
 	muliplayer_UI.hide()
 	logout.hide()
+	parent.logout()

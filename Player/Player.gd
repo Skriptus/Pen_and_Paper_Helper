@@ -10,7 +10,7 @@ var email:String
 var login_auth
 
 onready var save_load:Node = $Save_Load
-onready var mainmenu:Node = $Main_Menu
+onready var current_menu:Node = $Main_Menu
 onready var player_info:Node = $Main_Menu/Player_Info
 
 var room
@@ -25,7 +25,7 @@ func _ready():
 	Network.parent = self
 	save_load.parent = self
 	player_info.parent = self
-	mainmenu.muliplayer_UI.parent = self
+	current_menu.muliplayer_UI.parent = self
 	Firebase.Auth.connect("login_succeeded", self,"logged_in")
 	Collections.connect("got_nickname",self,"_update_nickname")
 
@@ -35,7 +35,6 @@ func logged_in(auth):
 	email = auth["email"]
 	Collections.list("Users")
 	var existing_users = yield(Collections,"got_list")
-	#yield(get_tree().create_timer(1.0), "timeout")
 	if existing_users.has(email): #load and set user
 		Collections.get_user(email)
 		User_doc = yield(Collections,"got_user")
@@ -50,6 +49,7 @@ func logged_in(auth):
 		player_info.Username_dialog.popup()
 		var new_name = yield(player_info.Username_dialog,"new_username")
 		Collections.update_nickname(email,new_name)
+	player_info.show()
 
 func _update_nickname(doc):
 	if doc.doc_fields["Email"] == email:
@@ -62,7 +62,7 @@ func _update_nickname(doc):
 		Network.rpc("_update_user_info",Network.User_info_array)
 
 func host_joined():
-	mainmenu.queue_free()
+	current_menu.queue_free()
 	roompath %= Network.game_dict["Room"]
 	room = load(roompath).instance()
 	self.add_child(room)
@@ -72,7 +72,6 @@ func update_status(new_status):
 	User_doc.doc_fields["Status"] = new_status
 	Collections.update_user(email,User_doc.doc_fields)
 	User_doc = yield(Collections,"got_user")
-	User_doc.fields2dict(User_doc)
 	emit_signal("status_updated")
 
 func _notification(what):
@@ -83,4 +82,6 @@ func _notification(what):
 			Collections.delete_game(Network.game_dict["Name"])
 			yield(Collections,"list_updated")
 		get_tree().quit()
-		
+
+func logout():
+	player_info.hide()

@@ -7,12 +7,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -500.0
+margin_bottom = -350.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 300, 150 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -25,18 +31,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="X" type="Button" parent="Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -20.0
-margin_bottom = 20.0
-grow_horizontal = 0
-text = "X"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Labels" type="VBoxContainer" parent="Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 307.0
+margin_bottom = 167.0
 rect_min_size = Vector2( 300, 150 )
 mouse_filter = 2
 alignment = 1
@@ -45,16 +44,15 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Panel/Labels"]
-margin_top = 7.0
 margin_right = 300.0
-margin_bottom = 21.0
+margin_bottom = 14.0
 text = "LOGIN/REGISTER"
 align = 1
 
 [node name="Emailbox" type="HBoxContainer" parent="Panel/Labels"]
-margin_top = 25.0
+margin_top = 18.0
 margin_right = 300.0
-margin_bottom = 49.0
+margin_bottom = 42.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -76,9 +74,9 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Passwordbox" type="HBoxContainer" parent="Panel/Labels"]
-margin_top = 53.0
+margin_top = 46.0
 margin_right = 300.0
-margin_bottom = 77.0
+margin_bottom = 70.0
 alignment = 1
 
 [node name="Passwordlabel" type="Label" parent="Panel/Labels/Passwordbox"]
@@ -98,9 +96,9 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Remember" type="HBoxContainer" parent="Panel/Labels"]
-margin_top = 81.0
+margin_top = 74.0
 margin_right = 300.0
-margin_bottom = 101.0
+margin_bottom = 94.0
 alignment = 1
 
 [node name="Rememberme" type="Button" parent="Panel/Labels/Remember"]
@@ -118,9 +116,9 @@ toggle_mode = true
 text = "AUTOLOGIN"
 
 [node name="Buttons" type="HBoxContainer" parent="Panel/Labels"]
-margin_top = 105.0
+margin_top = 98.0
 margin_right = 300.0
-margin_bottom = 125.0
+margin_bottom = 118.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -139,12 +137,22 @@ margin_bottom = 20.0
 text = "REGISTER"
 
 [node name="Notification" type="Label" parent="Panel/Labels"]
-margin_top = 129.0
+margin_top = 122.0
 margin_right = 300.0
-margin_bottom = 143.0
+margin_bottom = 136.0
 align = 1
-[connection signal="pressed" from="Panel/X" to="." method="_on_X_pressed"]
+
+[node name="X" type="Button" parent="Panel/Labels"]
+margin_top = 140.0
+margin_right = 300.0
+margin_bottom = 160.0
+grow_horizontal = 0
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="toggled" from="Panel/Labels/Remember/Rememberme" to="." method="_on_Rememberme_toggled"]
 [connection signal="toggled" from="Panel/Labels/Remember/Autologin" to="." method="_on_Autologin_toggled"]
 [connection signal="pressed" from="Panel/Labels/Buttons/Login" to="." method="_on_Login_pressed"]
 [connection signal="pressed" from="Panel/Labels/Buttons/Register" to="." method="_on_Register_pressed"]
+[connection signal="pressed" from="Panel/Labels/X" to="." method="_on_X_pressed"]

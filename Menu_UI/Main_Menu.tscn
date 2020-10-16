@@ -70,8 +70,6 @@ __meta__ = {
 }
 
 [node name="Player_Info" parent="." instance=ExtResource( 5 )]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_bottom = 0.0
+visible = false
 [connection signal="pressed" from="MarginContainer/CenterContainer/Login" to="." method="_on_Login_pressed"]
 [connection signal="pressed" from="Logout" to="." method="_on_Logout_pressed"]

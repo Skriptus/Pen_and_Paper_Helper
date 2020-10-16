@@ -5,14 +5,11 @@ var roman_bool
 
 var parent:Node
 var user_doc:FirestoreDocument
-onready var change_username_dialog = $Change_username
 onready var Username_dialog = $Username
 onready var Friendlist = $CenterContainer/Friends/Friends
 onready var levellabel = $CenterContainer/VBoxContainer/HBoxContainer/Level
-
-func _ready():
-	$Change_username/Panel/VBoxContainer/HBoxContainer/No.connect("pressed",self,"_change_no_pressed")
-	$Change_username/Panel/VBoxContainer/HBoxContainer/Yes.connect("pressed",self,"_change_yes_pressed")
+onready var change_username_b = $CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel/Options/Change_name
+onready var name_options = $CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel
 
 
 func set_name_number(Name:String,Number:int):
@@ -66,17 +63,6 @@ func roman_numbers(Nummer) -> String:
 		Text = "0"
 	return Text
 
-func _on_Name_pressed():
-	if Network.peer != null:
-		return
-	$Change_username.popup()
-	Username_dialog.allow_close = true
-	var new_name = yield(Username_dialog,"new_username")
-	Collections.update_nickname(parent.email,new_name)
-	yield(Collections,"got_nickname")
-	var new_doc = yield(Collections,"got_nickname")
-	set_name_number(new_doc.doc_fields["Name"],new_doc.doc_fields["Number"])
-
 func _on_Level_pressed():
 	var Leveltext
 	if roman_bool:
@@ -87,18 +73,52 @@ func _on_Level_pressed():
 		Leveltext = roman_numbers(Level)
 	levellabel.text = String(Leveltext)
 
-func _change_yes_pressed():
-	Username_dialog.popup()
-	change_username_dialog.hide()
-
-func _change_no_pressed():
-	change_username_dialog.hide()
-
-func _on_Player_Info_gui_input(event):
-	print(event) # Replace with function body.
-
 func _on_Friends_pressed():
 	if Friendlist.visible:
 		Friendlist.hide()
 	else:
 		Friendlist.show()
+
+
+func _on_Change_name_pressed():
+	name_options.hide()
+	Username_dialog.popup()
+	Username_dialog.allow_close = true
+	var new_name = yield(Username_dialog,"new_username")
+	Collections.update_nickname(parent.email,new_name)
+	yield(Collections,"got_nickname")
+	var new_doc = yield(Collections,"got_nickname")
+	set_name_number(new_doc.doc_fields["Name"],new_doc.doc_fields["Number"])
+
+func _on_show_qr_pressed():
+	name_options.hide()
+
+
+func _on_Name_toggled(button_pressed):
+	if button_pressed:
+		if Network.peer != null:
+			change_username_b.hide()
+		name_options.show()
+	else:
+		name_options.hide()
+		change_username_b.show()
+
+func _on_Player_Info_visibility_changed():
+	yield(get_tree().create_timer(0.5),"timeout")
+	var fields = parent.User_doc.doc_fields
+	for item in fields["Requestby"]:
+		Collections.get_nickname(item)
+		var usr_dict = yield(Collections,"got_nickname")
+		var User = preload("res://Menu_UI/Friendlist/Friend.tscn").instance()
+		User.name = usr_dict.doc_fields["Name"]
+		Friendlist.request.add_child(User)
+		User.fill(usr_dict.doc_fields,"name")
+	for item in fields["Requested"]:
+		Collections.get_nickname(item)
+		var usr_dict = yield(Collections,"got_nickname")
+		var User = preload("res://Menu_UI/Friendlist/Friend.tscn").instance()
+		User.name = usr_dict.doc_fields["Name"]
+		Friendlist.request.add_child(User)
+		User.fill(usr_dict.doc_fields,"name")
+	if Friendlist.request.get_child_count() > 0:
+		Friendlist.request_con.show()

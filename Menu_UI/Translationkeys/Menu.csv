@@ -38,3 +38,8 @@ SEARCH,Search,Suchen
 HOST_USER,Host,Gastgeber
 USERS,Players,Mitspieler
 CREATE_CHARACTER,Create Character,Charakter erstellen
+SHOW_QR,Show your QR Code,Zeige meinen QR Code
+CHANNGE_NAME,Change your Username,Änder deinen Nutzernamen
+ONLINE,Online,Online
+OFFLINE,Offline,Offline
+REQUEST,Friend request,Freundschaftsanfragen
