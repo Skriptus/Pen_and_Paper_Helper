@@ -14,6 +14,7 @@ REMEMBERME,Remember me, Anmeldedaten merken
 AUTOLOGIN,Autologin,Automatisches Anmelden
 FRIENDS,Friends,Freunde
 ADD_FRIEND,add friend,Freund hinzufügen
+SEARCH_FRIEND,search User, Nutzer suchen
 USERNAME,Username,Nutzername
 CHOOSE_USERNAME,Please choose your Username,Bitte wähle deinen Nutzernamen
 RANDOM,Random,Zufall
@@ -43,3 +44,5 @@ CHANNGE_NAME,Change your Username,Änder deinen Nutzernamen
 ONLINE,Online,Online
 OFFLINE,Offline,Offline
 REQUEST,Friend request,Freundschaftsanfragen
+REQUESTEDBY,Request,Anfrage
+FOUND,Found,Gefunden

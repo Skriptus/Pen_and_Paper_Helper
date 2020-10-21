@@ -77,6 +77,8 @@ func _on_Friends_pressed():
 	if Friendlist.visible:
 		Friendlist.hide()
 	else:
+		Friendlist.Update_list()
+		yield(Friendlist,"list_complete")
 		Friendlist.show()
 
 
@@ -102,23 +104,4 @@ func _on_Name_toggled(button_pressed):
 	else:
 		name_options.hide()
 		change_username_b.show()
-
-func _on_Player_Info_visibility_changed():
-	yield(get_tree().create_timer(0.5),"timeout")
-	var fields = parent.User_doc.doc_fields
-	for item in fields["Requestby"]:
-		Collections.get_nickname(item)
-		var usr_dict = yield(Collections,"got_nickname")
-		var User = preload("res://Menu_UI/Friendlist/Friend.tscn").instance()
-		User.name = usr_dict.doc_fields["Name"]
-		Friendlist.request.add_child(User)
-		User.fill(usr_dict.doc_fields,"name")
-	for item in fields["Requested"]:
-		Collections.get_nickname(item)
-		var usr_dict = yield(Collections,"got_nickname")
-		var User = preload("res://Menu_UI/Friendlist/Friend.tscn").instance()
-		User.name = usr_dict.doc_fields["Name"]
-		Friendlist.request.add_child(User)
-		User.fill(usr_dict.doc_fields,"name")
-	if Friendlist.request.get_child_count() > 0:
-		Friendlist.request_con.show()
+	

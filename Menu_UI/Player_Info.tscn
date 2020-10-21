@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Menu_UI/Player_Info.gd" type="Script" id=2]
 [ext_resource path="res://Menu_UI/Username/Username.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=4]
 [ext_resource path="res://Menu_UI/Friendlist/Friendlist.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Menu_UI/Friendlist/Messages.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-benutzergruppe-frau-frau-100.png" type="Texture" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
 
 [node name="Player_Info" type="PanelContainer"]
 anchor_left = 1.0
@@ -12,16 +17,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource( 4 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Control" type="Control" parent="."]
+margin_right = 250.0
+margin_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Messages" parent="Control" instance=ExtResource( 6 )]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource( 4 )
+
 [node name="CenterContainer" type="HBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 275.0
-margin_bottom = 57.0
+margin_right = 250.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -30,14 +51,15 @@ __meta__ = {
 [node name="Portrait" type="TextureRect" parent="CenterContainer"]
 margin_right = 44.0
 margin_bottom = 50.0
+rect_min_size = Vector2( 25, 25 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 48.0
-margin_right = 198.0
+margin_left = 46.0
+margin_right = 196.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 150, 0 )
 __meta__ = {
@@ -46,11 +68,11 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 150.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 
 [node name="Name" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_right = 50.0
-margin_bottom = 20.0
+margin_right = 42.4
+margin_bottom = 22.6
 mouse_filter = 1
 toggle_mode = true
 text = "Name"
@@ -85,37 +107,32 @@ margin_bottom = 44.0
 text = "SHOW_QR"
 
 [node name="Level" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 54.0
-margin_right = 100.0
-margin_bottom = 20.0
+margin_left = 44.0
+margin_right = 94.4
+margin_bottom = 22.6
 text = "Level"
 flat = true
 
 [node name="Levelprogress" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
 margin_top = 24.0
 margin_right = 150.0
-margin_bottom = 38.0
+margin_bottom = 41.0
 max_value = 1.0
 
-[node name="Friends" type="Button" parent="CenterContainer"]
-margin_left = 202.0
-margin_right = 268.0
+[node name="Friends" type="TextureButton" parent="CenterContainer"]
+margin_left = 198.0
+margin_right = 248.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-text = "FRIENDS"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_min_size = Vector2( 50, 25 )
+texture_normal = ExtResource( 7 )
+expand = true
 
 [node name="Friends" parent="CenterContainer/Friends" instance=ExtResource( 5 )]
 visible = false
 
 [node name="Username" parent="." instance=ExtResource( 3 )]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 307.0
-margin_bottom = 107.0
-[connection signal="visibility_changed" from="." to="." method="_on_Player_Info_visibility_changed"]
+margin_right = 300.0
+margin_bottom = 100.0
 [connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer/Name" to="." method="_on_Name_toggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel/Options/Change_name" to="." method="_on_Change_name_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel/Options/show_qr" to="." method="_on_show_qr_pressed"]

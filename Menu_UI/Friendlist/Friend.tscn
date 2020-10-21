@@ -1,13 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://Menu_UI/Friend.gd" type="Script" id=2]
-[ext_resource path="res://Menu_UI/Friendlist/res/icons8-nachrichten-80.png" type="Texture" id=3]
-[ext_resource path="res://Menu_UI/Friendlist/res/icons8-benutzer-hinzufügen-weiblich-32.png" type="Texture" id=4]
-[ext_resource path="res://Menu_UI/Friendlist/res/icons8-benutzer-entfernen-weiblich-16.png" type="Texture" id=5]
-[ext_resource path="res://Menu_UI/Friendlist/res/icons8-eintreten-100.png" type="Texture" id=6]
+[ext_resource path="res://Menu_UI/Friendlist/Friend.gd" type="Script" id=2]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-anmelden-abgerundet-rechts-100.png" type="Texture" id=3]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-messaging-100.png" type="Texture" id=4]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-benutzer-entfernen-männlich-100.png" type="Texture" id=5]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-häkchen-ja-96.png" type="Texture" id=6]
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=7]
 [ext_resource path="res://resources/ttf/JetBrainsMono-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-männlichen-benutzer-hinzufügen-100.png" type="Texture" id=9]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-stornieren-100.png" type="Texture" id=10]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-fügen-sie-benutzer-zur-gruppe-hinzu-mann-mann-100.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.372549, 0.360784, 0.360784, 1 )
@@ -16,39 +19,56 @@ bg_color = Color( 0.372549, 0.360784, 0.360784, 1 )
 font_data = ExtResource( 8 )
 
 [node name="Friend" type="PanelContainer"]
-margin_right = 305.0
+margin_right = 280.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 250, 25 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sort" type="HBoxContainer" parent="."]
-margin_right = 305.0
-margin_bottom = 25.0
+[node name="Vbox" type="VBoxContainer" parent="."]
+margin_right = 280.0
+margin_bottom = 54.0
 
-[node name="Info" type="HBoxContainer" parent="Sort"]
-margin_right = 276.0
+[node name="Name" type="RichTextLabel" parent="Vbox"]
+margin_right = 280.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 200, 25 )
+rect_min_size = Vector2( 150, 25 )
+theme = ExtResource( 7 )
+custom_fonts/bold_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]name[/center]"
+text = "name"
+scroll_active = false
+scroll_following = true
+
+[node name="Sort" type="HBoxContainer" parent="Vbox"]
+margin_top = 29.0
+margin_right = 280.0
+margin_bottom = 54.0
+
+[node name="Info" type="HBoxContainer" parent="Vbox/Sort"]
+margin_right = 150.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Sort/Info"]
+[node name="TextureRect" type="TextureRect" parent="Vbox/Sort/Info"]
 margin_right = 25.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 texture = ExtResource( 1 )
 expand = true
 
-[node name="Status" type="Label" parent="Sort/Info"]
+[node name="Status" type="Label" parent="Vbox/Sort/Info"]
 margin_left = 29.0
-margin_right = 89.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 50, 25 )
+margin_top = 1.0
+margin_right = 84.6
+margin_bottom = 23.6
+mouse_filter = 1
 theme = ExtResource( 7 )
 custom_colors/font_color = Color( 0.392157, 0.878431, 0.0901961, 1 )
 text = "Status"
@@ -58,28 +78,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSeparator" type="VSeparator" parent="Sort/Info"]
-margin_left = 93.0
-margin_right = 97.0
+[node name="VSeparator" type="VSeparator" parent="Vbox/Sort/Info"]
+margin_left = 88.0
+margin_right = 92.0
 margin_bottom = 25.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="RichTextLabel" parent="Sort/Info"]
-margin_left = 101.0
-margin_right = 276.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 175, 25 )
-theme = ExtResource( 7 )
-custom_fonts/bold_font = SubResource( 2 )
-bbcode_enabled = true
-bbcode_text = "name"
-text = "name"
-
-[node name="Actions" type="HBoxContainer" parent="Sort"]
-margin_left = 280.0
-margin_right = 305.0
+[node name="Actions" type="HBoxContainer" parent="Vbox/Sort"]
+margin_left = 154.0
+margin_right = 154.0
 margin_bottom = 25.0
 grow_horizontal = 0
 alignment = 2
@@ -87,51 +97,96 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Message" type="TextureButton" parent="Sort/Actions"]
+[node name="Message" type="TextureButton" parent="Vbox/Sort/Actions"]
 visible = false
-margin_right = 25.0
+margin_left = 255.0
+margin_right = 280.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
-texture_normal = ExtResource( 3 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Join" type="TextureButton" parent="Sort/Actions"]
-visible = false
-margin_left = 29.0
-margin_right = 54.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture_normal = ExtResource( 6 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Add" type="TextureButton" parent="Sort/Actions"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
+mouse_filter = 1
 texture_normal = ExtResource( 4 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Remove" type="TextureButton" parent="Sort/Actions"]
+[node name="Join" type="TextureButton" parent="Vbox/Sort/Actions"]
 visible = false
-margin_left = 87.0
-margin_right = 112.0
+margin_right = 25.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
+mouse_filter = 1
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Invite" type="TextureButton" parent="Vbox/Sort/Actions"]
+visible = false
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+mouse_filter = 1
+texture_normal = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Add" type="TextureButton" parent="Vbox/Sort/Actions"]
+visible = false
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+mouse_filter = 1
+texture_normal = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Remove" type="TextureButton" parent="Vbox/Sort/Actions"]
+visible = false
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+mouse_filter = 1
 texture_normal = ExtResource( 5 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Sort/Actions/Message" to="." method="_on_Message_pressed"]
-[connection signal="pressed" from="Sort/Actions/Join" to="." method="_on_Join_pressed"]
-[connection signal="pressed" from="Sort/Actions/Add" to="." method="_on_Add_pressed"]
-[connection signal="pressed" from="Sort/Actions/Remove" to="." method="_on_Remove_pressed"]
+
+[node name="Accept" type="TextureButton" parent="Vbox/Sort/Actions"]
+visible = false
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+mouse_filter = 1
+texture_normal = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Decline" type="TextureButton" parent="Vbox/Sort/Actions"]
+visible = false
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+mouse_filter = 1
+texture_normal = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="Vbox/Name" to="." method="_on_Name_mouse_entered"]
+[connection signal="mouse_exited" from="Vbox/Name" to="." method="_on_Name_mouse_exited"]
+[connection signal="pressed" from="Vbox/Sort/Actions/Message" to="." method="_on_Message_pressed"]
+[connection signal="pressed" from="Vbox/Sort/Actions/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="Vbox/Sort/Actions/Invite" to="." method="_on_Invite_pressed"]
+[connection signal="pressed" from="Vbox/Sort/Actions/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Vbox/Sort/Actions/Remove" to="." method="_on_Remove_pressed"]
+[connection signal="pressed" from="Vbox/Sort/Actions/Accept" to="." method="_on_Accept_pressed"]
+[connection signal="pressed" from="Vbox/Sort/Actions/Decline" to="." method="_on_Decline_pressed"]

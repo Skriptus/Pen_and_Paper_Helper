@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Menu_UI/Friendlist/Friendlist.gd" type="Script" id=1]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-finde-benutzer-männlich-100.png" type="Texture" id=2]
 
 [node name="Friends" type="PanelContainer"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -264.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 250, 50 )
@@ -18,7 +18,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 257.0
-margin_bottom = 57.0
+margin_bottom = 97.0
 rect_min_size = Vector2( 250, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -26,7 +26,7 @@ __meta__ = {
 
 [node name="Con" type="VBoxContainer" parent="VBoxContainer"]
 margin_right = 250.0
-margin_bottom = 38.0
+margin_bottom = 43.0
 alignment = 1
 
 [node name="Friendlist" type="Label" parent="VBoxContainer/Con"]
@@ -38,41 +38,17 @@ align = 1
 [node name="add_friend" type="Button" parent="VBoxContainer/Con"]
 margin_top = 18.0
 margin_right = 250.0
-margin_bottom = 38.0
-text = "ADD_FRIEND"
-
-[node name="Request" type="VBoxContainer" parent="VBoxContainer"]
-visible = false
-margin_top = 24.0
-margin_right = 250.0
-margin_bottom = 67.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Request" type="Label" parent="VBoxContainer/Request"]
-margin_right = 250.0
-margin_bottom = 14.0
-text = "REQUEST"
-align = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Request"]
-margin_top = 18.0
-margin_right = 250.0
 margin_bottom = 43.0
-rect_min_size = Vector2( 250, 25 )
-scroll_horizontal_enabled = false
-
-[node name="List" type="VBoxContainer" parent="VBoxContainer/Request/ScrollContainer"]
-margin_right = 200.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 200, 25 )
+rect_min_size = Vector2( 150, 25 )
+text = "SEARCH_FRIEND"
+icon = ExtResource( 2 )
+expand_icon = true
 
 [node name="Friendsearch" type="VBoxContainer" parent="VBoxContainer"]
 visible = false
-margin_top = 42.0
+margin_top = 47.0
 margin_right = 250.0
-margin_bottom = 95.0
+margin_bottom = 100.0
 
 [node name="search" type="LineEdit" parent="VBoxContainer/Friendsearch"]
 margin_right = 250.0
@@ -89,58 +65,58 @@ scroll_horizontal_enabled = false
 
 [node name="Searchresults" type="VBoxContainer" parent="VBoxContainer/Friendsearch/ScrollContainer"]
 
-[node name="Online" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Request" type="VBoxContainer" parent="VBoxContainer"]
 visible = false
-margin_top = 81.0
-margin_right = 250.0
-margin_bottom = 124.0
+margin_top = 47.0
+margin_right = 292.0
+margin_bottom = 90.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Online" type="Label" parent="VBoxContainer/Online"]
-margin_right = 250.0
+[node name="Request" type="Label" parent="VBoxContainer/Request"]
+margin_right = 292.0
 margin_bottom = 14.0
-text = "ONLINE"
+text = "REQUEST"
 align = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Online"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Request"]
+margin_top = 18.0
+margin_right = 292.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 250, 25 )
+mouse_filter = 1
+scroll_horizontal_enabled = false
+
+[node name="List" type="VBoxContainer" parent="VBoxContainer/Request/ScrollContainer"]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+
+[node name="Friends" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 47.0
+margin_right = 250.0
+margin_bottom = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Friends" type="Label" parent="VBoxContainer/Friends"]
+margin_right = 250.0
+margin_bottom = 14.0
+text = "FRIENDS"
+align = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Friends"]
 margin_top = 18.0
 margin_right = 250.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 250, 25 )
 scroll_horizontal_enabled = false
 
-[node name="List" type="VBoxContainer" parent="VBoxContainer/Online/ScrollContainer"]
+[node name="List" type="VBoxContainer" parent="VBoxContainer/Friends/ScrollContainer"]
 margin_right = 200.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 200, 25 )
-
-[node name="Offline" type="VBoxContainer" parent="VBoxContainer"]
-visible = false
-margin_top = 81.0
-margin_right = 250.0
-margin_bottom = 124.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Offline" type="Label" parent="VBoxContainer/Offline"]
-margin_right = 250.0
-margin_bottom = 14.0
-text = "OFFLINE"
-align = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Offline"]
-margin_top = 18.0
-margin_right = 250.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 250, 25 )
-scroll_horizontal_enabled = false
-
-[node name="List" type="VBoxContainer" parent="VBoxContainer/Offline/ScrollContainer"]
-margin_right = 200.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 200, 25 )
+margin_bottom = 50.0
+rect_min_size = Vector2( 200, 50 )
 [connection signal="pressed" from="VBoxContainer/Con/add_friend" to="." method="_on_add_friend_pressed"]
 [connection signal="text_changed" from="VBoxContainer/Friendsearch/search" to="." method="_on_search_text_changed"]

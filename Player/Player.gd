@@ -40,7 +40,7 @@ func logged_in(auth):
 		User_doc = yield(Collections,"got_user")
 		player_info.set_level_progress(User_doc.doc_fields["Experience"],true)
 		Collections.get_nickname(email)
-		update_status("online")
+		update_status("Online")
 	else:		#create user nad nickname then update nickname
 		Collections.add_user(email)
 		User_doc = yield(Collections,"got_user")
@@ -78,9 +78,10 @@ func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		update_status("offline")
 		yield(self,"status_updated")
-		if get_tree().is_network_server():
-			Collections.delete_game(Network.game_dict["Name"])
-			yield(Collections,"list_updated")
+		if Network.peer != null:
+			if get_tree().is_network_server():
+				Collections.delete_game(Network.game_dict["Name"])
+				yield(Collections,"list_updated")
 		get_tree().quit()
 
 func logout():
