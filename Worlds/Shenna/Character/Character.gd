@@ -20,5 +20,3 @@ var position:Array = [[0,0],[0,0]] #overworldpostiotion / mapposition
 
 ##### Start handling #####
 
-func _ready():
-	character_race.player_pharacter = self

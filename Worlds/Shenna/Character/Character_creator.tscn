@@ -1,0 +1,1603 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-hinzufügen-100.png" type="Texture" id=2]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-minus-sign-100.png" type="Texture" id=3]
+[ext_resource path="res://Worlds/Shenna/Character/Character_creator.gd" type="Script" id=4]
+
+[node name="Character_creator" type="PanelContainer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBC" type="VBoxContainer" parent="."]
+margin_left = 4.2
+margin_top = 2.8
+margin_right = 595.8
+margin_bottom = 462.8
+
+[node name="TabContainer" type="TabContainer" parent="VBC"]
+margin_right = 591.0
+margin_bottom = 436.0
+use_hidden_tabs_for_min_size = true
+
+[node name="BASEINFO" type="VBoxContainer" parent="VBC/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NAME" type="HBoxContainer" parent="VBC/TabContainer/BASEINFO"]
+margin_right = 414.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Name_label" type="Label" parent="VBC/TabContainer/BASEINFO/NAME"]
+margin_left = 134.0
+margin_top = -1.0
+margin_right = 173.6
+margin_bottom = 21.6
+text = "NAME"
+
+[node name="Name_edit" type="LineEdit" parent="VBC/TabContainer/BASEINFO/NAME"]
+margin_left = 175.0
+margin_right = 279.4
+margin_bottom = 22.6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GENDER" type="HBoxContainer" parent="VBC/TabContainer/BASEINFO"]
+margin_top = 24.0
+margin_right = 414.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Gender_label" type="Label" parent="VBC/TabContainer/BASEINFO/GENDER"]
+margin_left = 116.0
+margin_top = -1.0
+margin_right = 171.6
+margin_bottom = 21.6
+text = "GENDER"
+
+[node name="Gender_edit" type="LineEdit" parent="VBC/TabContainer/BASEINFO/GENDER"]
+margin_left = 173.0
+margin_right = 277.4
+margin_bottom = 22.6
+text = "MALE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gender_select" type="OptionButton" parent="VBC/TabContainer/BASEINFO/GENDER"]
+margin_left = 279.0
+margin_right = 297.4
+margin_bottom = 22.6
+text = "MALE"
+clip_text = true
+items = [ "MALE", null, false, 0, null, "FEMALE", null, false, 1, null ]
+selected = 0
+
+[node name="AGE" type="HBoxContainer" parent="VBC/TabContainer/BASEINFO"]
+margin_top = 48.0
+margin_right = 414.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="Age_label" type="Label" parent="VBC/TabContainer/BASEINFO/AGE"]
+margin_left = 133.0
+margin_top = -1.0
+margin_right = 164.6
+margin_bottom = 21.6
+text = "AGE"
+
+[node name="Age_box" type="SpinBox" parent="VBC/TabContainer/BASEINFO/AGE"]
+margin_left = 166.0
+margin_right = 281.4
+margin_bottom = 22.6
+max_value = 5000.0
+value = 35.0
+
+[node name="RACE" type="HBoxContainer" parent="VBC/TabContainer/BASEINFO"]
+margin_top = 72.0
+margin_right = 414.0
+margin_bottom = 94.0
+alignment = 1
+
+[node name="Race_label" type="Label" parent="VBC/TabContainer/BASEINFO/RACE"]
+margin_left = 156.0
+margin_top = -1.0
+margin_right = 195.6
+margin_bottom = 21.6
+text = "RACE"
+
+[node name="Race_select" type="OptionButton" parent="VBC/TabContainer/BASEINFO/RACE"]
+margin_left = 197.0
+margin_right = 257.4
+margin_bottom = 22.6
+text = "HUMAN"
+items = [ "HULL", null, false, 0, null, "FAIRY", null, false, 1, null, "JADEGHOST", null, false, 2, null, "OUTGROWN", null, false, 3, null, "RIVERRUN", null, false, 4, null, "DWARF", null, false, 5, null, "FROZEN", null, false, 6, null, "HUMAN", null, false, 7, null, "ATRA", null, false, 8, null ]
+selected = 7
+
+[node name="CLASS" type="HBoxContainer" parent="VBC/TabContainer/BASEINFO"]
+margin_top = 96.0
+margin_right = 414.0
+margin_bottom = 118.0
+alignment = 1
+
+[node name="Class_label" type="Label" parent="VBC/TabContainer/BASEINFO/CLASS"]
+margin_left = 140.0
+margin_top = -1.0
+margin_right = 187.6
+margin_bottom = 21.6
+text = "CLASS"
+
+[node name="Class_select" type="OptionButton" parent="VBC/TabContainer/BASEINFO/CLASS"]
+margin_left = 189.0
+margin_right = 273.4
+margin_bottom = 22.6
+text = "MERCHANT"
+items = [ "WORRIOR", null, false, 0, null, "ROUGE", null, false, 1, null, "WITCHER", null, false, 2, null, "MERCHANT", null, false, 3, null, "ALCHEMIST", null, false, 4, null, "BARD", null, false, 5, null, "PALADIN", null, false, 6, null, "MONK", null, false, 7, null, "MARKSMAN", null, false, 8, null ]
+selected = 3
+
+[node name="BASESTATS" type="VBoxContainer" parent="VBC/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="Available_points" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_right = 414.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/BASESTATS/Available_points"]
+margin_left = 127.0
+margin_top = -1.0
+margin_right = 262.6
+margin_bottom = 21.6
+text = "AVAILABLE_POINTS"
+
+[node name="Points" type="Label" parent="VBC/TabContainer/BASESTATS/Available_points"]
+margin_left = 264.0
+margin_top = -1.0
+margin_right = 287.6
+margin_bottom = 21.6
+text = "10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HEALTH" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 24.0
+margin_right = 414.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/HEALTH"]
+margin_left = 147.0
+margin_top = -1.0
+margin_right = 202.6
+margin_bottom = 21.6
+text = "HEALTH"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/HEALTH"]
+margin_left = 204.0
+margin_top = -1.0
+margin_right = 219.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/HEALTH"]
+margin_left = 221.0
+margin_right = 243.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/HEALTH"]
+margin_left = 245.0
+margin_right = 267.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="ENERGY" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 48.0
+margin_right = 414.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/ENERGY"]
+margin_left = 147.0
+margin_top = -1.0
+margin_right = 202.6
+margin_bottom = 21.6
+text = "ENERGY"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/ENERGY"]
+margin_left = 204.0
+margin_top = -1.0
+margin_right = 219.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/ENERGY"]
+margin_left = 221.0
+margin_right = 243.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/ENERGY"]
+margin_left = 245.0
+margin_right = 267.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="KARMA" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 72.0
+margin_right = 414.0
+margin_bottom = 94.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/KARMA"]
+margin_left = 151.0
+margin_top = -1.0
+margin_right = 198.6
+margin_bottom = 21.6
+text = "KARMA"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/KARMA"]
+margin_left = 200.0
+margin_top = -1.0
+margin_right = 215.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/KARMA"]
+margin_left = 217.0
+margin_right = 239.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/KARMA"]
+margin_left = 241.0
+margin_right = 263.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="STRENGTH" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 96.0
+margin_right = 414.0
+margin_bottom = 118.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/STRENGTH"]
+margin_left = 139.0
+margin_top = -1.0
+margin_right = 210.6
+margin_bottom = 21.6
+text = "STRENGTH"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/STRENGTH"]
+margin_left = 212.0
+margin_top = -1.0
+margin_right = 227.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/STRENGTH"]
+margin_left = 229.0
+margin_right = 251.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/STRENGTH"]
+margin_left = 253.0
+margin_right = 275.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="AGILITY" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 120.0
+margin_right = 414.0
+margin_bottom = 142.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/AGILITY"]
+margin_left = 143.0
+margin_top = -1.0
+margin_right = 206.6
+margin_bottom = 21.6
+text = "AGILITY"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/AGILITY"]
+margin_left = 208.0
+margin_top = -1.0
+margin_right = 223.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/AGILITY"]
+margin_left = 225.0
+margin_right = 247.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/AGILITY"]
+margin_left = 249.0
+margin_right = 271.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="RESISTANCE" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 144.0
+margin_right = 414.0
+margin_bottom = 166.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/RESISTANCE"]
+margin_left = 131.0
+margin_top = -1.0
+margin_right = 218.6
+margin_bottom = 21.6
+text = "RESISTANCE"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/RESISTANCE"]
+margin_left = 220.0
+margin_top = -1.0
+margin_right = 235.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/RESISTANCE"]
+margin_left = 237.0
+margin_right = 259.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/RESISTANCE"]
+margin_left = 261.0
+margin_right = 283.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="PERCEPTION" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 168.0
+margin_right = 414.0
+margin_bottom = 190.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/PERCEPTION"]
+margin_left = 131.0
+margin_top = -1.0
+margin_right = 218.6
+margin_bottom = 21.6
+text = "PERCEPTION"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/PERCEPTION"]
+margin_left = 220.0
+margin_top = -1.0
+margin_right = 235.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/PERCEPTION"]
+margin_left = 237.0
+margin_right = 259.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/PERCEPTION"]
+margin_left = 261.0
+margin_right = 283.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="INTELLIGENCE" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 192.0
+margin_right = 414.0
+margin_bottom = 214.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/INTELLIGENCE"]
+margin_left = 123.0
+margin_top = -1.0
+margin_right = 226.6
+margin_bottom = 21.6
+text = "INTELLIGENCE"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/INTELLIGENCE"]
+margin_left = 228.0
+margin_top = -1.0
+margin_right = 243.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/INTELLIGENCE"]
+margin_left = 245.0
+margin_right = 267.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/INTELLIGENCE"]
+margin_left = 269.0
+margin_right = 291.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="WISDOM" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 216.0
+margin_right = 414.0
+margin_bottom = 238.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/WISDOM"]
+margin_left = 147.0
+margin_top = -1.0
+margin_right = 202.6
+margin_bottom = 21.6
+text = "WISDOM"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/WISDOM"]
+margin_left = 204.0
+margin_top = -1.0
+margin_right = 219.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/WISDOM"]
+margin_left = 221.0
+margin_right = 243.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/WISDOM"]
+margin_left = 245.0
+margin_right = 267.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="AURA" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 240.0
+margin_right = 414.0
+margin_bottom = 262.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/AURA"]
+margin_left = 155.0
+margin_top = -1.0
+margin_right = 194.6
+margin_bottom = 21.6
+text = "AURA"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/AURA"]
+margin_left = 196.0
+margin_top = -1.0
+margin_right = 211.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/AURA"]
+margin_left = 213.0
+margin_right = 235.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/AURA"]
+margin_left = 237.0
+margin_right = 259.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="FAITH" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 264.0
+margin_right = 414.0
+margin_bottom = 286.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/FAITH"]
+margin_left = 151.0
+margin_top = -1.0
+margin_right = 198.6
+margin_bottom = 21.6
+text = "FAITH"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/FAITH"]
+margin_left = 200.0
+margin_top = -1.0
+margin_right = 215.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/FAITH"]
+margin_left = 217.0
+margin_right = 239.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/FAITH"]
+margin_left = 241.0
+margin_right = 263.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="EGO" type="HBoxContainer" parent="VBC/TabContainer/BASESTATS"]
+margin_top = 288.0
+margin_right = 414.0
+margin_bottom = 310.0
+alignment = 1
+
+[node name="label" type="Label" parent="VBC/TabContainer/BASESTATS/EGO"]
+margin_left = 159.0
+margin_top = -1.0
+margin_right = 190.6
+margin_bottom = 21.6
+text = "EGO"
+
+[node name="value" type="Label" parent="VBC/TabContainer/BASESTATS/EGO"]
+margin_left = 192.0
+margin_top = -1.0
+margin_right = 207.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/EGO"]
+margin_left = 209.0
+margin_right = 231.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/BASESTATS/EGO"]
+margin_left = 233.0
+margin_right = 255.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="WEAPONSTATS" type="VBoxContainer" parent="VBC/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="WEAPONPOINTS" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_right = 584.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/WEAPONPOINTS"]
+margin_left = 228.0
+margin_top = -1.0
+margin_right = 331.6
+margin_bottom = 21.6
+text = "WEAPONPOINTS"
+
+[node name="points" type="Label" parent="VBC/TabContainer/WEAPONSTATS/WEAPONPOINTS"]
+margin_left = 333.0
+margin_top = -1.0
+margin_right = 356.6
+margin_bottom = 21.6
+text = "20"
+
+[node name="ATTACK" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_top = 24.0
+margin_right = 584.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/ATTACK"]
+margin_left = 232.0
+margin_top = -1.0
+margin_right = 287.6
+margin_bottom = 21.6
+text = "ATTACK"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/ATTACK"]
+margin_left = 289.0
+margin_top = -1.0
+margin_right = 304.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/ATTACK"]
+margin_left = 306.0
+margin_right = 328.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/ATTACK"]
+margin_left = 330.0
+margin_right = 352.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="PARRY" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_top = 48.0
+margin_right = 584.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PARRY"]
+margin_left = 236.0
+margin_top = -1.0
+margin_right = 283.6
+margin_bottom = 21.6
+text = "PARRY"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PARRY"]
+margin_left = 285.0
+margin_top = -1.0
+margin_right = 300.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PARRY"]
+margin_left = 302.0
+margin_right = 324.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PARRY"]
+margin_left = 326.0
+margin_right = 348.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="HSeparator2" type="HSeparator" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_top = 72.0
+margin_right = 584.0
+margin_bottom = 76.0
+
+[node name="PHYSICAL" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_top = 78.0
+margin_right = 584.0
+margin_bottom = 202.0
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL"]
+margin_top = -1.0
+margin_right = 584.0
+margin_bottom = 21.6
+text = "PHYSICAL"
+align = 1
+
+[node name="PHYSICAL" type="TabContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL"]
+margin_top = 24.0
+margin_right = 584.0
+margin_bottom = 124.0
+
+[node name="SINGLEHANDED" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="SWORD" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED"]
+margin_right = 577.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/SWORD"]
+margin_left = 232.0
+margin_top = -1.0
+margin_right = 279.6
+margin_bottom = 21.6
+text = "SWORD"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/SWORD"]
+margin_left = 281.0
+margin_top = -1.0
+margin_right = 296.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/SWORD"]
+margin_left = 298.0
+margin_right = 320.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/SWORD"]
+margin_left = 322.0
+margin_right = 344.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="HAMMER" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED"]
+margin_top = 24.0
+margin_right = 577.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/HAMMER"]
+margin_left = 228.0
+margin_top = -1.0
+margin_right = 283.6
+margin_bottom = 21.6
+text = "HAMMER"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/HAMMER"]
+margin_left = 285.0
+margin_top = -1.0
+margin_right = 300.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/HAMMER"]
+margin_left = 302.0
+margin_right = 324.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/HAMMER"]
+margin_left = 326.0
+margin_right = 348.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="AXE" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED"]
+margin_top = 48.0
+margin_right = 577.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/AXE"]
+margin_left = 240.0
+margin_top = -1.0
+margin_right = 271.6
+margin_bottom = 21.6
+text = "AXE"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/AXE"]
+margin_left = 273.0
+margin_top = -1.0
+margin_right = 288.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/AXE"]
+margin_left = 290.0
+margin_right = 312.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/SINGLEHANDED/AXE"]
+margin_left = 314.0
+margin_right = 336.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="TWOHANDED" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="SWORD" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED"]
+margin_right = 407.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/SWORD"]
+margin_left = 156.0
+margin_top = -1.0
+margin_right = 203.6
+margin_bottom = 21.6
+text = "SWORD"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/SWORD"]
+margin_right = 5.6
+margin_bottom = 22.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/SWORD"]
+margin_left = 205.0
+margin_right = 227.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/SWORD"]
+margin_left = 229.0
+margin_right = 251.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="HAMMER" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED"]
+margin_top = 24.0
+margin_right = 407.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/HAMMER"]
+margin_left = 152.0
+margin_top = -1.0
+margin_right = 207.6
+margin_bottom = 21.6
+text = "HAMMER"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/HAMMER"]
+margin_top = -24.0
+margin_right = 13.6
+margin_bottom = 17.6
+text = "0
+"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/HAMMER"]
+margin_left = 209.0
+margin_right = 231.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/HAMMER"]
+margin_left = 233.0
+margin_right = 255.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="AXE" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED"]
+margin_top = 48.0
+margin_right = 407.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/AXE"]
+margin_left = 164.0
+margin_top = -1.0
+margin_right = 195.6
+margin_bottom = 21.6
+text = "AXE"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/AXE"]
+margin_top = -48.0
+margin_right = 13.6
+margin_bottom = -6.4
+text = "0
+"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/AXE"]
+margin_left = 197.0
+margin_right = 219.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/TWOHANDED/AXE"]
+margin_left = 221.0
+margin_right = 243.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="STAFFWEAPONS" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="SPEAR" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS"]
+margin_right = 407.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/SPEAR"]
+margin_left = 156.0
+margin_top = -1.0
+margin_right = 203.6
+margin_bottom = 21.6
+text = "SPEAR"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/SPEAR"]
+margin_right = 5.6
+margin_bottom = 22.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/SPEAR"]
+margin_left = 205.0
+margin_right = 227.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/SPEAR"]
+margin_left = 229.0
+margin_right = 251.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="MORNINGSTAR" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS"]
+margin_top = 24.0
+margin_right = 407.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/MORNINGSTAR"]
+margin_left = 132.0
+margin_top = -1.0
+margin_right = 227.6
+margin_bottom = 21.6
+text = "MORNINGSTAR"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/MORNINGSTAR"]
+margin_top = -24.0
+margin_right = 15.6
+margin_bottom = -1.4
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/MORNINGSTAR"]
+margin_left = 229.0
+margin_right = 251.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/MORNINGSTAR"]
+margin_left = 253.0
+margin_right = 275.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="GLEAVE" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS"]
+margin_top = 48.0
+margin_right = 407.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/GLEAVE"]
+margin_left = 152.0
+margin_top = -1.0
+margin_right = 207.6
+margin_bottom = 21.6
+text = "GLEAVE"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/GLEAVE"]
+margin_top = -48.0
+margin_right = 15.6
+margin_bottom = -25.4
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/GLEAVE"]
+margin_left = 209.0
+margin_right = 231.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/STAFFWEAPONS/GLEAVE"]
+margin_left = 233.0
+margin_right = 255.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="DISTANCE" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="BOW" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE"]
+margin_right = 407.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE/BOW"]
+margin_left = 164.0
+margin_top = -1.0
+margin_right = 195.6
+margin_bottom = 21.6
+text = "BOW"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE/BOW"]
+margin_right = 15.6
+margin_bottom = 22.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE/BOW"]
+margin_left = 197.0
+margin_right = 219.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE/BOW"]
+margin_left = 221.0
+margin_right = 243.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="CROSSBOW" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE"]
+margin_top = 24.0
+margin_right = 407.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE/CROSSBOW"]
+margin_left = 144.0
+margin_top = -1.0
+margin_right = 215.6
+margin_bottom = 21.6
+text = "CROSSBOW"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE/CROSSBOW"]
+margin_top = -24.0
+margin_right = 15.6
+margin_bottom = -1.4
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE/CROSSBOW"]
+margin_left = 217.0
+margin_right = 239.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/PHYSICAL/PHYSICAL/DISTANCE/CROSSBOW"]
+margin_left = 241.0
+margin_right = 263.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="HSeparator" type="HSeparator" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_top = 204.0
+margin_right = 584.0
+margin_bottom = 208.0
+
+[node name="ASTRALENERGY" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_top = 210.0
+margin_right = 584.0
+margin_bottom = 232.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/ASTRALENERGY"]
+margin_left = 208.0
+margin_top = -1.0
+margin_right = 311.6
+margin_bottom = 21.6
+text = "ASTRALENERGY"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/ASTRALENERGY"]
+margin_left = 313.0
+margin_top = -1.0
+margin_right = 328.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/ASTRALENERGY"]
+margin_left = 330.0
+margin_right = 352.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/ASTRALENERGY"]
+margin_left = 354.0
+margin_right = 376.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="ASTRALKONCENTRATION" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_top = 234.0
+margin_right = 584.0
+margin_bottom = 256.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/ASTRALKONCENTRATION"]
+margin_left = 180.0
+margin_top = -1.0
+margin_right = 339.6
+margin_bottom = 21.6
+text = "ASTRALKONCENTRATION"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/ASTRALKONCENTRATION"]
+margin_left = 341.0
+margin_top = -1.0
+margin_right = 356.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/ASTRALKONCENTRATION"]
+margin_left = 358.0
+margin_right = 380.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/ASTRALKONCENTRATION"]
+margin_left = 382.0
+margin_right = 404.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="MAGICAL" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS"]
+margin_top = 258.0
+margin_right = 584.0
+margin_bottom = 406.0
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL"]
+margin_top = -1.0
+margin_right = 584.0
+margin_bottom = 21.6
+text = "MAGICAL"
+align = 1
+
+[node name="MAGICAL" type="TabContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL"]
+margin_top = 24.0
+margin_right = 584.0
+margin_bottom = 148.0
+
+[node name="ELEMENTS" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="FIRE" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS"]
+margin_right = 577.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/FIRE"]
+margin_left = 236.0
+margin_top = -1.0
+margin_right = 275.6
+margin_bottom = 21.6
+text = "FIRE"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/FIRE"]
+margin_left = 277.0
+margin_top = -1.0
+margin_right = 292.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/FIRE"]
+margin_left = 294.0
+margin_right = 316.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/FIRE"]
+margin_left = 318.0
+margin_right = 340.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="WATER" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS"]
+margin_top = 24.0
+margin_right = 577.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/WATER"]
+margin_left = 232.0
+margin_top = -1.0
+margin_right = 279.6
+margin_bottom = 21.6
+text = "WATER"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/WATER"]
+margin_left = 281.0
+margin_top = -1.0
+margin_right = 296.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/WATER"]
+margin_left = 298.0
+margin_right = 320.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/WATER"]
+margin_left = 322.0
+margin_right = 344.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="EARTH" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS"]
+margin_top = 48.0
+margin_right = 577.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/EARTH"]
+margin_left = 232.0
+margin_top = -1.0
+margin_right = 279.6
+margin_bottom = 21.6
+text = "EARTH"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/EARTH"]
+margin_left = 281.0
+margin_top = -1.0
+margin_right = 296.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/EARTH"]
+margin_left = 298.0
+margin_right = 320.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/EARTH"]
+margin_left = 322.0
+margin_right = 344.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="AIR" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS"]
+margin_top = 72.0
+margin_right = 577.0
+margin_bottom = 94.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/AIR"]
+margin_left = 240.0
+margin_top = -1.0
+margin_right = 271.6
+margin_bottom = 21.6
+text = "AIR"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/AIR"]
+margin_left = 273.0
+margin_top = -1.0
+margin_right = 288.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/AIR"]
+margin_left = 290.0
+margin_right = 312.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ELEMENTS/AIR"]
+margin_left = 314.0
+margin_right = 336.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="ENERGYMAGIC" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="BRIGHT" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC"]
+margin_right = 407.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC/BRIGHT"]
+margin_left = 152.0
+margin_top = -1.0
+margin_right = 207.6
+margin_bottom = 21.6
+text = "BRIGHT"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC/BRIGHT"]
+margin_top = -132.0
+margin_right = 15.6
+margin_bottom = -109.4
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC/BRIGHT"]
+margin_left = 209.0
+margin_right = 231.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC/BRIGHT"]
+margin_left = 233.0
+margin_right = 255.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="DARK" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC"]
+margin_top = 24.0
+margin_right = 407.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC/DARK"]
+margin_left = 160.0
+margin_top = -1.0
+margin_right = 199.6
+margin_bottom = 21.6
+text = "DARK"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC/DARK"]
+margin_top = -156.0
+margin_right = 15.6
+margin_bottom = -133.4
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC/DARK"]
+margin_left = 201.0
+margin_right = 223.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/ENERGYMAGIC/DARK"]
+margin_left = 225.0
+margin_right = 247.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="SUMMON" type="VBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 26.5
+margin_right = -3.5
+margin_bottom = -3.5
+
+[node name="ANIMALS" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON"]
+margin_right = 407.0
+margin_bottom = 22.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/ANIMALS"]
+margin_left = 139.0
+margin_top = -1.0
+margin_right = 202.6
+margin_bottom = 21.6
+text = "ANIMALS"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/ANIMALS"]
+margin_left = 204.0
+margin_top = -1.0
+margin_right = 219.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/ANIMALS"]
+margin_left = 221.0
+margin_right = 243.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/ANIMALS"]
+margin_left = 245.0
+margin_right = 267.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="GHOSTS" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON"]
+margin_top = 24.0
+margin_right = 407.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/GHOSTS"]
+margin_left = 143.0
+margin_top = -1.0
+margin_right = 198.6
+margin_bottom = 21.6
+text = "GHOSTS"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/GHOSTS"]
+margin_left = 200.0
+margin_top = -1.0
+margin_right = 215.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/GHOSTS"]
+margin_left = 217.0
+margin_right = 239.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/GHOSTS"]
+margin_left = 241.0
+margin_right = 263.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="ZOMBIES" type="HBoxContainer" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON"]
+margin_top = 48.0
+margin_right = 407.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/ZOMBIES"]
+margin_left = 139.0
+margin_top = -1.0
+margin_right = 202.6
+margin_bottom = 21.6
+text = "ZOMBIES"
+
+[node name="value" type="Label" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/ZOMBIES"]
+margin_left = 204.0
+margin_top = -1.0
+margin_right = 219.6
+margin_bottom = 21.6
+text = "0"
+
+[node name="Plus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/ZOMBIES"]
+margin_left = 221.0
+margin_right = 243.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Minus" type="TextureButton" parent="VBC/TabContainer/WEAPONSTATS/MAGICAL/MAGICAL/SUMMON/ZOMBIES"]
+margin_left = 245.0
+margin_right = 267.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="CONTINUE" type="Button" parent="VBC"]
+margin_top = 438.0
+margin_right = 591.0
+margin_bottom = 460.6
+text = "CONTINUE"
+[connection signal="tab_changed" from="VBC/TabContainer" to="." method="_on_TabContainer_tab_changed"]
+[connection signal="pressed" from="VBC/CONTINUE" to="." method="_on_CONTINUE_pressed"]

@@ -10,7 +10,7 @@ onready var Friendlist = $CenterContainer/Friends/Friends
 onready var levellabel = $CenterContainer/VBoxContainer/HBoxContainer/Level
 onready var change_username_b = $CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel/Options/Change_name
 onready var name_options = $CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel
-
+onready var meassages = $CenterContainer/Messsages/Messages
 
 func set_name_number(Name:String,Number:int):
 	$CenterContainer/VBoxContainer/HBoxContainer/Name.text = Name + " #" + String(Number)
@@ -64,6 +64,9 @@ func roman_numbers(Nummer) -> String:
 	return Text
 
 func _on_Level_pressed():
+	name_options.hide()
+	meassages.hide()
+	Friendlist.hide()
 	var Leveltext
 	if roman_bool:
 		roman_bool = false
@@ -74,6 +77,8 @@ func _on_Level_pressed():
 	levellabel.text = String(Leveltext)
 
 func _on_Friends_pressed():
+	name_options.hide()
+	meassages.hide()
 	if Friendlist.visible:
 		Friendlist.hide()
 	else:
@@ -84,6 +89,7 @@ func _on_Friends_pressed():
 
 func _on_Change_name_pressed():
 	name_options.hide()
+	meassages.hide()
 	Username_dialog.popup()
 	Username_dialog.allow_close = true
 	var new_name = yield(Username_dialog,"new_username")
@@ -95,8 +101,9 @@ func _on_Change_name_pressed():
 func _on_show_qr_pressed():
 	name_options.hide()
 
-
 func _on_Name_toggled(button_pressed):
+	Friendlist.hide()
+	meassages.hide()
 	if button_pressed:
 		if Network.peer != null:
 			change_username_b.hide()
@@ -105,3 +112,12 @@ func _on_Name_toggled(button_pressed):
 		name_options.hide()
 		change_username_b.show()
 	
+
+
+func _on_Messsages_toggled(button_pressed):
+	Friendlist.hide()
+	name_options.hide()
+	if button_pressed:
+		meassages.show()
+	else:
+		meassages.hide()

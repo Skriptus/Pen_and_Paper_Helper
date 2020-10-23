@@ -1,6 +1,5 @@
 extends Control
 
-onready var player_info = $Player_Info
 var parent = Network.parent
 var room
 
@@ -10,10 +9,6 @@ onready var Lobby = $Lobby
 
 func _ready():
 	Network.connect("update_gui",self,"_update_gui")
-	player_info.parent = parent
-	parent.player_info = player_info
-	player_info.set_name_number(parent.Nickname_doc.doc_fields["Name"],parent.Nickname_doc.doc_fields["Number"])
-	player_info.set_level_progress(parent.User_doc.doc_fields["Experience"],true)
 	if not is_network_master():
 		$Create_Caracter.show()
 	else:
@@ -47,3 +42,7 @@ func _update_gui():
 		else:
 			usr[1].queue_free()
 			old_users.remove(old_users.find(usr))
+
+
+func _on_Create_Caracter_pressed():
+	$Create_Caracter/Character_creator.show()

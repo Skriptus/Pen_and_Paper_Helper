@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Menu_UI/Player_Info.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Menu_UI/Friendlist/Friendlist.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Menu_UI/Friendlist/Messages.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-benutzergruppe-frau-frau-100.png" type="Texture" id=7]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-messaging-100.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -24,24 +25,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="."]
-margin_right = 250.0
-margin_bottom = 50.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Messages" parent="Control" instance=ExtResource( 6 )]
-visible = false
-anchor_left = 1.0
-anchor_right = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource( 4 )
-
 [node name="CenterContainer" type="HBoxContainer" parent="."]
-margin_right = 250.0
+margin_right = 300.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
 __meta__ = {
@@ -130,6 +115,30 @@ expand = true
 [node name="Friends" parent="CenterContainer/Friends" instance=ExtResource( 5 )]
 visible = false
 
+[node name="Messsages" type="TextureButton" parent="CenterContainer"]
+margin_left = 250.0
+margin_right = 300.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Messages" parent="CenterContainer/Messsages" instance=ExtResource( 6 )]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -150.0
+margin_top = -200.0
+margin_right = 0.0
+margin_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource( 4 )
+
 [node name="Username" parent="." instance=ExtResource( 3 )]
 margin_right = 300.0
 margin_bottom = 100.0
@@ -138,3 +147,4 @@ margin_bottom = 100.0
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel/Options/show_qr" to="." method="_on_show_qr_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Level" to="." method="_on_Level_pressed"]
 [connection signal="pressed" from="CenterContainer/Friends" to="." method="_on_Friends_pressed"]
+[connection signal="toggled" from="CenterContainer/Messsages" to="." method="_on_Messsages_toggled"]

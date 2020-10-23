@@ -23,3 +23,7 @@ func _on_Join_pressed():
 	var games = yield(Collections,"got_list")
 	join_game_doalog.list_servers(games)
 	
+
+
+func _on_Play_offline_pressed():
+	pass

@@ -46,8 +46,8 @@ func _physics_process(delta):
 
 func on_gui_input(event):
 	if event is InputEventScreenDrag:
-		var _yaw = event.relative.x
-		var _pitch = event.relative.y
+		var _yaw = event.relative.x/3
+		var _pitch = event.relative.y/3
 		Head.rotate_y(deg2rad(_yaw))
 		Head.rotate_object_local(Vector3(1,0,0), deg2rad(-_pitch))
 		rpc("set_head_rot",_yaw,_pitch)

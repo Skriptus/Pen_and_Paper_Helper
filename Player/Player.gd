@@ -11,7 +11,7 @@ var login_auth
 
 onready var save_load:Node = $Save_Load
 onready var current_menu:Node = $Main_Menu
-onready var player_info:Node = $Main_Menu/Player_Info
+onready var player_info:Node = $CanvasLayer/Player_Info
 
 var room
 var roompath = "res://Rooms/%s.tscn"

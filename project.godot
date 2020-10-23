@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://addons/GDFirebase/FirebaseFirestoreDocument.gd"
 }, {
 "base": "Node",
+"class": "Modular_Tooltip",
+"language": "GDScript",
+"path": "res://Menu_UI/Modular_Tooltip.gd"
+}, {
+"base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Worlds/Shenna/Character/FSM/State_Mashine.gd"
@@ -60,6 +65,7 @@ _global_script_class_icons={
 "FirebaseUserData": "",
 "FirestoreCollection": "",
 "FirestoreDocument": "",
+"Modular_Tooltip": "",
 "StateMachine": "",
 "character": "",
 "player": "",

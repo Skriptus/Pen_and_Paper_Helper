@@ -2,31 +2,44 @@
 
 [ext_resource path="res://Menu_UI/Friendlist/Messaging/Chat.gd" type="Script" id=1]
 
-[node name="Chat" type="PanelContainer"]
+[node name="Chat" type="Tabs"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 100, 180 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 593.0
-margin_bottom = 993.0
+anchor_right = 1.0
+margin_bottom = 178.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MarginContainer" type="VBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 593.0
-margin_bottom = 993.0
-alignment = 2
+[node name="PanelContainer" type="ScrollContainer" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 100, 150 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer"]
-margin_top = 936.0
-margin_right = 586.0
-margin_bottom = 986.0
-grow_vertical = 0
-rect_min_size = Vector2( 0, 50 )
-text = "sef"
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+
+[node name="vbox" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 154.0
+margin_right = 600.0
+margin_bottom = 178.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/vbox"]
+margin_right = 600.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+caret_blink = true
+caret_blink_speed = 0.5

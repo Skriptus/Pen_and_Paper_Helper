@@ -7,7 +7,7 @@ onready var search_line:LineEdit = $VBoxContainer/Friendsearch/search
 onready var search_results:VBoxContainer = $VBoxContainer/Friendsearch/ScrollContainer/Searchresults
 onready var search_result_con:ScrollContainer  = $VBoxContainer/Friendsearch/ScrollContainer
 onready var request:VBoxContainer = $VBoxContainer/Request/ScrollContainer/List
-onready var request_con:VBoxContainer = $VBoxContainer/Request/ScrollContainer
+onready var request_con:ScrollContainer = $VBoxContainer/Request/ScrollContainer
 onready var Friends:VBoxContainer = $VBoxContainer/Friends/ScrollContainer/List
 onready var Friends_con = $VBoxContainer/Friends/ScrollContainer
 

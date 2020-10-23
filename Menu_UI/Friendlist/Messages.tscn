@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Menu_UI/Friendlist/Messaging/Chat.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Menu_UI/Friendlist/Messages.gd" type="Script" id=2]
 
-[node name="Messages" type="Panel"]
+[node name="Messages" type="PanelContainer"]
 margin_right = 150.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 150, 200 )
@@ -13,18 +12,10 @@ __meta__ = {
 }
 
 [node name="TabContainer" type="TabContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 143.0
+margin_bottom = 193.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Name" type="Tabs" parent="TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="Chat" parent="TabContainer/Name" instance=ExtResource( 1 )]

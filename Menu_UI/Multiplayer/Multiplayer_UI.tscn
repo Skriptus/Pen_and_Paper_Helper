@@ -40,8 +40,14 @@ margin_bottom = 521.0
 disabled = true
 text = "JOIN"
 
+[node name="Play_offline" type="Button" parent="VBC"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "PLAY_OFFLINE"
+
 [node name="Host_game_dialog" parent="." instance=ExtResource( 1 )]
 
 [node name="Join_game_dialog" parent="." instance=ExtResource( 3 )]
 [connection signal="pressed" from="VBC/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="VBC/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="VBC/Play_offline" to="." method="_on_Play_offline_pressed"]
