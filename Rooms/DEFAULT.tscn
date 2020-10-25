@@ -1,18 +1,14 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Rooms/DEFAULT.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_diff_1k.jpg" type="Texture" id=2]
-[ext_resource path="res://Rooms/Resources/church_bricks_03_diff_1k.jpg" type="Texture" id=3]
-[ext_resource path="res://Rooms/Resources/church_bricks_03_nor_1k.jpg" type="Texture" id=4]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_rough_1k.jpg" type="Texture" id=5]
-[ext_resource path="res://Rooms/Resources/church_bricks_03_rough_1k.jpg" type="Texture" id=6]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_disp_1k.jpg" type="Texture" id=7]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_ao_1k.jpg" type="Texture" id=8]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_nor_1k.jpg" type="Texture" id=9]
-[ext_resource path="res://Rooms/Resources/church_bricks_03_ao_1k.jpg" type="Texture" id=10]
-[ext_resource path="res://Rooms/Resources/church_bricks_03_disp_1k.jpg" type="Texture" id=11]
 [ext_resource path="res://Rooms/Resources/Table.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Rooms/Resources/Chair.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Map/Map.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
@@ -35,29 +31,6 @@ depth_flip_tangent = false
 depth_flip_binormal = false
 depth_texture = ExtResource( 7 )
 uv1_triplanar = true
-
-[sub_resource type="CubeMesh" id=3]
-size = Vector3( 2, 10, 20 )
-
-[sub_resource type="SpatialMaterial" id=4]
-resource_local_to_scene = true
-albedo_texture = ExtResource( 3 )
-roughness_texture = ExtResource( 6 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 4 )
-ao_enabled = true
-ao_light_affect = 0.0
-ao_texture = ExtResource( 10 )
-ao_on_uv2 = false
-ao_texture_channel = 0
-depth_enabled = true
-depth_scale = 0.05
-depth_deep_parallax = false
-depth_flip_tangent = false
-depth_flip_binormal = false
-depth_texture = ExtResource( 11 )
-uv1_scale = Vector3( 3, 1, 1 )
 
 [node name="DEFAULT" type="Spatial"]
 script = ExtResource( 1 )
@@ -84,26 +57,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91076, 0.545872, -3.72798 )
 [node name="FLoor" type="MeshInstance" parent="Room"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
-
-[node name="Wall1" type="MeshInstance" parent="Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 5, 0 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
-
-[node name="Wall2" type="MeshInstance" parent="Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 5, 0 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
-
-[node name="Wall3" type="MeshInstance" parent="Room"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.96046e-08, 5, -11 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
-
-[node name="Wall4" type="MeshInstance" parent="Room"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.96046e-08, 5, 11 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
 
 [node name="Drectional_Light" type="DirectionalLight" parent="Room"]
 transform = Transform( 0.712162, -0.672327, 0.201997, -0.0229095, 0.265327, 0.963886, -0.701642, -0.691071, 0.173553, -0.361325, 4.59966, 0 )
@@ -133,3 +86,6 @@ transform = Transform( 0.999055, 0, 0.0434623, 0, 1, 0, -0.0434623, 0, 0.999055,
 [node name="Pos3" type="Spatial" parent="Character_Anchors"]
 
 [node name="Pos4" type="Spatial" parent="Character_Anchors"]
+
+[node name="Map" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5993.96, -203.52, -37932.6 )

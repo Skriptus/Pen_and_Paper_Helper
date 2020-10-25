@@ -40,8 +40,5 @@ sync func add_playermesh(pos,id):
 	Playermesh.set_network_master(id)
 	if id == Network.own_id:
 		Playermesh.Cam.current = true
-		get_tree().get_root().remove_child(Tooltip)
-		Playermesh.Cam.add_child(Tooltip)
-		Playermesh.Cam
 		Playermesh.add_GUI()
 		Playermesh.GUI.room = self

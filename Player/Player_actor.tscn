@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleMesh" id=2]
 
-[node name="Playermesh" type="Spatial"]
+[node name="Player_actor" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Head" type="CSGMesh" parent="."]

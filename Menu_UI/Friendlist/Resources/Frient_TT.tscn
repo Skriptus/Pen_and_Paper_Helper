@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="Frient_TT" type="PanelContainer"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 45.0
+margin_bottom = 21.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 38.0
+margin_bottom = 14.0
+text = "NAME"

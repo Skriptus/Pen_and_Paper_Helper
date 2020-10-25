@@ -148,9 +148,7 @@ func _on_Invite_pressed():
 
 
 func _on_Name_mouse_exited():
-	Tooltip.Panelcon.hide()
+	Modular_Tooltip
 
 func _on_Name_mouse_entered():
 	var rect = self.get_global_rect().position
-	Tooltip.fill(TT_dict,rect)
-	Tooltip.Panelcon.show()
