@@ -1,7 +1,5 @@
 extends Control
 
-signal Loginaborted
-
 onready var email:LineEdit = $Panel/Labels/Emailbox/Email
 onready var password:LineEdit = $Panel/Labels/Passwordbox/Password
 
@@ -70,7 +68,8 @@ func _on_Autologin_toggled(button_pressed):
 	rememberme_b.pressed = true
 	
 func login_failed(code,massage):
-	$Panel/Labels/Notification.text = massage
+	$Panel/Labels/Notification.text = massage +" "+String(code)
+	
 	
 func get_settings() -> Dictionary: # recieve settings on successful login
 	settings["RememberMe"] = rememberme

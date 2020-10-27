@@ -45,7 +45,7 @@ func _on_Host_pressed():
 		"Room" : room_b.get_item_text(room_b.selected),
 		"World" : world_b.get_item_text(world_b.selected)
 		}
-		Network.start_host(Game)
+		#start_host(Game)
 		Collections.add_game(Game)
 		self.hide()
 		

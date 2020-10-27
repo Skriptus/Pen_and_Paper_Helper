@@ -18,7 +18,9 @@ func _ready():
 	savegamedir = Directory.new()
 	var direxits = savegamedir.dir_exists("user://settings/")
 	if !direxits:
-		savegamedir.make_dir("user://settings/")
+		var err = savegamedir.make_dir("user://settings/")
+		if err:
+			print(err)
 	
 
 func load_settings() -> Dictionary:
@@ -28,6 +30,8 @@ func load_settings() -> Dictionary:
 		var err = f.open_encrypted_with_pass("user://settings/login.bin", File.WRITE, OS.get_unique_id())
 		f.store_var(savedict)
 		f.close()
+		if err:
+			print(err)
 	var err = f.open_encrypted_with_pass("user://settings/login.bin", File.READ, OS.get_unique_id())
 	var savedict = f.get_var()
 	f.close()

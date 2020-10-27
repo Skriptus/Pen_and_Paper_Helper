@@ -17,8 +17,8 @@ func set_name_number(Name:String,Number:int):
 
 func set_level_progress(experience:int,roman:bool):
 	roman_bool = roman
-	Level = floor(experience/50)
-	var progress = (experience/50)-Level
+	Level = floor(experience/50.0)
+	var progress = (experience/50.0)-Level
 	var Leveltext
 	if roman:
 		Leveltext = roman_numbers(Level)
@@ -105,7 +105,7 @@ func _on_Name_toggled(button_pressed):
 	Friendlist.hide()
 	meassages.hide()
 	if button_pressed:
-		if Network.peer != null:
+		if false:
 			change_username_b.hide()
 		name_options.show()
 	else:

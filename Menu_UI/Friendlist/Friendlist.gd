@@ -33,8 +33,8 @@ func _on_search_text_changed(new_text):
 		obj.free()
 	for item in user_list:
 		var item_email = item.keys()[0]
-		var doc_fields = Network.parent.User_doc.doc_fields
-		if item_email == Network.parent.email \
+		var doc_fields = get_tree().get_root().User_doc
+		if item_email == get_tree().get_root().email \
 		or doc_fields["Friends"].has(item_email) \
 		or doc_fields["Blockedby"].has(item_email) \
 		or doc_fields["Blocked"].has(item_email) \
@@ -63,7 +63,7 @@ func Update_list():
 	for obj in request.get_children():
 		Friends.remove_child(obj)
 		obj.free()
-	var fields = Network.parent.User_doc.doc_fields
+	var fields = get_tree().get_root().User_doc
 	for item in fields["Requestby"]:
 		Collections.get_nickname(item)
 		var usr_dict = yield(Collections,"got_nickname")

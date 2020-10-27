@@ -11,4 +11,4 @@ func list_servers(list):
 		server_list.add_child(Server)
 		Server.fill(game.doc_fields)
 		Server.name = game.doc_fields["Name"]
-		Server.connect("join_server",Network,"join_game")
+		Server.connect("join_server",get_tree().get_root(),"join_game")

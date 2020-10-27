@@ -42,7 +42,7 @@ func generate_number(nickname):
 	return number
 
 func list(listname):
-	var list:Array
+	var list:Array =[]
 	Firebase.Firestore.list(listname)
 	var docs = yield(Firebase.Firestore,"listed_documents")
 	for doc in docs["documents"]:
@@ -56,7 +56,7 @@ func update_users():
 	for item in list_array:
 		get_user(item)
 		var item_doc = yield(self,"got_user")
-		Users_list.append({item_doc.doc_name:item_doc.doc_fields})
+		Users_list.append({item:item_doc})
 	emit_signal("list_updated",Users_list)
 
 func update_nicknames():
@@ -66,7 +66,7 @@ func update_nicknames():
 	for item in list_array:
 		get_nickname(item)
 		var item_doc = yield(self,"got_nickname")
-		Nicknames_list.append({item_doc.doc_name:item_doc.doc_fields})
+		Nicknames_list.append({item:item_doc})
 	emit_signal("list_updated",Nicknames_list)
 	
 
@@ -77,7 +77,7 @@ func update_games():
 	for item in list_array:
 		get_game(item)
 		var item_doc = yield(self,"got_game")
-		OpenGames_list.append({item_doc.doc_name:item_doc.doc_fields})
+		OpenGames_list.append({item:item_doc})
 	emit_signal("list_updated",OpenGames_list)
 
 func get_user(email):
@@ -85,7 +85,7 @@ func get_user(email):
 	Users.get(email)
 	User_doc = yield(Users,"get_document")
 	User_doc.fields2dict(User_doc)
-	emit_signal("got_user",User_doc)
+	emit_signal("got_user",User_doc.doc_fields)
 
 func add_user(email:String):
 	var User_doc_default:Dictionary = {
@@ -98,7 +98,7 @@ func add_user(email:String):
 	Users.add(email,User_doc.dict2fields(User_doc_default))
 	User_doc = yield(Users,"add_document")
 	User_doc.fields2dict(User_doc)
-	emit_signal("got_user",User_doc)
+	emit_signal("got_user",User_doc.doc_fields)
 	update_users()
 	
 func update_user(email:String,fieldsdict:Dictionary):
@@ -106,7 +106,7 @@ func update_user(email:String,fieldsdict:Dictionary):
 	Users.update(email,User_doc.dict2fields(fieldsdict))
 	User_doc = yield(Users,"update_document")
 	User_doc.fields2dict(User_doc)
-	emit_signal("got_user",User_doc)
+	emit_signal("got_user",User_doc.doc_fields)
 	update_users()
 	
 func delete_user(email):
@@ -119,7 +119,7 @@ func get_nickname(email:String):
 	Nicknames.get(email)
 	Nickname_doc = yield(Nicknames,"get_document")
 	Nickname_doc.fields2dict(Nickname_doc)
-	emit_signal("got_nickname",Nickname_doc)
+	emit_signal("got_nickname",Nickname_doc.doc_fields)
 	
 func add_nickname(email:String,nickname:String):
 	var Nickname_doc_default:Dictionary = {
@@ -132,7 +132,7 @@ func add_nickname(email:String,nickname:String):
 	Nicknames.add(email,Nickname_doc.dict2fields(Nickname_doc_default))
 	Nickname_doc = yield(Nicknames,"add_document")
 	Nickname_doc.fields2dict(Nickname_doc)
-	emit_signal("got_nickname",Nickname_doc)
+	emit_signal("got_nickname",Nickname_doc.doc_fields)
 	update_nicknames()
 
 	
@@ -144,7 +144,7 @@ func update_nickname(email:String,nickname:String):
 	Nicknames.update(email,Nickname_doc.dict2fields(Nickname_doc.doc_fields))
 	Nickname_doc = yield(Nicknames,"update_document")
 	Nickname_doc.fields2dict(Nickname_doc)
-	emit_signal("got_nickname",Nickname_doc)
+	emit_signal("got_nickname",Nickname_doc.doc_fields)
 	update_nicknames()
 	
 func delete_nickname(email):
@@ -158,7 +158,7 @@ func get_game(gamename):
 	OpenGames.get(gamename)
 	Game_doc = yield(OpenGames,"get_document")
 	Game_doc.fields2dict(Game_doc)
-	emit_signal("got_game",Game_doc)
+	emit_signal("got_game",Game_doc.doc_fields)
 
 func add_game(game_dict):
 	var Game_doc := FirestoreDocument.new(game_dict,game_dict["Name"],game_dict)
@@ -166,7 +166,7 @@ func add_game(game_dict):
 	Game_doc = yield(OpenGames,"add_document")
 	Game_doc.fields2dict(Game_doc)
 	update_games()
-	emit_signal("got_game",Game_doc)
+	emit_signal("got_game",Game_doc.doc_fields)
 	
 func update_game(game_name:String,fieldsdict:Dictionary):
 	var Game_doc := FirestoreDocument.new()
@@ -174,7 +174,7 @@ func update_game(game_name:String,fieldsdict:Dictionary):
 	Game_doc = yield(OpenGames,"update_document")
 	Game_doc.fields2dict(Game_doc)
 	update_games()
-	emit_signal("got_game",Game_doc)
+	emit_signal("got_game",Game_doc.doc_fields)
 	
 func delete_game(game_name):
 	OpenGames.delete(game_name)
