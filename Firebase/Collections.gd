@@ -10,37 +10,42 @@ var base_url = "https://firestore.googleapis.com/v1/"
 var extended_url = "projects/pen-and-paper-helper/databases/(default)/documents/"
 
 var OpenGames:FirestoreCollection
-var Nicknames:FirestoreCollection
 var Users:FirestoreCollection
 
-var OpenGames_list:Array
-var Nicknames_list:Array
-var Users_list:Array
+var OpenGames_list:Dictionary = {}
+var Users_list:Dictionary = {}
 
 func _ready():
 	Firebase.Auth.connect("login_succeeded", self,"logged_in")
 	OpenGames = Firebase.Firestore.collection("OpenGames")
-	Nicknames = Firebase.Firestore.collection("Nicknames")
 	Users = Firebase.Firestore.collection("Users")
 
 func logged_in(auth):
 	Firebase.Firestore.auth = auth
 	OpenGames.auth = auth
-	Nicknames.auth = auth
 	Users.auth = auth
+
+func list(listname):
+	var list:Array =[]
+	Firebase.Firestore.list(listname)
+	var docs = yield(Firebase.Firestore,"listed_documents")
+	for doc in docs["documents"]:
+		list.append(doc["name"].rsplit("/",true,1)[1])
+	emit_signal("got_list",list)
 
 func generate_number(nickname):
 	var number = 0
 	var used_numbers = [0]
-	for nn in Nicknames_list:
-		if nn[nn.keys()[0]]["Name"] == nickname:
-			used_numbers.append(nn["Number"])
+	for usr in Users_list:
+		if usr["Name"] == nickname:
+			used_numbers.append(usr["Number"])
 	var rng = RandomNumberGenerator.new()
 	while used_numbers.has(number):
 		rng.randomize()
 		number = rng.randi_range(0,9999)
 	return number
 
+<<<<<<< Updated upstream
 func list(listname):
 	var list:Array
 	Firebase.Firestore.list(listname)
@@ -48,6 +53,8 @@ func list(listname):
 	for doc in docs["documents"]:
 		list.append(doc["name"].rsplit("/",true,1)[1])
 	emit_signal("got_list",list)
+=======
+>>>>>>> Stashed changes
 
 func update_users():
 	Users_list.clear()
@@ -55,6 +62,7 @@ func update_users():
 	var list_array = yield(self,"got_list")
 	for item in list_array:
 		get_user(item)
+<<<<<<< Updated upstream
 		var item_doc = yield(self,"got_user")
 		Users_list.append({item_doc.doc_name:item_doc.doc_fields})
 	emit_signal("list_updated",Users_list)
@@ -68,6 +76,11 @@ func update_nicknames():
 		var item_doc = yield(self,"got_nickname")
 		Nicknames_list.append({item_doc.doc_name:item_doc.doc_fields})
 	emit_signal("list_updated",Nicknames_list)
+=======
+		var user = yield(self,"got_user")
+		Users_list[item] = user
+	emit_signal("list_updated",Users_list)
+>>>>>>> Stashed changes
 	
 
 func update_games():
@@ -76,8 +89,13 @@ func update_games():
 	var list_array = yield(self,"got_list")
 	for item in list_array:
 		get_game(item)
+<<<<<<< Updated upstream
 		var item_doc = yield(self,"got_game")
 		OpenGames_list.append({item_doc.doc_name:item_doc.doc_fields})
+=======
+		var game = yield(self,"got_game")
+		OpenGames_list[item] = game
+>>>>>>> Stashed changes
 	emit_signal("list_updated",OpenGames_list)
 
 func get_user(email):
@@ -114,6 +132,7 @@ func delete_user(email):
 	yield(Users,"delete_document")
 	update_users()
 
+<<<<<<< Updated upstream
 func get_nickname(email:String):
 	var Nickname_doc := FirestoreDocument.new()
 	Nicknames.get(email)
@@ -152,6 +171,8 @@ func delete_nickname(email):
 	yield(Nicknames,"delete_document")
 	update_nicknames()
 
+=======
+>>>>>>> Stashed changes
 
 func get_game(gamename):
 	var Game_doc := FirestoreDocument.new()

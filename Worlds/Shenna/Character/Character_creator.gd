@@ -125,7 +125,6 @@ func _on_CONTINUE_pressed():
 			if stat.has_node("value"):
 				dict[stat.name] = stat.get_node("value").text
 		var character_actor = preload("res://Worlds/Shenna/Character/Character_actor.tscn").instance()
-		Network.parent.room.Character_Anchors.get_node("Pos1").add_child(character_actor)
 		character_actor.character_dict = dict
 		self.hide()
 
