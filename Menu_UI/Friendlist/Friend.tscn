@@ -12,7 +12,7 @@
 [ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-stornieren-100.png" type="Texture" id=10]
 [ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-fügen-sie-benutzer-zur-gruppe-hinzu-mann-mann-100.png" type="Texture" id=11]
 [ext_resource path="res://Menu_UI/Modular_Tooltip.gd" type="Script" id=12]
-[ext_resource path="res://Menu_UI/Friendlist/Resources/Frient_TT.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Main/Resources/TT.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.372549, 0.360784, 0.360784, 1 )
@@ -21,8 +21,8 @@ bg_color = Color( 0.372549, 0.360784, 0.360784, 1 )
 font_data = ExtResource( 8 )
 
 [node name="Friend" type="PanelContainer"]
-margin_right = 280.0
-margin_bottom = 25.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -30,11 +30,11 @@ __meta__ = {
 }
 
 [node name="Vbox" type="VBoxContainer" parent="."]
-margin_right = 280.0
-margin_bottom = 54.0
+margin_right = 600.0
+margin_bottom = 1000.0
 
 [node name="Name" type="RichTextLabel" parent="Vbox"]
-margin_right = 280.0
+margin_right = 600.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 150, 25 )
 theme = ExtResource( 7 )
@@ -47,11 +47,13 @@ scroll_following = true
 
 [node name="Sort" type="HBoxContainer" parent="Vbox"]
 margin_top = 29.0
-margin_right = 280.0
+margin_right = 600.0
 margin_bottom = 54.0
+alignment = 1
 
 [node name="Info" type="HBoxContainer" parent="Vbox/Sort"]
-margin_right = 150.0
+margin_left = 223.0
+margin_right = 373.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 150, 25 )
 __meta__ = {
@@ -80,18 +82,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSeparator" type="VSeparator" parent="Vbox/Sort/Info"]
-margin_left = 88.0
-margin_right = 92.0
-margin_bottom = 25.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Actions" type="HBoxContainer" parent="Vbox/Sort"]
-margin_left = 154.0
-margin_right = 154.0
+margin_left = 377.0
+margin_right = 377.0
 margin_bottom = 25.0
 grow_horizontal = 0
 alignment = 2
@@ -101,8 +94,7 @@ __meta__ = {
 
 [node name="Message" type="TextureButton" parent="Vbox/Sort/Actions"]
 visible = false
-margin_left = 255.0
-margin_right = 280.0
+margin_right = 25.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 mouse_filter = 1
@@ -188,8 +180,7 @@ __meta__ = {
 script = ExtResource( 12 )
 visuals_res = ExtResource( 13 )
 owner_path = NodePath("../Vbox/Name")
-[connection signal="mouse_entered" from="Vbox/Name" to="." method="_on_Name_mouse_entered"]
-[connection signal="mouse_exited" from="Vbox/Name" to="." method="_on_Name_mouse_exited"]
+information_dict_at = NodePath("..")
 [connection signal="pressed" from="Vbox/Sort/Actions/Message" to="." method="_on_Message_pressed"]
 [connection signal="pressed" from="Vbox/Sort/Actions/Join" to="." method="_on_Join_pressed"]
 [connection signal="pressed" from="Vbox/Sort/Actions/Invite" to="." method="_on_Invite_pressed"]

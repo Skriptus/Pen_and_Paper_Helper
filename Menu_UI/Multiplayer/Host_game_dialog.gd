@@ -45,8 +45,7 @@ func _on_Host_pressed():
 		"Room" : room_b.get_item_text(room_b.selected),
 		"World" : world_b.get_item_text(world_b.selected)
 		}
-		Network.start_host(Game)
-		Collections.add_game(Game)
+		get_parent().emit_signal("host_game",Game)
 		self.hide()
 		
 func _on_Name_line_text_changed(new_text):

@@ -4,7 +4,6 @@ var Level = 0
 var roman_bool
 
 var parent:Node
-var user_doc:FirestoreDocument
 onready var Username_dialog = $Username
 onready var Friendlist = $CenterContainer/Friends/Friends
 onready var levellabel = $CenterContainer/VBoxContainer/HBoxContainer/Level
@@ -12,13 +11,16 @@ onready var change_username_b = $CenterContainer/VBoxContainer/HBoxContainer/Nam
 onready var name_options = $CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel
 onready var meassages = $CenterContainer/Messsages/Messages
 
+func _ready():
+	Friendlist.Player_Info = self
+
 func set_name_number(Name:String,Number:int):
 	$CenterContainer/VBoxContainer/HBoxContainer/Name.text = Name + " #" + String(Number)
 
 func set_level_progress(experience:int,roman:bool):
 	roman_bool = roman
-	Level = floor(experience/50)
-	var progress = (experience/50)-Level
+	Level = floor(experience/50.0)
+	var progress = (experience/50.0)-Level
 	var Leveltext
 	if roman:
 		Leveltext = roman_numbers(Level)
@@ -93,25 +95,14 @@ func _on_Change_name_pressed():
 	Username_dialog.popup()
 	Username_dialog.allow_close = true
 	var new_name = yield(Username_dialog,"new_username")
-	Collections.update_nickname(parent.email,new_name)
-	yield(Collections,"got_nickname")
-	var new_doc = yield(Collections,"got_nickname")
-	set_name_number(new_doc.doc_fields["Name"],new_doc.doc_fields["Number"])
+	parent.User_list[parent.email]["Name"] = new_name
+	parent.User_list[parent.email]["Number"] = Collections.generate_number(new_name)
+	Collections.update_user(parent.email,parent.User_list[parent.email])
+	parent.User_list = yield(Collections,"list_updated")
+	set_name_number(parent.User_list[parent.email]["Name"],parent.User_list[parent.email]["Number"])
 
 func _on_show_qr_pressed():
 	name_options.hide()
-
-func _on_Name_toggled(button_pressed):
-	Friendlist.hide()
-	meassages.hide()
-	if button_pressed:
-		if Network.peer != null:
-			change_username_b.hide()
-		name_options.show()
-	else:
-		name_options.hide()
-		change_username_b.show()
-	
 
 
 func _on_Messsages_toggled(button_pressed):
@@ -121,3 +112,10 @@ func _on_Messsages_toggled(button_pressed):
 		meassages.show()
 	else:
 		meassages.hide()
+
+
+func _on_Name_pressed():
+	Friendlist.hide()
+	meassages.hide()
+	change_username_b.show()
+	name_options.show()

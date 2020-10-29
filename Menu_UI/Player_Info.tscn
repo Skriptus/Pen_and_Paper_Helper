@@ -142,7 +142,7 @@ theme = ExtResource( 4 )
 [node name="Username" parent="." instance=ExtResource( 3 )]
 margin_right = 300.0
 margin_bottom = 100.0
-[connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer/Name" to="." method="_on_Name_toggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Name" to="." method="_on_Name_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel/Options/Change_name" to="." method="_on_Change_name_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel/Options/show_qr" to="." method="_on_show_qr_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Level" to="." method="_on_Level_pressed"]

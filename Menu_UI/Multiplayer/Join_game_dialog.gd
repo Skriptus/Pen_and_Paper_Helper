@@ -9,6 +9,10 @@ func list_servers(list):
 		var game = yield(Collections,"got_game")
 		var Server = preload("res://Menu_UI/Multiplayer/Server.tscn").instance()
 		server_list.add_child(Server)
-		Server.fill(game.doc_fields)
-		Server.name = game.doc_fields["Name"]
-		Server.connect("join_server",Network,"join_game")
+		Server.fill(game)
+		Server.name = game["Name"]
+		Server.connect("join_server",self,"join_game")
+
+func join_game(game):
+	multiplayer_UI.emit_signal("join_game",game)
+	self.hide()

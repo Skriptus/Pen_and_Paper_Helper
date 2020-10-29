@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Menu_UI/User_GUI/Player_GUI.gd" type="Script" id=1]
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Worlds/Shenna/Character/Character_creator.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Menu_UI/Multiplayer/Lobby.tscn" type="PackedScene" id=4]
+
+[node name="Player_GUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lobby" parent="." instance=ExtResource( 4 )]
+
+[node name="Create_Caracter" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.8
+anchor_right = 0.5
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 175, 50 )
+text = "CREATE_CHARACTER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Character_creator" parent="Create_Caracter" instance=ExtResource( 3 )]
+visible = false
+[connection signal="pressed" from="Create_Caracter" to="." method="_on_Create_Caracter_pressed"]

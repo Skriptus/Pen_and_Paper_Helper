@@ -10,8 +10,6 @@ onready var add = $Vbox/Sort/Actions/Add
 onready var remove = $Vbox/Sort/Actions/Remove
 onready var accept = $Vbox/Sort/Actions/Accept
 onready var decline = $Vbox/Sort/Actions/Decline
-onready var email = Network.parent.email
-onready var own_usr_doc = Network.parent.User_doc
 
 var TT_dict
 var list
@@ -35,14 +33,15 @@ func fill(dict:Dictionary,found_type):
 		"Email" : dict["Email"]
 	}
 func set_status(status:String):
-	var me = false
-	var jo = false
-	var iv = false
-	var ad = false
-	var re = false
-	var ac = false
-	var de = false
+	var me = false #message
+	var jo = false #join
+	var iv = false #invite
+	var ad = false #add
+	var re = false #remove
+	var ac = false #accept
+	var de = false #decline
 	var color:Color = Color.lightgray
+	print(status)
 	match status:
 		"REQUESTEDBY":
 			ac = true
@@ -60,6 +59,12 @@ func set_status(status:String):
 			iv = true
 			invite.show()
 			color = Color.green
+		"offline":
+			me = true
+			message.show()
+			re = true
+			remove.show()
+			color = Color.darkgray
 		"FOUND":
 			ad = true
 			add.show()
@@ -91,17 +96,7 @@ func set_status(status:String):
 		decline.hide()
 
 func _on_Add_pressed():
-	var User_to_add
-	Collections.get_user(Nickname_dict["Email"])
-	User_to_add = yield(Collections,"got_user")
-	User_to_add.doc_fields["Requestby"].append(email)
-	Collections.update_user(Nickname_dict["Email"],User_to_add.doc_fields)
-	User_to_add = yield(Collections,"got_user")
-	own_usr_doc.doc_fields["Requested"].append(Nickname_dict["Email"])
-	Collections.update_user(email,own_usr_doc.doc_fields)
-	own_usr_doc = yield(Collections,"got_user")
-	list.Update_list()
-
+	print("add")
 
 func _on_Join_pressed():
 	print("join")
@@ -113,42 +108,12 @@ func _on_Remove_pressed():
 	print("remove")
 
 func _on_Decline_pressed():
-	Collections.get_user(Nickname_dict["Email"])
-	var usr = yield(Collections,"got_user")
-	var usr_doc = usr.doc_fields
-	if usr_doc["Requested"].has(email):
-		usr_doc["Requested"].remove(usr_doc["Requested"].find(email))
-		usr_doc["Blockedby"].append(email)
-		Collections.update_user(Nickname_dict["Email"],usr_doc)
-		yield(Collections,"got_user")
-	if own_usr_doc.doc_fields["Requestby"].has(Nickname_dict["Email"]):
-		own_usr_doc.doc_fields["Requestby"].remove(own_usr_doc.doc_fields["Requestby"].find(Nickname_dict["Email"]))
-		own_usr_doc.doc_fields["Blocked"].append(Nickname_dict["Email"])
-		Collections.update_user(email,own_usr_doc.doc_fields)
-		yield(Collections,"got_user")
+	print("decline")
 	
 
 func _on_Accept_pressed():
-	Collections.get_user(Nickname_dict["Email"])
-	var usr = yield(Collections,"got_user")
-	var usr_doc = usr.doc_fields
-	if usr_doc["Requested"].has(email):
-		usr_doc["Requested"].remove(usr_doc["Requested"].find(email))
-		usr_doc["Friends"].append(email)
-		Collections.update_user(Nickname_dict["Email"],usr_doc)
-		yield(Collections,"got_user")
-	if own_usr_doc.doc_fields["Requestby"].has(Nickname_dict["Email"]):
-		own_usr_doc.doc_fields["Requestby"].remove(own_usr_doc.doc_fields["Requestby"].find(Nickname_dict["Email"]))
-		own_usr_doc.doc_fields["Friends"].append(Nickname_dict["Email"])
-		Collections.update_user(email,own_usr_doc.doc_fields)
-		yield(Collections,"got_user")
+	print("accept")
 	
 func _on_Invite_pressed():
 	print("invite")
 
-
-func _on_Name_mouse_exited():
-	Modular_Tooltip
-
-func _on_Name_mouse_entered():
-	var rect = self.get_global_rect().position

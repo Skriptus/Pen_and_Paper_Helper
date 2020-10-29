@@ -11,6 +11,8 @@ onready var request_con:ScrollContainer = $VBoxContainer/Request/ScrollContainer
 onready var Friends:VBoxContainer = $VBoxContainer/Friends/ScrollContainer/List
 onready var Friends_con = $VBoxContainer/Friends/ScrollContainer
 
+var Player_Info
+
 var user_list
 
 signal user_created
@@ -33,8 +35,8 @@ func _on_search_text_changed(new_text):
 		obj.free()
 	for item in user_list:
 		var item_email = item.keys()[0]
-		var doc_fields = Network.parent.User_doc.doc_fields
-		if item_email == Network.parent.email \
+		var doc_fields = Player_Info.parent.User_doc
+		if item_email == Player_Info.parent.email \
 		or doc_fields["Friends"].has(item_email) \
 		or doc_fields["Blockedby"].has(item_email) \
 		or doc_fields["Blocked"].has(item_email) \
@@ -63,21 +65,21 @@ func Update_list():
 	for obj in request.get_children():
 		Friends.remove_child(obj)
 		obj.free()
-	var fields = Network.parent.User_doc.doc_fields
+	var fields = Player_Info.parent.User_doc
 	for item in fields["Requestby"]:
 		Collections.get_nickname(item)
 		var usr_dict = yield(Collections,"got_nickname")
-		new_user(usr_dict.doc_fields["Name"],usr_dict.doc_fields,"REQUESTEDBY")
+		new_user(usr_dict["Name"],usr_dict,"REQUESTEDBY")
 		yield(self,"user_created")
 	for item in fields["Requested"]:
 		Collections.get_nickname(item)
 		var usr_dict = yield(Collections,"got_nickname")
-		new_user(usr_dict.doc_fields["Name"],usr_dict.doc_fields,"REQUESTED")
+		new_user(usr_dict["Name"],usr_dict,"REQUESTED")
 		yield(self,"user_created")
 	for item in fields["Friends"]:
 		Collections.get_nickname(item)
 		var usr_dict = yield(Collections,"got_nickname")
-		new_user(usr_dict.doc_fields["Name"],usr_dict.doc_fields,"FRIENDS")
+		new_user(usr_dict["Name"],usr_dict,"FRIENDS")
 		yield(self,"user_created")
 	if request.get_child_count() > 0:
 		request_con.show()
@@ -105,7 +107,7 @@ func new_user(Name,usr_dict,status,found = "name"):
 			Collections.get_user(usr_dict["Email"])
 			var usr = yield(Collections,"got_user")
 			Friends.add_child(User)
-			status = usr.doc_fields["Status"]
+			status = usr["Status"]
 	User.fill(usr_dict,found)
 	User.set_status(status)
 	emit_signal("user_created")

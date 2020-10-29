@@ -2,33 +2,33 @@
 
 [ext_resource path="res://Menu_UI/Main_Menu.gd" type="Script" id=1]
 [ext_resource path="res://Menu_UI/Login_Register.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Menu_UI/save_load_loginsettings.gd" type="Script" id=3]
-[ext_resource path="res://Menu_UI/Multiplayer/Multiplayer_UI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Main/Main_UI.tscn" type="PackedScene" id=4]
 
-[node name="Main_Menu" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Object
+
+class_name save_load_login
+
+
+"
+
+[node name="Main_Menu" type="PanelContainer"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 0.8
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="VBC" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 126.0
+margin_bottom = 31.0
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
-margin_right = 600.0
-margin_bottom = 800.0
-
-[node name="Login" type="Button" parent="MarginContainer/CenterContainer"]
-margin_left = 240.0
-margin_top = 390.0
-margin_right = 359.0
-margin_bottom = 410.0
+[node name="Login" type="Button" parent="VBC"]
+margin_right = 119.0
+margin_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "LOGIN/REGISTER"
@@ -36,26 +36,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Login_Register" parent="MarginContainer/CenterContainer" instance=ExtResource( 2 )]
+[node name="Login_Register" parent="VBC" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 150.0
-margin_top = 325.0
-margin_right = 450.0
-margin_bottom = 475.0
+margin_left = 0.0
+margin_top = 24.0
+margin_right = 300.0
+margin_bottom = 174.0
 
-[node name="Multiplayer_UI" parent="MarginContainer/CenterContainer" instance=ExtResource( 4 )]
+[node name="Multiplayer_UI" parent="VBC" instance=ExtResource( 4 )]
+visible = true
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 300.0
-margin_top = 400.0
-margin_right = 300.0
-margin_bottom = 400.0
+margin_top = 24.0
+margin_right = 119.0
+margin_bottom = 24.0
 
 [node name="save_load_loginsettings" type="Node" parent="."]
-script = ExtResource( 3 )
+script = SubResource( 1 )
 
 [node name="Logout" type="Button" parent="."]
 visible = false
@@ -67,5 +67,5 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="MarginContainer/CenterContainer/Login" to="." method="_on_Login_pressed"]
+[connection signal="pressed" from="VBC/Login" to="." method="_on_Login_pressed"]
 [connection signal="pressed" from="Logout" to="." method="_on_Logout_pressed"]

@@ -15,6 +15,7 @@ extends Node
 #####################################
 export var visuals_res: PackedScene
 export var owner_path: NodePath
+export var information_dict_at: NodePath
 export (float, 0, 10, 0.05) var delay = 0.5
 export var follow_mouse: bool = true
 export (float, 0, 100, 1) var offset_x
@@ -62,10 +63,11 @@ func _ready() -> void:
 	# initialize the timer
 	_timer = Timer.new()
 	add_child(_timer)
-	_timer.connect("timeout", self, "_custom_show")
+	var Err = _timer.connect("timeout", self, "_custom_show")
 	# default to hide
 	_visuals.hide()
-
+	if Err:
+		print(Err)
 
 func _process(delta: float) -> void:
 	if _visuals.visible:
@@ -92,7 +94,7 @@ func _process(delta: float) -> void:
 #####################################
 func _mouse_entered() -> void:
 	_timer.start(delay)
-
+	_visuals.emit_signal("fill_data",get_node(information_dict_at))
 
 func _mouse_exited() -> void:
 	_timer.stop()
