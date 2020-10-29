@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Rooms/DEFAULT.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_diff_1k.jpg" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_nor_1k.jpg" type="Texture" id=9]
 [ext_resource path="res://Rooms/Resources/Table.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Rooms/Resources/Chair.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Map/Map.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
@@ -86,6 +85,3 @@ transform = Transform( 0.999055, 0, 0.0434623, 0, 1, 0, -0.0434623, 0, 0.999055,
 [node name="Pos3" type="Spatial" parent="Character_Anchors"]
 
 [node name="Pos4" type="Spatial" parent="Character_Anchors"]
-
-[node name="Map" parent="." instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5993.96, -203.52, -37932.6 )

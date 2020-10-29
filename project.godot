@@ -58,16 +58,6 @@ _global_script_classes=[ {
 "class": "character",
 "language": "GDScript",
 "path": "res://Worlds/Shenna/Character/Character.gd"
-}, {
-"base": "Node",
-"class": "player",
-"language": "GDScript",
-"path": "res://Player/Player.gd"
-}, {
-"base": "Object",
-"class": "save_load_login",
-"language": "GDScript",
-"path": "res://Menu_UI/save_load_loginsettings.gd"
 } ]
 _global_script_class_icons={
 "FirebaseResource": "",
@@ -79,24 +69,21 @@ _global_script_class_icons={
 "HTerrainDataSaver": "",
 "Modular_Tooltip": "",
 "StateMachine": "",
-"character": "",
-"player": "",
-"save_load_login": ""
+"character": ""
 }
 
 [application]
 
 config/name="PP"
-run/main_scene="res://Player/Player.tscn"
+run/main_scene="res://Main/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Settings="*res://Player/Settings.gd"
+Settings="*res://Main/Settings.gd"
 Firebase="*res://addons/GDFirebase/Firebase.gd"
 Badwords="*res://badwords/Badwords.gd"
 Collections="*res://Firebase/Collections.gd"
-Network="*res://Multiplayer/Network.tscn"
 
 [display]
 

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Main/Main_UI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Main/Save_Load.gd" type="Script" id=3]
+[ext_resource path="res://Menu_UI/Player_Info.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Main/Main.gd" type="Script" id=5]
+[ext_resource path="res://Menu_UI/Login_Register.tscn" type="PackedScene" id=6]
+
+[node name="Main" type="Node"]
+script = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Player_Info" parent="CanvasLayer" instance=ExtResource( 4 )]
+visible = false
+margin_left = -250.0
+margin_top = -50.0
+
+[node name="Login_Logout" type="Button" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+theme = ExtResource( 1 )
+text = "LOGIN/REGISTER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Login_Register" parent="CanvasLayer" instance=ExtResource( 6 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_bottom = 0.0
+theme = ExtResource( 1 )
+
+[node name="MultiplayerUI" parent="CanvasLayer" instance=ExtResource( 2 )]
+
+[node name="Save_Load" type="Node" parent="."]
+script = ExtResource( 3 )
+[connection signal="pressed" from="CanvasLayer/Login_Logout" to="." method="_on_Login_Logout_pressed"]
+[connection signal="host_game" from="CanvasLayer/MultiplayerUI" to="." method="start_host"]
+[connection signal="join_game" from="CanvasLayer/MultiplayerUI" to="." method="join_game"]

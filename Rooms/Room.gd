@@ -3,42 +3,54 @@ extends Spatial
 var Player_Anchors
 var Character_Anchors
 var Players_array:Array #[Node,pos,id]
+var parent
+var host
+var GUI
+var My_Player_actor
 
 func _init():
+	parent = get_parent()
 	Player_Anchors = $Player_Anchors
 	Character_Anchors = $Character_Anchors
 	set_network_master(1)
-	if get_tree().is_network_server():
-		add_playermesh("PosHost",1)
 
-puppet func load_other_players(Players_ar):
-	for ply in Players_ar:
-		if ply[2] == Network.own_id:
-			continue
-		else:
-			add_playermesh(ply[1],ply[2])
-
-master func _player_joined(id):
-	for i in range(Network.game_dict["Max_players"]):
+func get_pos():
+	for i in range(parent.game_dict["Max_players"]):
 		var posname = "Pos"
 		posname += String(i+1)
 		if Player_Anchors.get_node(posname).get_child_count() == 0:
-			rpc("add_playermesh",posname,id)
-			break
-	rpc_id(id,"load_other_players",Players_array)
+			return posname
+			
+func add_player(User):
+	print(User)
 	
-sync func _player_left(id):
-	for ply in Players_array:
-		if ply[2] == id:
-			ply[0].queue_free()
-			Players_array.remove(Players_array.find(ply))
+
+func remove_player(User):
+	print(User)
+
+func add_host():
+	add_actor("PosHost",1)
+func update_host(host_info):
+	host = host_info
 	
-sync func add_playermesh(pos,id):
-	var Playermesh = preload("res://Player/Player_actor.tscn").instance()
-	Players_array.append([Playermesh,pos,id])
-	Player_Anchors.get_node(pos).add_child(Playermesh)
-	Playermesh.set_network_master(id)
-	if id == Network.own_id:
-		Playermesh.Cam.current = true
-		Playermesh.add_GUI()
-		Playermesh.GUI.room = self
+
+sync func add_actor(pos,id):
+	var Player_actor = preload("res://Main/Player_actor.tscn").instance()
+	Player_actor.parent = parent
+	Player_actor.room = self
+	Player_Anchors.get_node(pos).add_child(Player_actor)
+	Player_actor.set_network_master(id)
+	if id == parent.own_id:
+		My_Player_actor = Player_actor
+		Player_actor.Cam.current = true
+		add_GUI()
+		
+func add_GUI():
+	if get_tree().is_network_server():
+		GUI = preload("res://Menu_UI/User_GUI/Host_GUI.tscn").instance()
+	else:
+		GUI = preload("res://Menu_UI/User_GUI/Player_GUI.tscn").instance()
+	GUI.parent = parent
+	GUI.room = self
+	My_Player_actor.Cam.add_child(GUI)
+	GUI.connect("gui_input",My_Player_actor,"on_gui_input")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Main/Resources/TT.gd" type="Script" id=1]
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=2]
+
+[node name="TT" type="PanelContainer"]
+margin_right = 54.0
+margin_bottom = 30.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TT" type="RichTextLabel" parent="."]
+margin_left = 4.2
+margin_top = 2.8
+margin_right = 49.8
+margin_bottom = 27.2
+bbcode_enabled = true
+scroll_active = false
+[connection signal="fill_data" from="." to="." method="_on_Frient_TT_fill_data"]
