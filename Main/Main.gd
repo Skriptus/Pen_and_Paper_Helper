@@ -78,8 +78,6 @@ func logged_in(auth):
 	mu_UI.host_b.disabled = false
 	mu_UI.join_b.disabled = false
 
-
-
 func host_joined():
 	roompath %= String(game_dict["Room"])
 	room = load(roompath).instance()
@@ -133,7 +131,6 @@ func player_connected(id):
 	current_players += 1
 	if current_players >= seatcount:
 		peer.refuse_new_connections = false
-	rpc("_set_host_info",host_info)
 	
 func player_disconnected(id):
 	for usr in connected_users:
@@ -149,7 +146,7 @@ func connected():
 	set_network_master(1)
 	own_id = get_tree().get_network_unique_id()
 	User_doc["id"] = own_id
-	rpc("new_user_info",own_id,email)
+	rpc_id(1,"new_user_info",own_id,email)
 	
 func failed():
 	print("Error")
@@ -172,12 +169,15 @@ func upadte_game():
 	Collections.update_game(game_dict["Name"],game_dict)
 	game_dict = yield(Collections,"got_game")
 
-sync func new_user_info(id,mail):
+master func new_user_info(id,mail):
 	Collections.update_users()
 	User_list = yield(Collections,"list_updated")
 	User_list[mail]["id"] = id
-	connected_users.append(User_list[mail])
-	rpc("_set_con_users",connected_users)
+	var new_users = connected_users.duplicate()
+	new_users.append(User_list[mail])
+	rpc("_set_host_info",host_info)
+	rpc("_set_con_users",new_users)
+	
 	
 sync func _set_con_users(new_usr_array):
 	for Usr in connected_users:
@@ -191,12 +191,16 @@ sync func _set_con_users(new_usr_array):
 		else:
 			room.add_player(Usr)
 	connected_users = new_usr_array
+	if room.Lobby:
+		room.Lobby.update()
 
 sync func _set_host_info(new_host_info):
 	if not room.host:
 		room.add_host()
 	room.update_host(new_host_info)
 	host_info = new_host_info
+	if room.Lobby:
+		room.Lobby.update()
 
 #### login_logoutstuff ####
 

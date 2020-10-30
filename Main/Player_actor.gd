@@ -13,11 +13,10 @@ var room
 
 var original_Pos
 
+var TT_dict:Dictionary
 
 func _ready():
 	original_Pos = Head.translation
-
-
 
 puppet func set_body_pos_rot_state(_position:Vector3,_rotation:Vector3,_state:String):
 	Body.translation = _position
@@ -27,9 +26,8 @@ puppet func set_body_pos_rot_state(_position:Vector3,_rotation:Vector3,_state:St
 puppet func set_head_pos(_position:Vector3):
 	Head.translation = _position
 	set_shadow()
-puppet func set_head_rot(_yaw,_pitch):
-	Head.rotate_y(deg2rad(_yaw))
-	Head.rotate_object_local(Vector3(1,0,0), deg2rad(-_pitch))
+puppet func set_head_rot(_rotation):
+	Head.rotation = _rotation
 
 func _physics_process(delta):
 	if is_network_master():
@@ -42,7 +40,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_left"):
 			Head.translate(Vector3(0.1,0,0))
 		set_shadow()
-		rpc("set_head_pos",Head.translation)
+		rpc_unreliable("set_head_pos",Head.translation)
 
 func on_gui_input(event):
 	if event is InputEventScreenDrag:
@@ -50,7 +48,7 @@ func on_gui_input(event):
 		var _pitch = event.relative.y/3
 		Head.rotate_y(deg2rad(_yaw))
 		Head.rotate_object_local(Vector3(1,0,0), deg2rad(-_pitch))
-		rpc("set_head_rot",_yaw,_pitch)
+		rpc_unreliable("set_head_rot",Head.rotation)
 
 func set_shadow():
 	if Head.translation.distance_to(shadow.translation) >1.0:

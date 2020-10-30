@@ -23,8 +23,6 @@ func _on_Join_pressed():
 	Collections.update_games()
 	parent.Game_list = yield(Collections,"list_updated")
 	join_game_doalog.list_servers(parent.Game_list.keys())
-	
-
 
 func _on_Play_offline_pressed():
 	pass
