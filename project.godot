@@ -58,14 +58,6 @@ _global_script_classes=[ {
 "class": "character",
 "language": "GDScript",
 "path": "res://Worlds/Shenna/Character/Character.gd"
-<<<<<<< Updated upstream
-=======
-}, {
-"base": "Object",
-"class": "save_load_login",
-"language": "GDScript",
-"path": "res://Menu_UI/save_load_loginsettings.gd"
->>>>>>> Stashed changes
 } ]
 _global_script_class_icons={
 "FirebaseResource": "",
@@ -77,12 +69,7 @@ _global_script_class_icons={
 "HTerrainDataSaver": "",
 "Modular_Tooltip": "",
 "StateMachine": "",
-<<<<<<< Updated upstream
 "character": ""
-=======
-"character": "",
-"save_load_login": ""
->>>>>>> Stashed changes
 }
 
 [application]

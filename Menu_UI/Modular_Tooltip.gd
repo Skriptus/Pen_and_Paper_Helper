@@ -121,31 +121,3 @@ func _get_screen_pos() -> Vector2:
 		position = owner_node.rect_position
 	
 	return position
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

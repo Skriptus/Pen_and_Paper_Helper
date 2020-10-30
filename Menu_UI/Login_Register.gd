@@ -27,6 +27,7 @@ func _on_Login_pressed():
 	else:
 		Firebase.Auth.login_with_email_and_password(email.text,password.text)
 		save_load.save_login_settings(get_settings())
+
 func _on_Register_pressed():
 	if !email.text:
 		$Panel/Labels/Notification.text = "NO EMAIL"
