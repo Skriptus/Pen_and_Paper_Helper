@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icons8-hinzufügen-100.png-b342dbd8c87e1583060f33008874b391.stex"
+path="res://.import/icons8-hinzugen-100.png-c1d31af7f846b90240d5152933fa8972.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu_UI/Friendlist/Resources/icons8-hinzufügen-100.png"
-dest_files=[ "res://.import/icons8-hinzufügen-100.png-b342dbd8c87e1583060f33008874b391.stex" ]
+source_file="res://Menu_UI/Friendlist/Resources/icons8-hinzugen-100.png"
+dest_files=[ "res://.import/icons8-hinzugen-100.png-c1d31af7f846b90240d5152933fa8972.stex" ]
 
 [params]
 

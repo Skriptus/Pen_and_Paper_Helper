@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "character",
 "language": "GDScript",
 "path": "res://Worlds/Shenna/Character/Character.gd"
+}, {
+"base": "Object",
+"class": "save_load_login",
+"language": "GDScript",
+"path": "res://Menu_UI/save_load_loginsettings.gd"
 } ]
 _global_script_class_icons={
 "FirebaseResource": "",
@@ -69,7 +74,8 @@ _global_script_class_icons={
 "HTerrainDataSaver": "",
 "Modular_Tooltip": "",
 "StateMachine": "",
-"character": ""
+"character": "",
+"save_load_login": ""
 }
 
 [application]
@@ -91,6 +97,7 @@ window/size/width=600
 window/size/height=1000
 window/size/test_width=300
 window/size/test_height=500
+window/handheld/orientation="portrait"
 
 [editor_plugins]
 
@@ -99,7 +106,6 @@ enabled=PoolStringArray( "GDFirebase", "zylann.hterrain" )
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=false
 
 [locale]
 

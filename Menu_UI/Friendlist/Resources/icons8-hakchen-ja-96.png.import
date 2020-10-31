@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icons8-häkchen-ja-96.png-5edede637b2fb3b8c17c78a2cee3aa33.stex"
+path="res://.import/icons8-hakchen-ja-96.png-927afed0558dee5af763a6247185ca40.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu_UI/Friendlist/Resources/icons8-häkchen-ja-96.png"
-dest_files=[ "res://.import/icons8-häkchen-ja-96.png-5edede637b2fb3b8c17c78a2cee3aa33.stex" ]
+source_file="res://Menu_UI/Friendlist/Resources/icons8-hakchen-ja-96.png"
+dest_files=[ "res://.import/icons8-hakchen-ja-96.png-927afed0558dee5af763a6247185ca40.stex" ]
 
 [params]
 

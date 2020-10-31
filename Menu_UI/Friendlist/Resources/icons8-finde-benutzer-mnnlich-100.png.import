@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icons8-finde-benutzer-männlich-100.png-b60f23828585defae44c10c072d8f641.stex"
+path="res://.import/icons8-finde-benutzer-mnnlich-100.png-f26745f743d96fc0c97bcdcf8d49800b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu_UI/Friendlist/Resources/icons8-finde-benutzer-männlich-100.png"
-dest_files=[ "res://.import/icons8-finde-benutzer-männlich-100.png-b60f23828585defae44c10c072d8f641.stex" ]
+source_file="res://Menu_UI/Friendlist/Resources/icons8-finde-benutzer-mnnlich-100.png"
+dest_files=[ "res://.import/icons8-finde-benutzer-mnnlich-100.png-f26745f743d96fc0c97bcdcf8d49800b.stex" ]
 
 [params]
 

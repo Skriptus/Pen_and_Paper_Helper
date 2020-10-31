@@ -4,15 +4,20 @@
 [ext_resource path="res://Menu_UI/Friendlist/Friend.gd" type="Script" id=2]
 [ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-anmelden-abgerundet-rechts-100.png" type="Texture" id=3]
 [ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-messaging-100.png" type="Texture" id=4]
-[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-benutzer-entfernen-männlich-100.png" type="Texture" id=5]
-[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-häkchen-ja-96.png" type="Texture" id=6]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-benutzer-entfernen-mnnlich-100.png" type="Texture" id=5]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-hakchen-ja-96.png" type="Texture" id=6]
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=7]
 [ext_resource path="res://resources/ttf/JetBrainsMono-Bold.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-männlichen-benutzer-hinzufügen-100.png" type="Texture" id=9]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-mnnlichen-benutzer-hinzufgen-100.png" type="Texture" id=9]
 [ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-stornieren-100.png" type="Texture" id=10]
-[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-fügen-sie-benutzer-zur-gruppe-hinzu-mann-mann-100.png" type="Texture" id=11]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-fzgen-sie-benutzer-zur-gruppe-hinzu-mann-mann-100.png" type="Texture" id=11]
 [ext_resource path="res://Menu_UI/Modular_Tooltip.gd" type="Script" id=12]
 [ext_resource path="res://Main/Resources/TT.tscn" type="PackedScene" id=13]
+
+
+
+
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.372549, 0.360784, 0.360784, 1 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icons8-benutzer-entfernen-männlich-100.png-17a8a28dd060dc9ab0a9c87ceea512b3.stex"
+path="res://.import/icons8-benutzer-entfernen-mnnlich-100.png-0bcd6d6127b9cbbab1f1f9d92d8878eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu_UI/Friendlist/Resources/icons8-benutzer-entfernen-männlich-100.png"
-dest_files=[ "res://.import/icons8-benutzer-entfernen-männlich-100.png-17a8a28dd060dc9ab0a9c87ceea512b3.stex" ]
+source_file="res://Menu_UI/Friendlist/Resources/icons8-benutzer-entfernen-mnnlich-100.png"
+dest_files=[ "res://.import/icons8-benutzer-entfernen-mnnlich-100.png-0bcd6d6127b9cbbab1f1f9d92d8878eb.stex" ]
 
 [params]
 

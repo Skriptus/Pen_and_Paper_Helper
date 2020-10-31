@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icons8-männlichen-benutzer-hinzufügen-100.png-d615b392ead27e01019d73765f43d17c.stex"
+path="res://.import/icons8-fzgen-sie-benutzer-zur-gruppe-hinzu-mann-mann-100.png-b917b4d95534e1e6f5a47044ed88a970.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu_UI/Friendlist/Resources/icons8-männlichen-benutzer-hinzufügen-100.png"
-dest_files=[ "res://.import/icons8-männlichen-benutzer-hinzufügen-100.png-d615b392ead27e01019d73765f43d17c.stex" ]
+source_file="res://Menu_UI/Friendlist/Resources/icons8-fzgen-sie-benutzer-zur-gruppe-hinzu-mann-mann-100.png"
+dest_files=[ "res://.import/icons8-fzgen-sie-benutzer-zur-gruppe-hinzu-mann-mann-100.png-b917b4d95534e1e6f5a47044ed88a970.stex" ]
 
 [params]
 

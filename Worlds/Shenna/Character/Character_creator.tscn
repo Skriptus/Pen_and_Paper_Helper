@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-hinzufügen-100.png" type="Texture" id=2]
+[ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-hinzugen-100.png" type="Texture" id=2]
 [ext_resource path="res://Menu_UI/Friendlist/Resources/icons8-minus-sign-100.png" type="Texture" id=3]
 [ext_resource path="res://Worlds/Shenna/Character/Character_creator.gd" type="Script" id=4]
+
 
 [node name="Character_creator" type="PanelContainer"]
 anchor_top = 1.0
