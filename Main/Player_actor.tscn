@@ -20,6 +20,7 @@ mesh = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="Head"]
 transform = Transform( -2, -1.74846e-07, 3.61287e-14, 2.8486e-14, -7.39106e-07, -2, 2.91409e-07, -3.33333, 1.23184e-06, 0, 0, 0 )
+far = 100000.0
 
 [node name="Body" type="CSGMesh" parent="Head"]
 transform = Transform( 2, 0, 0, 0, 2, 2.38419e-07, 0, -3.97364e-07, 3.33333, 0, 8.14603e-07, 8.33333 )

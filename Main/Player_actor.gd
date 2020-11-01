@@ -32,13 +32,13 @@ puppet func set_head_rot(_rotation):
 func _physics_process(delta):
 	if is_network_master():
 		if Input.is_action_pressed("ui_down"):
-			Head.translate(Vector3(0,-0.1,0))
+			Head.translate(Vector3(0,-010,0))
 		if Input.is_action_pressed("ui_up"):
-			Head.translate(Vector3(0,0.1,0))
+			Head.translate(Vector3(0,010,0))
 		if Input.is_action_pressed("ui_right"):
-			Head.translate(Vector3(-0.1,0,0))
+			Head.translate(Vector3(-010,0,0))
 		if Input.is_action_pressed("ui_left"):
-			Head.translate(Vector3(0.1,0,0))
+			Head.translate(Vector3(10,0,0))
 		set_shadow()
 		rpc_unreliable("set_head_pos",Head.translation)
 

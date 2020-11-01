@@ -88,4 +88,4 @@ transform = Transform( 0.999055, 0, 0.0434623, 0, 1, 0, -0.0434623, 0, 0.999055,
 [node name="Pos4" type="Spatial" parent="Character_Anchors"]
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6454, -259, -8000 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6500, -579, -11000 )
