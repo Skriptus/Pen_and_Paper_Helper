@@ -86,6 +86,7 @@ func get_user(email):
 func add_user(email:String):
 	var User_doc_default:Dictionary = {
 	"Name": "",
+	"Email": email,
 	"Number": 0,
 	"Friends": [],
 	"Blocked": [],
