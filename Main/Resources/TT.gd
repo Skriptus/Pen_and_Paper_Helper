@@ -30,4 +30,4 @@ func _on_Frient_TT_fill_data(info_node):
 				length = seg.length()
 		lines += 1
 	self.rect_size.y = lines * 22
-	self.rect_size.x = length * 5
+	self.rect_size.x = length * 7

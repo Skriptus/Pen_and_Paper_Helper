@@ -7,7 +7,6 @@ var IPAddress:String
 var email:String
 
 var User_list:Dictionary
-var Nickname_list:Dictionary
 var Game_list:Dictionary
 
 onready var player_info = $CanvasLayer/Player_Info
@@ -41,6 +40,7 @@ func _ready():
 	get_tree().set_auto_accept_quit(false)
 	Firebase.Auth.connect("login_succeeded", self,"logged_in")
 	player_info.parent = self
+	player_info.Friendlist.parent = self
 	mu_UI.parent = self
 	login_register.save_load = save_load
 	var savedict = save_load.load_login_settings()
