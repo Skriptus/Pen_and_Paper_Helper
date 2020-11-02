@@ -11,9 +11,6 @@ onready var change_username_b = $CenterContainer/VBoxContainer/HBoxContainer/Nam
 onready var name_options = $CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel
 onready var meassages = $CenterContainer/Messsages/Messages
 
-func _ready():
-	Friendlist.Player_Info = self
-
 func set_name_number(Name:String,Number:int):
 	$CenterContainer/VBoxContainer/HBoxContainer/Name.text = Name + " #" + String(Number)
 
@@ -79,13 +76,12 @@ func _on_Level_pressed():
 	levellabel.text = String(Leveltext)
 
 func _on_Friends_pressed():
+	Friendlist.Update_list()
 	name_options.hide()
 	meassages.hide()
 	if Friendlist.visible:
 		Friendlist.hide()
 	else:
-		Friendlist.Update_list()
-		yield(Friendlist,"list_complete")
 		Friendlist.show()
 
 
