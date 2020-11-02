@@ -11,7 +11,7 @@ onready var request_con:ScrollContainer = $VBoxContainer/Request/ScrollContainer
 onready var Friends:VBoxContainer = $VBoxContainer/Friends/ScrollContainer/List
 onready var Friends_con = $VBoxContainer/Friends/ScrollContainer
 
-var Player_Info
+var parent
 
 var user_list
 
@@ -24,8 +24,6 @@ func _on_add_friend_pressed():
 		add_friend_b.text = "ADD_FRIEND"
 	else:
 		add_friend_b.text = "ABORT"
-		Collections.update_nicknames()
-		user_list = yield(Collections,"list_updated")
 		searchbox.show()
 		search_line.grab_focus()
 
@@ -33,26 +31,24 @@ func _on_search_text_changed(new_text):
 	for obj in search_results.get_children():
 		search_results.remove_child(obj)
 		obj.free()
-	for item in user_list:
-		var item_email = item.keys()[0]
-		var doc_fields = Player_Info.parent.User_doc
-		if item_email == Player_Info.parent.email \
-		or doc_fields["Friends"].has(item_email) \
-		or doc_fields["Blockedby"].has(item_email) \
-		or doc_fields["Blocked"].has(item_email) \
-		or doc_fields["Requestby"].has(item_email) \
-		or doc_fields["Requested"].has(item_email):
+	for item in parent.User_list:
+		var item_doc = parent.User_list[item]
+		if item == parent.email \
+		or item_doc["Friends"].has(parent.email) \
+		or item_doc["Blockedby"].has(parent.email) \
+		or item_doc["Blocked"].has(parent.email) \
+		or item_doc["Requestby"].has(parent.email) \
+		or item_doc["Requested"].has(parent.email):
 			continue
-		var dict = item[item_email]
 		var found = null
-		if new_text in dict["Name"]:
+		if new_text in item_doc["Name"]:
 			found = "name"
-		if new_text in String(dict["Number"]):
+		if new_text in String(item_doc["Number"]):
 			found = "number"
-		if new_text in dict["Email"]:
+		if new_text in item_doc["Email"]:
 			found = "email"
 		if found:
-			new_user(dict["Name"],dict,"FOUND",found)
+			new_user(item_doc,"FOUND",found)
 	var child_count = search_results.get_child_count()
 	if child_count >= 5:
 		child_count = 5
@@ -65,21 +61,18 @@ func Update_list():
 	for obj in request.get_children():
 		Friends.remove_child(obj)
 		obj.free()
-	var fields = Player_Info.parent.User_doc
+	var fields = parent.User_doc
 	for item in fields["Requestby"]:
-		Collections.get_nickname(item)
-		var usr_dict = yield(Collections,"got_nickname")
-		new_user(usr_dict["Name"],usr_dict,"REQUESTEDBY")
+		var usr = parent.User_list[item]
+		new_user(usr,"REQUESTEDBY")
 		yield(self,"user_created")
 	for item in fields["Requested"]:
-		Collections.get_nickname(item)
-		var usr_dict = yield(Collections,"got_nickname")
-		new_user(usr_dict["Name"],usr_dict,"REQUESTED")
+		var usr = parent.User_list[item]
+		new_user(usr,"REQUESTED")
 		yield(self,"user_created")
 	for item in fields["Friends"]:
-		Collections.get_nickname(item)
-		var usr_dict = yield(Collections,"got_nickname")
-		new_user(usr_dict["Name"],usr_dict,"FRIENDS")
+		var usr = parent.User_list[item]
+		new_user(usr,"FRIENDS")
 		yield(self,"user_created")
 	if request.get_child_count() > 0:
 		request_con.show()
@@ -93,9 +86,9 @@ func Update_list():
 		Friends_con.hide()
 	emit_signal("list_complete")
 
-func new_user(Name,usr_dict,status,found = "name"):
+func new_user(usr_dict,status,found = "name"):
 	var User = preload("res://Menu_UI/Friendlist/Friend.tscn").instance()
-	User.name = Name
+	User.name = usr_dict["Name"]
 	match status:
 		"REQUESTEDBY":
 			request.add_child(User)
@@ -104,10 +97,7 @@ func new_user(Name,usr_dict,status,found = "name"):
 		"FOUND":
 			search_results.add_child(User)
 		"FRIENDS":
-			Collections.get_user(usr_dict["Email"])
-			var usr = yield(Collections,"got_user")
 			Friends.add_child(User)
-			status = usr["Status"]
 	User.fill(usr_dict,found)
 	User.set_status(status)
 	emit_signal("user_created")

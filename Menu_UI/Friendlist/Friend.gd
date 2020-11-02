@@ -41,7 +41,6 @@ func set_status(status:String):
 	var ac = false #accept
 	var de = false #decline
 	var color:Color = Color.lightgray
-	print(status)
 	match status:
 		"REQUESTEDBY":
 			ac = true
