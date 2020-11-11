@@ -30,3 +30,4 @@ __meta__ = {
 [node name="Character_creator" parent="Create_Caracter" instance=ExtResource( 3 )]
 visible = false
 [connection signal="pressed" from="Create_Caracter" to="." method="_on_Create_Caracter_pressed"]
+[connection signal="character_created" from="Create_Caracter/Character_creator" to="." method="_on_Character_creator_character_created"]

@@ -12,8 +12,6 @@ var Game_list:Dictionary
 onready var player_info = $CanvasLayer/Player_Info
 onready var mu_UI = $CanvasLayer/MultiplayerUI
 onready var save_load = $Save_Load
-var connected_users:Array = []
-var host_info:Dictionary
 ##### Netowrking Stuff #####
 signal update_gui
 
@@ -104,10 +102,13 @@ func start_host(dict:Dictionary):
 	get_tree().network_peer = peer
 	Error = peer.connect("peer_connected",self,"player_connected")
 	Error = peer.connect("peer_disconnected",self,"player_disconnected")
-	_set_host_info(User_list[game_dict["Host"]])
 	set_network_master(1)
 	update_status("hosting")
 	yield(self,"status_updated")
+	room.host = User_list[email]
+	room.Players_dict[own_id] = [own_id,"PosHost",User_list[email]]
+	room.update_host(User_list[email])
+	room.add_actor("PosHost",own_id)
 	if Error:
 		print(Error)
 
@@ -133,14 +134,13 @@ func player_connected(id):
 		peer.refuse_new_connections = false
 	
 func player_disconnected(id):
-	for usr in connected_users:
-		if id == usr["id"]:
-			connected_users.remove(connected_users.find(usr))
-	rset("connected_users",connected_users)
 	current_players -= 1
 	if current_players < seatcount:
 		peer.refuse_new_connections = false
-	upadte_game()
+	room.remove_player(id)
+	room.Players_dict.erase(id)
+	room.rpc("set_Players_dict",room.Players_dict)
+	update_game()
 
 func connected():
 	set_network_master(1)
@@ -164,43 +164,23 @@ func stop(): # close connection if existend
 		peer.close_connection()
 		peer = null	
 
-func upadte_game():
+func update_game():
 	game_dict["current_players"] = current_players
-	Collections.update_game(game_dict["Name"],game_dict)
+	Collections.update_game(game_dict)
 	game_dict = yield(Collections,"got_game")
 
 master func new_user_info(id,mail):
-	Collections.update_users()
-	User_list = yield(Collections,"list_updated")
 	User_list[mail]["id"] = id
-	var new_users = connected_users.duplicate()
-	new_users.append(User_list[mail])
-	rpc("_set_host_info",host_info)
-	rpc("_set_con_users",new_users)
-	
-	
-sync func _set_con_users(new_usr_array):
-	for Usr in connected_users:
-		if new_usr_array.has(Usr):
-			continue
-		else:
-			room.remove_player(Usr)
-	for Usr in new_usr_array:
-		if connected_users.has(Usr):
-			continue
-		else:
-			room.add_player(Usr)
-	connected_users = new_usr_array
-	if room.Lobby:
-		room.Lobby.update()
+	var pos = room.get_pos(game_dict["Max_players"])
+	room.Players_dict[id] = [id,pos,User_list[mail]]
+	print(room.Players_dict[id])
+	room.add_actor(pos,id)
+	room.rpc("set_Players_dict",room.Players_dict)
+	rpc_id(id,"_set_host_info",User_list[email])
+	update_game()
 
-sync func _set_host_info(new_host_info):
-	if not room.host:
-		room.add_host()
+puppet func _set_host_info(new_host_info):
 	room.update_host(new_host_info)
-	host_info = new_host_info
-	if room.Lobby:
-		room.Lobby.update()
 
 #### login_logoutstuff ####
 

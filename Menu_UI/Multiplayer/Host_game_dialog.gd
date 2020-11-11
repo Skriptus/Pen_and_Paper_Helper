@@ -26,7 +26,8 @@ func _ready(): #get available Worlds and room / recieve Ip Address
 		room_b.add_item(room[0])
 	room_b.select(0)
 	_on_Room_options_item_selected(0)
-	
+
+func _on_Host_pressed():
 	var IPRequest = HTTPRequest.new()
 	self.add_child(IPRequest)
 	IPRequest.request("https://api.ipify.org")
@@ -34,7 +35,6 @@ func _ready(): #get available Worlds and room / recieve Ip Address
 	IPaddress = result[3].get_string_from_utf8()
 	IPRequest.queue_free()
 
-func _on_Host_pressed():
 	if Badwords._check_word(name_line.text) && name_line.text != "":
 		var Game:Dictionary = {
 		"IP" : IPaddress,
