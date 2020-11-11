@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Rooms/DEFAULT.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_diff_1k.jpg" type="Texture" id=2]
-[ext_resource path="res://Map/Map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_rough_1k.jpg" type="Texture" id=5]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_disp_1k.jpg" type="Texture" id=7]
 [ext_resource path="res://Rooms/Resources/large_floor_tiles_02_ao_1k.jpg" type="Texture" id=8]
@@ -86,6 +85,3 @@ transform = Transform( 0.999055, 0, 0.0434623, 0, 1, 0, -0.0434623, 0, 0.999055,
 [node name="Pos3" type="Spatial" parent="Character_Anchors"]
 
 [node name="Pos4" type="Spatial" parent="Character_Anchors"]
-
-[node name="Map" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6500, -579, -11000 )

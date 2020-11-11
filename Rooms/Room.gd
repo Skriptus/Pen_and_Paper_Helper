@@ -2,7 +2,7 @@ extends Spatial
 
 var Player_Anchors:Spatial
 var Character_Anchors:Spatial
-var Players_array:Array #[Node,pos,id]
+var Players_dict:Dictionary  #id:[Node,pos,dict]
 var parent
 var host
 var GUI
@@ -15,23 +15,32 @@ func _init():
 	Character_Anchors = $Character_Anchors
 	set_network_master(1)
 
-func get_pos():
-	for i in range(parent.game_dict["Max_players"]):
+puppet func set_Players_dict(dict):
+	for id in Players_dict.keys():
+		if dict.keys().has(id):
+			continue
+		else:
+			Players_dict.erase(id)
+	for id in dict.keys():
+		if Players_dict.keys().has(id):
+			continue
+		else:
+			add_actor(dict[id][1],id)
+	Players_dict = dict
+	if Lobby:
+		Lobby.update()
+
+func get_pos(max_players):
+	for i in range(max_players):
 		var posname = "Pos"
 		posname += String(i+1)
 		if Player_Anchors.get_node(posname).get_child_count() == 0:
 			return posname
-			
-func add_player(User):
-	add_actor(get_pos(),User["id"])
 
-func remove_player(User):
-	for child in Player_Anchors.get_children():
-		if child.name == String(User["id"]):
-			child.queue_free()
-
-func add_host():
-	add_actor("PosHost",1)
+func remove_player(id):
+	var node = Players_dict[id][0]
+	Players_dict.erase(id)
+	node.queue_free()
 
 func update_host(host_info):
 	host = host_info
@@ -44,6 +53,7 @@ sync func add_actor(pos,id):
 	Player_Anchors.get_node(pos).add_child(Player_actor)
 	Player_actor.name = String(id)
 	Player_actor.set_network_master(id)
+	Players_dict[id] = [Player_actor,pos,null]
 	if id == parent.own_id:
 		My_Player_actor = Player_actor
 		Player_actor.Cam.current = true
@@ -60,4 +70,13 @@ func add_GUI():
 	Lobby = preload("res://Menu_UI/Multiplayer/Lobby.tscn").instance()
 	GUI.add_child(Lobby)
 	Lobby.parent = parent
+	Lobby.room = self
+	Lobby.update()
 	GUI.connect("gui_input",My_Player_actor,"on_gui_input")
+
+sync func add_character(dict,id):
+	var pos = Character_Anchors.get_node(Players_dict[id][1])
+	var Charercter = preload("res://Worlds/Shenna/Character/Character.tscn").instance()
+	pos.add_child(Charercter)
+	Charercter.set_network_master(id)
+	Charercter.character_dict = dict
