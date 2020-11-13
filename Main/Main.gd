@@ -1,9 +1,8 @@
 extends Node
 
 signal status_updated
+signal update_gui
 
-var game_character:Object
-var IPAddress:String
 var email:String
 
 var User_list:Dictionary
@@ -13,14 +12,12 @@ onready var player_info = $CanvasLayer/Player_Info
 onready var mu_UI = $CanvasLayer/MultiplayerUI
 onready var save_load = $Save_Load
 ##### Netowrking Stuff #####
-signal update_gui
 
 var seatcount:int = 0
 var peer:NetworkedMultiplayerENet
 
 var own_id = 1
 
-var game_dict:Dictionary
 var current_players:int = 0
 
 #### Login #####
@@ -31,8 +28,6 @@ var room:Spatial
 var roompath = "res://Rooms/%s.tscn"
 var world:Spatial
 
-var Nickname_doc:Dictionary
-var User_doc:Dictionary
 
 func _ready():
 	get_tree().set_auto_accept_quit(false)
@@ -59,25 +54,37 @@ func logged_in(auth):
 	email = auth["email"]
 	if not User_list.keys().has(email): #load and set user
 		Collections.add_user(email)
-		User_list = yield(Collections,"list_updated")
+		User_list[email] = yield(Collections,"got_user")
 		player_info.Username_dialog.popup()
 		var new_name = yield(player_info.Username_dialog,"new_username")
 		User_list[email]["Name"] = new_name
 		User_list[email]["Number"] = Collections.generate_number(new_name)
 		Collections.update_user(email,new_name)
-		User_list = yield(Collections,"list_updated")
-	User_doc = User_list[email]
-	player_info.set_level_progress(User_doc["Experience"],true)
-	player_info.set_name_number(User_doc["Name"],User_doc["Number"])
-	update_status("Online")
+		User_list[email] = yield(Collections,"got_user")
+	player_info.fill(User_list[email])
+	update_status("ONLINE")
 	login_register.hide()
 	loginbutton.text = "LOGOUT"
 	player_info.show()
 	mu_UI.host_b.disabled = false
 	mu_UI.join_b.disabled = false
 
+func _login_aborted(): 
+	login_register.hide()
+
+func _on_Login_Logout_pressed():
+	if loginbutton.text == "LOGIN/REGISTER":
+		loginbutton.text = "LOGOUT"
+		login_register.show()
+	else:
+		save_load.savedict["Autologin"] = false
+		login_register.autologin_b.pressed = false
+		save_load.save_settings(save_load.savedict)
+		loginbutton.text = "LOGIN/REGISTER"
+		logout()
+
 func host_joined():
-	roompath %= String(game_dict["Room"])
+	roompath %= String(Game_list[email]["Room"])
 	room = load(roompath).instance()
 	self.add_child(room)
 	room.set_script(load("res://Rooms/Room.gd"))
@@ -85,45 +92,40 @@ func host_joined():
 	mu_UI.hide()
 
 func update_status(new_status):
-	User_doc["Status"] = new_status
-	Collections.update_user(email,User_doc)
-	User_doc = yield(Collections,"got_user")
+	User_list[email]["Status"] = new_status
+	Collections.update_user(email,User_list[email])
+	User_list[email] = yield(Collections,"got_user")
 	emit_signal("status_updated")
 
 func start_host(dict:Dictionary):
 	dict["Host"] = email
 	Collections.add_game(dict)
-	var game = yield(Collections,"got_game")
-	game_dict = game
+	Game_list[email] = yield(Collections,"got_game")
 	host_joined()
-	var Error
 	peer = NetworkedMultiplayerENet.new()
-	Error = peer.create_server(game_dict["PORT"], game_dict["Max_players"])
+	var Error = peer.create_server(Game_list[email]["PORT"], Game_list[email]["Max_players"])
 	get_tree().network_peer = peer
 	Error = peer.connect("peer_connected",self,"player_connected")
 	Error = peer.connect("peer_disconnected",self,"player_disconnected")
 	set_network_master(1)
-	update_status("hosting")
+	update_status("HOSTING")
 	yield(self,"status_updated")
-	room.host = User_list[email]
 	room.Players_dict[own_id] = [own_id,"PosHost",User_list[email]]
-	room.update_host(User_list[email])
 	room.add_actor("PosHost",own_id)
 	if Error:
 		print(Error)
 
 func join_game(dict:Dictionary): #get signal from serverlist
-	var Error
-	game_dict = dict.duplicate()
+	Game_list[email] = dict
 	host_joined()
 	peer = NetworkedMultiplayerENet.new()
-	Error = peer.create_client(dict["IP"],dict["PORT"])
+	var Error = peer.create_client(dict["IP"],dict["PORT"])
 	get_tree().network_peer = peer
 	Error = peer.connect("connection_succeeded",self,"connected")
 	Error = peer.connect("connection_failed",self,"failed")
 	Error = peer.connect("server_disconnected",self,"kicked")
 	yield(peer,"connection_succeeded")
-	update_status("in-game")
+	update_status("INGAME")
 	yield(self,"status_updated")
 	if Error:
 		print(Error)
@@ -145,18 +147,17 @@ func player_disconnected(id):
 func connected():
 	set_network_master(1)
 	own_id = get_tree().get_network_unique_id()
-	User_doc["id"] = own_id
 	rpc_id(1,"new_user_info",own_id,email)
 	
 func failed():
 	print("Error")
 	
 func kicked(): #Server disconected clos connection, unload game, load menu
-	User_doc.erase("id")
+	User_list[email].erase("id")
 	print("got kicked")
 	stop()
 	room.queue_free()
-	update_status("online")
+	update_status("ONLINE")
 	yield(self,"status_updated")
 
 func stop(): # close connection if existend
@@ -165,23 +166,18 @@ func stop(): # close connection if existend
 		peer = null	
 
 func update_game():
-	game_dict["current_players"] = current_players
-	Collections.update_game(game_dict)
-	game_dict = yield(Collections,"got_game")
+	Game_list[email]["current_players"] = current_players
+	Collections.update_game(Game_list[email])
+	Game_list[email] = yield(Collections,"got_game")
+	print(Game_list[email])
 
 master func new_user_info(id,mail):
 	User_list[mail]["id"] = id
-	var pos = room.get_pos(game_dict["Max_players"])
+	var pos = room.get_pos(Game_list[email]["Max_players"])
 	room.Players_dict[id] = [id,pos,User_list[mail]]
-	print(room.Players_dict[id])
 	room.add_actor(pos,id)
 	room.rpc("set_Players_dict",room.Players_dict)
-	rpc_id(id,"_set_host_info",User_list[email])
 	update_game()
-
-puppet func _set_host_info(new_host_info):
-	room.update_host(new_host_info)
-
 #### login_logoutstuff ####
 
 func logout():
@@ -189,68 +185,50 @@ func logout():
 	player_info.hide()
 
 func _add_firend(friend_email):
-	var User_to_add
-	Collections.get_user(email)
-	User_to_add = yield(Collections,"got_user")
-	User_to_add["Requestby"].append(friend_email)
-	Collections.update_user(friend_email,User_to_add)
-	User_to_add = yield(Collections,"got_user")
-	User_doc["Requested"].append(friend_email)
-	Collections.update_user(email,User_doc)
-	User_doc = yield(Collections,"got_user")
-
+	Collections.get_user(friend_email)
+	User_list[friend_email] = yield(Collections,"got_user")
+	User_list[friend_email]["Requestby"].append(email)
+	Collections.update_user(friend_email,User_list[friend_email])
+	User_list[email]["Requested"].append(friend_email)
+	Collections.update_user(email,User_list[email])
+	User_list[email] = yield(Collections,"got_user")
 
 func _delcine_request(friend_email):
 	Collections.get_user(friend_email)
-	var usr = yield(Collections,"got_user")
-	var usr_doc = usr
-	if usr_doc["Requested"].has(email):
-		usr_doc["Requested"].remove(usr_doc["Requested"].find(email))
-		usr_doc["Blockedby"].append(email)
-		Collections.update_user(friend_email,usr_doc)
-		yield(Collections,"got_user")
-	if User_doc["Requestby"].has(friend_email):
-		User_doc["Requestby"].remove(User_doc["Requestby"].find(friend_email))
-		User_doc["Blocked"].append(friend_email)
-		Collections.update_user(email,User_doc)
-		yield(Collections,"got_user")
+	User_list[friend_email] = yield(Collections,"got_user")
+	Collections.get_user(email)
+	User_list[email] = yield(Collections,"got_user")
+	if User_list[friend_email]["Requested"].has(email):
+		User_list[friend_email]["Requested"].remove(User_list[friend_email]["Requested"].find(email))
+		User_list[email]["Blockedby"].append(email)
+		Collections.update_user(friend_email,User_list[friend_email])
+		User_list[friend_email] = yield(Collections,"got_user")
+	if User_list[email]["Requestby"].has(friend_email):
+		User_list[email]["Requestby"].remove(User_list[email]["Requestby"].find(friend_email))
+		User_list[email]["Blocked"].append(friend_email)
+		Collections.update_user(email,User_list[email])
+		User_list[email] = yield(Collections,"got_user")
 
 func _accept_request(friend_email):
 	Collections.get_user(friend_email)
-	var usr = yield(Collections,"got_user")
-	var usr_doc = usr
-	if usr_doc["Requested"].has(email):
-		usr_doc["Requested"].remove(usr_doc["Requested"].find(email))
-		usr_doc["Friends"].append(email)
-		Collections.update_user(friend_email,usr_doc)
-		yield(Collections,"got_user")
-	if User_doc["Requestby"].has(friend_email):
-		User_doc["Requestby"].remove(User_doc["Requestby"].find(friend_email))
-		User_doc["Friends"].append(friend_email)
-		Collections.update_user(email,User_doc)
-		yield(Collections,"got_user")
-
-func _login_aborted(): 
-	login_register.hide()
-
-func _on_Login_Logout_pressed():
-	if loginbutton.text == "LOGIN/REGISTER":
-		loginbutton.text = "LOGOUT"
-		login_register.show()
-	else:
-		save_load.savedict["Autologin"] = false
-		login_register.autologin_b.pressed = false
-		save_load.save_settings(save_load.savedict)
-		loginbutton.text = "LOGIN/REGISTER"
-		logout()
+	User_list[friend_email] = yield(Collections,"got_user")
+	if User_list[friend_email]["Requested"].has(email):
+		User_list[friend_email]["Requested"].remove(User_list[friend_email]["Requested"].find(email))
+		User_list[friend_email]["Friends"].append(email)
+		Collections.update_user(friend_email,User_list[friend_email])
+		User_list[friend_email] = yield(Collections,"got_user")
+	if User_list[email]["Requestby"].has(friend_email):
+		User_list[email]["Requestby"].remove(User_list[email]["Requestby"].find(friend_email))
+		User_list[email]["Friends"].append(friend_email)
+		Collections.update_user(email,User_list[email])
+		User_list[email] = yield(Collections,"got_user")
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		if email:
-			update_status("offline")
+			update_status("OFFLINE")
 			yield(self,"status_updated")
 			if peer != null:
 				if get_tree().is_network_server():
 					Collections.delete_game(email)
-					yield(Collections,"list_updated")
 		get_tree().quit()

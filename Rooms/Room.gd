@@ -4,7 +4,6 @@ var Player_Anchors:Spatial
 var Character_Anchors:Spatial
 var Players_dict:Dictionary  #id:[Node,pos,dict]
 var parent
-var host
 var GUI
 var Lobby
 var My_Player_actor
@@ -27,8 +26,7 @@ puppet func set_Players_dict(dict):
 		else:
 			add_actor(dict[id][1],id)
 	Players_dict = dict
-	if Lobby:
-		Lobby.update()
+	Lobby.update()
 
 func get_pos(max_players):
 	for i in range(max_players):
@@ -42,18 +40,15 @@ func remove_player(id):
 	Players_dict.erase(id)
 	node.queue_free()
 
-func update_host(host_info):
-	host = host_info
-
 sync func add_actor(pos,id):
 	var Player_actor = preload("res://Main/Player_actor.tscn").instance()
 	Player_actor.parent = parent
-	Player_actor.TT_dict = parent.User_doc
 	Player_actor.room = self
 	Player_Anchors.get_node(pos).add_child(Player_actor)
 	Player_actor.name = String(id)
 	Player_actor.set_network_master(id)
-	Players_dict[id] = [Player_actor,pos,null]
+	if not id == parent.own_id:
+		Players_dict[id] = [Player_actor,pos,null]
 	if id == parent.own_id:
 		My_Player_actor = Player_actor
 		Player_actor.Cam.current = true
@@ -69,7 +64,6 @@ func add_GUI():
 	My_Player_actor.Cam.add_child(GUI)
 	Lobby = preload("res://Menu_UI/Multiplayer/Lobby.tscn").instance()
 	GUI.add_child(Lobby)
-	Lobby.parent = parent
 	Lobby.room = self
 	Lobby.update()
 	GUI.connect("gui_input",My_Player_actor,"on_gui_input")
