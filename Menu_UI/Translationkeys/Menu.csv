@@ -46,6 +46,10 @@ OFFLINE,Offline,Offline
 REQUEST,Friend request,Freundschaftsanfragen
 REQUESTEDBY,Request,Anfrage
 FOUND,Found,Gefunden
+ONLINE,Online,Online
+OFFLINE,Offline,Offline
+HOSTING,Hosting,Gastgeber
+INGAME,Ingame,Im Spiel
 NAME,Name,Name
 MALE,Male,Männlich
 FEMALE,Female,Weiblich

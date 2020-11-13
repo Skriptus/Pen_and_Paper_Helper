@@ -204,7 +204,7 @@ var randomnames = ["palatablediamonds",
 	"labourershotput"]
 
 var allow_close:= false
-onready var NameLine = $Panel/VBoxContainer/HBoxContainer/Username
+onready var NameLine:LineEdit = $Panel/VBoxContainer/HBoxContainer/Username
 onready var Notification = $Panel/VBoxContainer/Notification
 
 func _on_Confirm_pressed():
@@ -212,6 +212,7 @@ func _on_Confirm_pressed():
 		if NameLine.text:
 			emit_signal("new_username",NameLine.text)
 			Notification.hide()
+			NameLine.text = ""
 			self.hide()
 		else:
 			Notification.text = "NO_USERNAME_ENTERD"

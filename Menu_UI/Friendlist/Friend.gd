@@ -2,7 +2,6 @@ extends Control
 
 onready var Name_label:RichTextLabel = $Vbox/Name
 onready var Status_label:Label = $Vbox/Sort/Info/Status
-var Nickname_dict
 onready var message = $Vbox/Sort/Actions/Message
 onready var join = $Vbox/Sort/Actions/Join
 onready var invite = $Vbox/Sort/Actions/Invite
@@ -15,7 +14,6 @@ var TT_dict
 var list
 
 func fill(dict:Dictionary,found_type):
-	Nickname_dict = dict
 	var name_text:String = dict["Name"]
 	var number_text = String(dict["Number"])
 	if name_text.length() >= 20:
@@ -50,7 +48,7 @@ func set_status(status:String):
 			color = Color.greenyellow
 		"REQUESTED":
 			color = Color.lightblue
-		"Online":
+		"ONLINE":
 			me = true
 			message.show()
 			re = true
@@ -58,7 +56,7 @@ func set_status(status:String):
 			iv = true
 			invite.show()
 			color = Color.green
-		"offline":
+		"OFFLINE":
 			me = true
 			message.show()
 			re = true
@@ -69,7 +67,7 @@ func set_status(status:String):
 			add.show()
 			color = Color.lightcoral
 			status = ""
-		"Ingame":
+		"INGAME":
 			me = true
 			message.show()
 			re = true
@@ -77,6 +75,14 @@ func set_status(status:String):
 			jo = true
 			join.show()
 			color = Color.lightcyan
+		"HOSTING":
+			me = true
+			message.show()
+			re = true
+			remove.show()
+			jo = true
+			join.show()
+			color = Color.lightskyblue
 	Status_label.set("custom_colors/font_color", color)
 	Status_label.text = status
 	if not me:

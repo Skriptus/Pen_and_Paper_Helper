@@ -14,11 +14,6 @@
 [ext_resource path="res://Menu_UI/Modular_Tooltip.gd" type="Script" id=12]
 [ext_resource path="res://Main/Resources/TT.tscn" type="PackedScene" id=13]
 
-
-
-
-
-
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.372549, 0.360784, 0.360784, 1 )
 
@@ -26,8 +21,8 @@ bg_color = Color( 0.372549, 0.360784, 0.360784, 1 )
 font_data = ExtResource( 8 )
 
 [node name="Friend" type="PanelContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -35,11 +30,13 @@ __meta__ = {
 }
 
 [node name="Vbox" type="VBoxContainer" parent="."]
-margin_right = 600.0
-margin_bottom = 1000.0
+margin_right = 154.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Name" type="RichTextLabel" parent="Vbox"]
-margin_right = 600.0
+margin_right = 154.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 150, 25 )
 theme = ExtResource( 7 )
@@ -52,15 +49,16 @@ scroll_following = true
 
 [node name="Sort" type="HBoxContainer" parent="Vbox"]
 margin_top = 29.0
-margin_right = 600.0
+margin_right = 154.0
 margin_bottom = 54.0
 alignment = 1
 
 [node name="Info" type="HBoxContainer" parent="Vbox/Sort"]
-margin_left = 223.0
-margin_right = 373.0
+margin_right = 150.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 150, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -88,10 +86,11 @@ __meta__ = {
 }
 
 [node name="Actions" type="HBoxContainer" parent="Vbox/Sort"]
-margin_left = 377.0
-margin_right = 377.0
+margin_left = 154.0
+margin_right = 154.0
 margin_bottom = 25.0
 grow_horizontal = 0
+size_flags_horizontal = 3
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false

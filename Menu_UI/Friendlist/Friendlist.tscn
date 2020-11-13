@@ -2,12 +2,15 @@
 
 [ext_resource path="res://Menu_UI/Friendlist/Friendlist.gd" type="Script" id=1]
 
-[node name="Friends" type="PanelContainer"]
+[node name="FriendsList" type="PanelContainer"]
 anchor_left = 1.0
 anchor_right = 1.0
+margin_left = -128.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -19,6 +22,8 @@ margin_top = 7.0
 margin_right = 121.0
 margin_bottom = 67.0
 rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,10 +62,13 @@ caret_blink_speed = 0.5
 margin_top = 28.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 0, 25 )
+size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="Searchresults" type="VBoxContainer" parent="VBoxContainer/Friendsearch/ScrollContainer"]
+margin_bottom = 25.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Request" type="VBoxContainer" parent="VBoxContainer"]
 visible = false
@@ -81,15 +89,19 @@ align = 1
 margin_top = 18.0
 margin_bottom = 18.0
 mouse_filter = 1
+size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="List" type="VBoxContainer" parent="VBoxContainer/Request/ScrollContainer"]
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Friends" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 42.0
 margin_right = 114.0
 margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -104,10 +116,13 @@ align = 1
 margin_top = 18.0
 margin_right = 114.0
 margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="List" type="VBoxContainer" parent="VBoxContainer/Friends/ScrollContainer"]
 margin_right = 114.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 [connection signal="pressed" from="VBoxContainer/Con/add_friend" to="." method="_on_add_friend_pressed"]
 [connection signal="text_changed" from="VBoxContainer/Friendsearch/search" to="." method="_on_search_text_changed"]

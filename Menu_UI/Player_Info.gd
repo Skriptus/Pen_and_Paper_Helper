@@ -11,18 +11,12 @@ onready var change_username_b = $CenterContainer/VBoxContainer/HBoxContainer/Nam
 onready var name_options = $CenterContainer/VBoxContainer/HBoxContainer/Name/Optionspanel
 onready var meassages = $CenterContainer/Messsages/Messages
 
-func set_name_number(Name:String,Number:int):
-	$CenterContainer/VBoxContainer/HBoxContainer/Name.text = Name + " #" + String(Number)
-
-func set_level_progress(experience:int,roman:bool):
-	roman_bool = roman
-	Level = floor(experience/50.0)
-	var progress = (experience/50.0)-Level
+func fill(dict):
+	$CenterContainer/VBoxContainer/HBoxContainer/Name.text = dict["Name"] + " #" + String(dict["Number"])
+	Level = floor(dict["Experience"]/50.0)
+	var progress = (dict["Experience"]/50.0)-Level
 	var Leveltext
-	if roman:
-		Leveltext = roman_numbers(Level)
-	else:
-		Leveltext = String(Level)
+	Leveltext = roman_numbers(Level)
 	$CenterContainer/VBoxContainer/HBoxContainer/Level.text = String(Leveltext)
 	$CenterContainer/VBoxContainer/Levelprogress.value = progress
 
@@ -84,7 +78,6 @@ func _on_Friends_pressed():
 	else:
 		Friendlist.show()
 
-
 func _on_Change_name_pressed():
 	name_options.hide()
 	meassages.hide()
@@ -94,12 +87,11 @@ func _on_Change_name_pressed():
 	parent.User_list[parent.email]["Name"] = new_name
 	parent.User_list[parent.email]["Number"] = Collections.generate_number(new_name)
 	Collections.update_user(parent.email,parent.User_list[parent.email])
-	parent.User_list = yield(Collections,"list_updated")
-	set_name_number(parent.User_list[parent.email]["Name"],parent.User_list[parent.email]["Number"])
+	parent.User_list[parent.email] = yield(Collections,"got_user")
+	fill(parent.User_list[parent.email])
 
 func _on_show_qr_pressed():
 	name_options.hide()
-
 
 func _on_Messsages_toggled(button_pressed):
 	Friendlist.hide()
